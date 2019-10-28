@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JavaScript HTML DOM 元素</title>
+	</head>
+	<body>
+		<p id="intro">Hello World!</p>
+
+		<p id="demo"></p>
+		<p id="demo1"></p>
+
+		<div id="main">
+			<p>1DOM 很有用。</p>
+			<p>2DOM 很有用。</p>
+			<p>3DOM 很有用。</p>
+		</div>
+		<p id="demo2"></p>
+
+		<p class="intro">1DOM 很有用。</p>
+		<p class="intro">2DOM 很有用。</p>
+		<p class="intro">3DOM 很有用。</p>
+		<p id="demo3"></p>
+
+		<p id="demo4"></p>
+
+		<form id="form1">
+			firstname<input type="text" id="" name="" value="tom">
+			lastname<input type="text" id="" name="" value="gate">
+			<input type="submit" value="提交"> 
+		</form>
+		<button onclick="myFunction()">单击按钮，显示表单中每个元素的值。</button>
+		<p id="demo5"></p>
+
+		<script>	
+			//查找 HTML 元素
+			//通常，通过 JavaScript，您需要操作 HTML 元素,首先找到这些元素。有好几种完成此任务的方法：
+			// 通过 id 查找 HTML 元素
+			// 通过 标签名查找 HTML 元素
+			// 通过 类名查找 HTML 元素
+			// 通过 CSS 选择器查找 HTML 元素
+			// 通过 HTML 对象集合查找 HTML 元素
+
+			//1.通过 id 查找 HTML 元素
+			// 如果元素被找到，此方法会以对象返回该元素（在 myElement 中）
+			// 如果未找到元素，myElement 将包含 null
+			var myElement = document.getElementById('intro');
+			document.getElementById('demo').innerHTML = '来自 intro 段落的文本是:'+ myElement.innerHTML;
+
+			//2.通过标签名查找 HTML 元素
+			//本例查找所有 <p> 元素：
+			var x = document.getElementsByTagName('p'); //集合
+			document.getElementById('demo1').innerHTML = '第一段中的文本 (index 0) 是:'+ x[0].innerHTML;
+			//本例查找 id="main" 的元素，然后查找 "main" 中所有 <p> 元素：
+			var x1 = document.getElementById('main');
+			var y = x1.getElementsByTagName('p');
+			document.getElementById('demo2').innerHTML = '“main”中的第一段（索引 0）是:'+ y[0].innerHTML;
+
+			//3.通过类名查找 HTML 元素
+			//如果您需要找到拥有相同类名的所有 HTML 元素，请使用 getElementsByClassName()。
+			//本例返回包含 class="intro" 的所有元素的列表：
+			var x2 = document.getElementsByClassName('intro');
+			document.getElementById('demo3').innerHTML = 'class ="intro" 的第二段（索引 1）:'+ x2[1].innerHTML;
+
+			//4.通过 CSS 选择器查找 HTML 元素
+			//如果您需要查找匹配指定 CSS 选择器（id、类名、类型、属性、属性值等等）的所有 HTML 元素，请使用 querySelectorAll() 方法。
+			//本例返回 class="intro" 的所有 <p> 元素列表：
+			var x3 = document.querySelectorAll('p.intro');
+			document.getElementById('demo4').innerHTML = 'class ="intro" 的第三段（索引 2）:'+ x3[2].innerHTML;
+			
+			//注意：document.querySelector() 与 document.querySelectorAll 区别
+			//文档对象模型Document引用的querySelector()方法返回文档中与指定选择器或选择器组匹配的第一个 html元素Element。 如果找不到匹配项，则返回null。
+			var x4 = document.querySelectorAll('p');
+			var x5 = document.querySelector('p');
+			//alert(x4);//[object NodeList]
+			//alert(x5);//[object HTMLParagraphElement]
+
+			
+			//5.通过 HTML 对象选择器查找 HTML 对象
+			function myFunction(){
+				//查找 id="frm1" 的 form 元素(文本框+提交)
+				var x = document.forms['form1'];
+				//在 forms 集合中，然后显示所有元素值
+				var text = '';
+				for(var i=0;i<x.length;i++){
+					//elements 集合可返回包含表单中所有元素的数组
+
+					//拼接字符串 注意：<br>在js中带引号，在js之外直接就是<br>
+					text += x.elements[i].value + '<br>';
+					
+				}
+				document.getElementById('demo5').innerHTML = text;
+			}
+
+		</script>
+	</body>
+</html>

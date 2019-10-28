@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+  </head>
+
+<body>
+    <button>点我呀！</button>
+    
+    <!-- 内部JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+          
+          function createParagraph(){
+            let para = document.createElement('p');
+            alert(para);
+            para.textContent = '你点击来了这个按钮！';
+            document.body.appendChild(para);
+          }
+
+          const buttons =  document.querySelectorAll('button');
+          alert(buttons);
+          alert(buttons.length);
+
+          for(let i = 0;  i < buttons.length;i++){
+            alert(i);
+            alert(buttons.length);
+            buttons[i].addEventListener('click',createParagraph);
+          }
+        });
+    </script>
+
+</body>
+</html>

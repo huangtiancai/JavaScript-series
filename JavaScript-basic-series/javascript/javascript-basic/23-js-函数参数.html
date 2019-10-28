@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JavaScript 函数参数</title>
+	</head>
+	<body>
+		<p id="p1"></p>
+		<script>
+			//1.函数参数
+			function functionName(parameter1, parameter2, parameter3) {
+				//要执行的代码
+			}
+			//函数参数（parameter）指的是在函数定义中列出的名称-形参
+			//函数参数（argument）指的是传递到函数或由函数接收到的真实值-实参
+
+			//形参：
+			//可以在函数的()中来指定一个或多个形参。
+			//多个形参之间使用,隔开，声明形参就相当于在函数内部声明了对应的变量，但是并不赋值。
+			//实参：
+			//在调用函数时，可以在 ()中指定实参。
+			//实参将会赋值给函数中对应的形参。
+
+			//2.参数规则
+			// JavaScript 函数定义不会为参数（parameter）规定数据类型。
+			// JavaScript 函数不会对所传递的参数（argument）实行类型检查。
+			// JavaScript 函数不会检查所接收参数（argument）的数量。
+
+			// 1)实参的类型：
+			// 函数的实参可以是任意的数据类型。
+			// 调用函数时解析器不会检查实参的类型，所以要注意，是否有可能会接收到非法的参数，如果有可能则需要对参数进行类型的检查。
+			//2)实参的数量:
+			//调用函数时，解析器也不会检查实参的数量
+			//多余实参不会被赋值
+			//如果实参的数量少于形参的数量，则没有对应实参的形参将是undefined。例如：
+			
+			function sum(a,b){
+				console.log("a:"+a);
+				console.log("b:"+b);//undefined
+				console.log(a+b);
+			}
+
+			sum(4);
+
+			//3.参数默认
+			//如果调用参数时省略了参数（少于被声明的数量），则丢失的值被设置为：undefined。
+			//实例(ES5)
+			function myFunction(x,y){
+				if(y = undefined){
+					y = 0;
+				}
+			}
+			//实例(ES6)
+			function myFunction1(x,y){
+				y = y || 0;// 如果y已经定义 ， 返回 y, 因为 y 是 true, 否则返回 0, 因为 undefined 为 false。
+			}
+
+
+			//ES6 函数可以自带参数
+			function myFunction2(x,y = 2){
+				// y is 10 if not passed or undefined
+				return x+y;
+			}
+			//调用
+			console.log("ES6函数自带参数(x,y均定义):"+myFunction2(3,4));
+			console.log("ES6函数自带参数(x定义,y未定义):"+myFunction2(3));
+
+			
+
+
+			//4.arguments 对象(JavaScript 函数有一个名为 arguments 对象的内置对象)
+			
+			function Function(a,b,c){
+				console.log(arguments[0]);
+				console.log(arguments[1]);
+				console.log(arguments[2]);
+
+				return arguments.length;
+			}
+			var f3 = Function(3,4,3);
+			console.log("函数被调用时收到的参数数目："+f3);
+
+			//arguments 对象包含函数调用时使用的参数数组
+			function finMax(){
+				console.log(arguments);
+				console.log("数组最后一位："+arguments[arguments.length-1]);
+				console.log(arguments.__proto__);
+				console.log(arguments.callee.name);
+				var i;
+				var max = -Infinity; //初始的max设置为最小值（负无穷）
+				for(i = 0;i<arguments.length;i++){
+					if(arguments[i]>max){
+						max = arguments[i];
+					}
+				}
+				return max;
+			}
+
+			console.log(finMax(1, 123, 500, 115, 44, 88));
+
+			//4.参数通过值传递
+
+
+
+
+		</script>
+
+	</body>
+</html>

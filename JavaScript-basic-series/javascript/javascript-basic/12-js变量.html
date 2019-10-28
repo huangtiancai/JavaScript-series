@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!-- JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象 -->
+		<!-- 
+
+        	时间：2019-01-27
+        	描述：JavaScript 的基本语法，变量声明，数据类型 和 字面量。
+				1.变量是存储信息的容器
+				     在代数中，我们使用字母（比如 x）来保存值（比如 2）。通过上面的表达式 z=x+y，我们能够计算出 z 的值为 5。
+					 在 JavaScript 中，这些字母被称为变量。提示：您可以把变量看做存储数据的容器。
+				2.声明变量
+					JavaScript有三种声明方式
+					var     声明一个变量，可选初始化一个值（可以用来声明局部变量和全局变量）
+					let 	声明一个块作用域的局部变量，可选初始化一个值（用来声明块作用域的局部变量）
+					const	声明一个块作用域的只读常量。
+					注意：
+					(1)var或let语句声明的变量，如果没有初始值，则其值为undefined
+					(2)访问一个未声明的变量会抛出一个引用错误（ReferenceError）异常
+				
+				3.初始化变量
+				4.更新变量
+				5.关于变量命名的规则
+				  在应用程序中，使用变量来作为值的符号名。变量的名字又叫做标识符，其需要遵守一定的规则
+					变量名不要以下划线开头_以下划线开头的被某些JavaScript设计为特殊的含义，因此可能让人迷惑 
+					变量名不要以数字开头。这种行为是不被允许的，并且将引发一个错误
+					使用驼峰命名法
+					变量名称对大小写敏感（y 和 Y 是不同的变量）
+					变量可以使用短名称（比如 x 和 y），也可以使用描述性更好的名称（比如 age, sum, totalvolume）
+					应当避免使用JavaScript的保留字给变量命名。保留字，即是组成JavaScript的实际语法的单词！因此诸如 var, function, let和 for等，都不能被作为变量名使用。浏览器将把它们识别为不同的代码项，因此你将得到错误
+				好的命名示例:
+					age
+					myAge
+					init
+					initialColor
+					finalOutputValue
+					audio1
+					audio2
+				差的命名示例:
+					1
+					a
+					_12
+					myage
+					MYAGE
+					var
+					Document
+					skjfndskjfnbdskjfb
+					thisisareallylongstupidvariablenameman
+
+				注意：
+				当您向变量分配文本值时，应该用双引号或单引号包围这个值。				
+				当您向变量赋的值是数值时，不要使用引号。如果您用引号包围数值，该值会被作为文本来处理。		
+				6.变量类型
+
+				7.动态类型
+				JavaScript是一种“动态类型语言”，这意味着不同于其他一些语言(译者注：如C、JAVA)，您不需要指定变量将包含什么数据类型（例如number或string）
+					
+
+       -->
+		
+	</head>
+	<body>
+		<!-- <p>点击这里来创建变量，并显示结果。</p>
+		<p id="demo"></p>
+		<button onclick="myFunction()">点击这里!</button> -->
+
+
+		<button>Press me</button>
+		
+
+
+		<script>
+			//点击这里来创建变量，并显示结果
+			// function myFunction(){
+			// 	var carname = 'Volvo';
+			// 	document.getElementById("demo").innerHTML=carname;
+			// 	//document.getElementById("myDiv").innerHTML="Hai";	
+			// }
+			var button = document.querySelector("button");
+			button.onclick = function(){
+				var name = prompt("请输入你的名字：");
+				alert("Hello "+name+",nice to see you");
+			}
+
+			//声明变量
+			var myName;
+			var myAge;
+
+
+			//变量类型
+			
+			//声明变量类型
+			var catname = new String;
+			var t = new Number;
+			var s = new Boolean;
+			var u = new Array;
+			var w = new Object;
+
+			//Number
+			//你可以在变量中存储数字，不论这些数字是像30（也叫整数）这样，或者像2.456这样的小数（也叫做浮点数）
+			//1.与其他编程语言不同，在 JavaScript 中你不需要声明一个变量的类型
+			//2.当你给一个变量数字赋值时，不需要用引号括起来
+			var myAge = 18;
+
+			//String
+			//字符串是文本的一部分。当你给一个变量赋值为字符串时，你需要用单引号或者双引号把值给包起来
+			var dolphinGoodbye = 'So long and thanks for all the fish';
+
+			//Boolean
+			//Boolean 的值有2种：true或false。它们通常被用于在适当的代码之后，测试条件是否成立
+			var iAmAlive = true;
+			//实际上通常被用于在适当的代码之后，测试条件是否成立
+			var test = 6 < 3; 	
+			//alert("test:"+test);
+
+			//Array
+			//数组是一个单个对象，其中包含很多值，方括号括起来，并用逗号分隔。
+			var myNameArray = ['tom','chris','bob'];
+			var myNumber = [3,4,2,5];
+			//myNameArray[0]  return 'tom'
+			//myNumber[1]  	  return 4
+
+			//Object
+			//对象是现实生活中的模型的一种代码结构
+			var dog = {name:'john',age:'18'}
+			//检索存储在对象中的信息
+			dog.name;
+			dog.age;
+
+			//动态类型
+			//如果你声明一个变量并给它一个带引号的值，浏览器就会知道它是一个字符串
+			var myString = 'Hello';
+			//即使它包含数字，但它仍然是一个字符串
+			var myNumber = '30';//this is still a string
+			myNumber = 50;	    //this is a number
+
+			var a;
+			console.log("the value of a is "+a);
+			console.log("the value of b is "+b);
+			var b;
+
+			//抛出一个引用错误（ReferenceError）异常；Uncaught ReferenceError: c is not defined
+			//console.log("the value of c is "+c);
+			
+			
+		</script>
+
+
+		<!-- 
+			参考链接：https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web/JavaScript_basics 
+		
+		-->
+		
+	</body>
+</html>

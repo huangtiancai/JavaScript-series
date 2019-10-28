@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>javascript事件</title>
+	</head>
+	<body>
+		<p id="demo"></p>
+		<button onclick="document.getElementById('demo').innerHTML=Date()">现在时间？</button>
+
+		<button onclick="this.innerHTML=Date()">现在时间？</button>
+
+		<p id="demo1"></p>
+		<button onclick="diaplayDate()">现在的时间是？</button>
+
+		<p id="demo2"></p>
+		<button id="btn">prss me</button>
+
+		<input type="text" id="username" name="username">
+
+
+		<script>
+			//HTML 事件
+
+			// 下面是 HTML 事件的一些例子：
+			// HTML 网页完成加载
+			// HTML 输入字段被修改
+			// HTML 按钮被点击
+			//等等
+
+			//通过 JavaScript 代码，HTML 允许您向 HTML 元素添加事件处理程序
+			//1.在下面的例子中，onclick 属性（以及代码）被添加到 <button> 元素：
+			//JavaScript 代码改变了 id="demo" 的元素的内容。
+			//<button onclick="document.getElementById('demo').innerHTML=Date()">现在时间？</button>
+			
+			//2.使用 this.innerHTML 改变其自身元素的内容：
+			//<button onclick="this.innerHTML=Date()">现在时间？</button>
+
+			//3.javaScript 代码通常有很多行
+			//事件属性调用函数更为常见
+			//<button onclick="diaplayDate()">现在的时间是？</button>
+
+			function diaplayDate(){
+				nowDate = new Date();
+				alert(nowDate);
+				document.getElementById('demo1').innerHTML = nowDate;
+			}
+
+			//4.获取元素
+			var button = document.getElementById('btn');
+			//将元素和事件绑定
+			button.onclick = function(){
+				nowDate = new Date();
+				document.getElementById('demo2').innerHTML = nowDate;
+			}
+
+			//常见的 HTML 事件
+			// onchange HTML 元素已被改变
+			// onclick 用户点击了 HTML 元素
+			// onmouseover 用户把鼠标移动到 HTML 元素上
+			// onmouseout 用户把鼠标移开 HTML 元素
+			// onkeydown 用户按下键盘按键
+			// onload 浏览器已经完成页面加载
+			var input = document.querySelector('#username');
+			input.onmouseout = function(){
+				var inptContent = document.getElementById('username').value;
+				alert(inptContent);
+				if(inptContent == null){
+					alert("文本框未输入值！");
+				}else{
+					alert("文本框输入的值为："+inptContent);
+				}
+				
+			}
+
+			
+			
+
+		</script>
+	</body>
+</html>

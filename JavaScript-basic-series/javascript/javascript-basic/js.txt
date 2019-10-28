@@ -1,0 +1,126 @@
+javascript���
+ECM:��javaScript�ĺ���,�����˻����﷨�����㣩
+DOM:�ĵ�����ģ��
+BOM:���������ģ��
+
+һ
+ʵ��
+���
+���
+����
+��������   �ص㣺JavaScript�е��ַ���
+����
+
+��
+�������
+���������
+�����͵ݼ������
+�������������ֵ���㣩
+�Ƚ������
+�߼������
+111
+�������
+ѭ�����
+����
+�¼�
+
+js�������
+�������ʽ
+
+��
+�����ص㣩
+��������Ժͷ���
+	�ڽ�������
+	�ڽ��ķ���
+�������
+JavaScript�������
+����ԭ�ͣ�X��
+JavaScript�̳У�X��
+json(�ص�)
+
+
+��
+JavaScript�еļ������:
+1.JavaScript ���ض�������ö���
+Array��Boolean��Date��Math��Number��String��RegExp��Global
+ע�⣺�����ö����롰���ض��󡱵�����
+���ض���Object��Function��Array��String��Boolean��Number��Date��RegExp��
+���ö���Math��Global
+ECMA-262 ֻ�������������ö��󣬼� Global �� Math ������Ҳ�Ǳ��ض��󣬸��ݶ��壬ÿ�����ö����Ǳ��ض���
+���ö����Ǳ��ض����һ�֡�������������ֶ����У�Math�������Ǿ����õ��������Global������ɶ�����أ�
+
+Global����JavaScript ȫ�ֶ�����ECMAScript�����ر�Ķ�����Ϊʵ���������������ڣ������Ҫ�������ECMAScript�У������ڶ����ĺ��������к�����������ĳ������ķ�����������isNaN()��parseInt()��parseFloat()�����ȣ����������Ǻ�������ʵ���ϣ����Ƕ���Global����ķ�����
+
+js�ο��ֲ᣺http://www.w3school.com.cn/jsref/index.asp
+
+2.HTML DOM:�ĵ�����ģ��
+  document
+3.BOM:���������ģ�ͣ�Browser ����
+  Window��Navigator��Location��History��Screen
+4.HTML����:����ѧ����HTML��ǩ
+
+
+��
+js�⣺jQuery
+
+Web API
+ʲô��API?
+Ӧ�ó���ӿڣ�API���ǻ��ڱ�����Թ����Ľṹ��ʹ������Ա�����׵ش������ӵĹ��ܡ����ǳ����˸��ӵĴ��룬���ṩһЩ�򵥵Ľӿڹ���ֱ��ʹ�á�
+1.�ͻ���JavaScript�е�API
+- �����API������Web������У��ܴ�������͵����ܱ߻�������ȡ���ݣ������������õĸ��ӵ����� ��
+- ������APIȱʡ����²���������������У�ͨ��������Web�е�ĳ���ط���ȡ�������Ϣ��
+
+2.JavaScript��API������JavaScript����֮��Ĺ�ϵ
+- JavaScript �� һ��������������ĸ߼��ű����ԣ�����������ʵ��Webҳ��/Ӧ���еĹ���
+- �ͻ���API�������API��  �� ������������Ľṹ����λ��JavaScript���Զ�����ʹ�����Ը����׵�ʵ�ֹ��ܡ�
+- ������API �� ���ڵ�������ͨ�Ľṹ��������Twitter��Facebook����ʹ���������Լ���Webҳ����ʹ����Щƽ̨��ĳЩ���ܣ�����������Webҳ����ʾ���µ�Tweets��
+- JavaScript�� �� ͨ���ǰ��������ض����ܵ�һ������JavaScript�ļ�������Щ�ļ�����������Webҳ�Կ��ٻ���Ȩ��д�����Ĺ��ܡ��������jQuery��Mootools
+- JavaScript��� �� �ӿ⿪ʼ����һ����JavaScript�����ͼ��HTML��CSS��JavaScript��������װ�ļ��������һ��Ȼ��������ͷ��дһ��������WebӦ�á�
+
+3.���������API
+- �����ĵ���API������������С������Ե�������DOM���ĵ�����ģ�ͣ�API
+- �ӷ�������ȡ���ݵ�API��ʹ���Ϊ���ܵ�API����XMLHttpRequest��Fetch API�� Ajax
+- ���ڻ��ƺͲ���ͼ�ε�API
+- ��Ƶ����ƵAPI
+- �豸API
+- �ͻ��˴洢API
+
+4.����������API
+- Twitter API, ��������������վ��չʾ����������ĵȡ�
+- Google Maps API��BaiduMap API���ߵµ�ͼ����Ѷ��ͼ
+- �ȵ�
+
+5.API��ι�����
+- ���ڶ���
+ APIʹ��һ������ JavaScript objects �����Ĵ����н��н�������Щ��������APIʹ�õ����ݣ������ڶ��������У��������Լ�API�ṩ�Ĺ��ܣ������ڶ��󷽷��У���
+- �п�ʶ�����ڵ�
+- ʹ���¼�������״̬�ı仯
+- ���ʵ��ĵط��ж���İ�ȫ����
+
+�ο���
+https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Introduction
+https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_Web_APIs/Manipulating_documents
+https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model
+https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events
+https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data
+https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage
+
+ת���ַ���https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String#Escape_notation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JavaScript HTML DOM - 改变 HTML/CSS</title>
+		<style>
+			#div2 {
+				width: 400px;
+				height: 200px;
+				border: 1px solid #ccc;
+			}
+		</style>
+	</head>
+	
+
+
+	<body onload="chechCookie()">
+
+		<p id="cookie">检查Cookie</p>
+
+		<img id='img' src="favicon.ico">
+		<p id="p1">Hello</p>
+		<h1 onclick="this.innerHTML = 'Hello!'">点击此文本！</h1>
+		<h1 onclick="chnageText(this)">点击此文本！</h1>
+		<h1 id="p2">点击改变颜色-动态绑定</h1>
+
+		<div id="div1" onclick="display()">行内绑定</div>
+		<div id="div2">动态绑定</div>
+		<button id="btn">点我</button>
+
+		<input type="text"  id="fname">
+
+		<p>onmouseover和onmouseout事件</p>
+		<div onmouseover="Over(this)" onmouseout="Out(this)" style="background-color:red;width:100px;height:100px;padding:40px;">
+			请把鼠标移上来
+		</div>
+
+		<p>onmousedown, onmouseup事件</p>
+		<div onmousedown="mDown(this)" onmouseup="mUp(this)"
+			style="background-color:red;width:100px;height:100px;padding:40px;">
+			请点击鼠标
+		</div>
+
+		请输入你的名字：<input type="text" id="username">
+
+		<br>
+
+		<button id="myButton">使用addEventListener()方法将click事件附加到按钮</button>
+		<p id="p3"></p>
+
+		
+		<button id="myButton1">向相同元素添加多个事件处理程序</button>
+		<p id="p4"></p>
+
+		<p>添加当用户调整窗口大小时触发的事件监听器</p>
+		浏览器宽：<p id="p5"></p>
+		浏览器高：<p id="p6"></p>
+
+		<script>	
+
+			function chechCookie(){
+				var text = "";
+				if(navigator.cookieEnabled == true){
+					text = "Cookie 已启用";
+				}else{
+					text = "Cookie 未启用";
+				}
+				document.getElementById("cookie").innerHTML = text;
+
+			}
+
+
+			//1.改变 HTML 输出流,JavaScript 能够创建动态 HTML 内容：
+			//document.write() 可用于直接写入 HTML 输出流：
+			//document.write(Date());
+			//千万不要在文档加载后使用 document.write()。这么做会覆盖文档。
+			
+			//2.改变 HTML 内容
+			//修改 HTML 文档内容最简单的方法是，使用 innerHTML 属性
+			//语法：document.getElementById(id).innerHTML = new text
+
+			//<p id="p1">Hello World!</p>
+			//document.getElementById("p1").innerHTML = "hello kitty!";
+
+			// 上面的 HTML 文档包含 id="p1" 的 <p> 元素
+			// 我们使用 HTML DOM 来获取 id="p1" 的这个元素
+			// JavaScript 把该元素的内容（innerHTML）更改为 "Hello Kitty!"
+
+			//3.改变属性的值
+			//语法：
+			//document.getElementById(id).attribute = new value
+
+			//例子
+			document.getElementById("img").onclick = function(){
+				//修改了 <img> 元素的 src 属性的值
+				document.getElementById("img").src = "firefox-icon.png";
+			}
+
+			//4.改变 HTML 样式
+			//语法：
+			//document.getElementById(id).style.property = new style
+			document.getElementById("p1").style.color = "blue";
+			document.getElementById("p1").style.fontSize = "50px";
+
+			//5.用 JavaScript 创建动画
+			//定时器
+
+
+			//6.DOM 事件
+			//6.1对事件作出反应
+			// 当用户点击鼠标时
+			// 当网页加载后
+			// 当图像加载后
+			// 当鼠标移至元素上时
+			// 当输入字段被改变时
+			// 当 HTML 表单被提交时
+			// 当用户敲击按键时
+
+			//在本例中，当用户点击 <h1> 时，会改变其内容：
+			//<h1 onclick="this.innerHTML = 'Hello!'">点击此文本！</h1>
+
+			//在本例中，从事件处理程序调用函数
+			//<h1 onclick="changeText(this)">点击此文本！</h1>
+			function chnageText(id){
+				id.innerHTML = "Hello";
+			}
+
+			//6.2HTML 事件属性
+			//如需向 HTML 元素分配事件，您能够使用事件属性
+			//实例:向 button 元素分配 onclick 事件：
+			//<button onclick="displayDate()">试一试</button>
+			
+			//6.3使用 HTML DOM 分配事件
+			//HTML DOM 允许您使用 JavaScript 向 HTML 元素分配事件
+			//为 button 元素指定 onclick 事件:
+			//document.getElementById("myBtn").onclick = displayDate;
+
+			//总结：
+			//重要：对上述两种的详解
+			//javascript事件绑定的几种方式:
+			//1.行内绑定
+			//2.动态绑定
+			//3.事件监听
+
+			//(1)行内绑定
+			//基本语法：
+			//行内绑定: <标签 属性列表 事件=”事件的处理程序”/>
+			//例：<input type='button' onclick='display()' />
+
+
+			//(2)动态绑定:
+			//基本语法：
+			//dom对象.事件 = 事件的处理程序（通常是一个匿名函数）
+
+			//匿名函数
+			//格式：(function() {})
+			
+			//匿名函数赋给一个变量，就等同于 function f() { ... }
+			//var f = (function () {})
+
+			// 匿名函数虽然没有名字，但可以 “自执行”
+			(function(){
+				console.log('匿名函数');
+			})()
+
+			//例子
+			//onload 通常用于<body> 元素，在页面完全载入后(包括图片、css文件等等。)执行脚本代码
+			window.onload = function(){
+				//动态绑定(DOM对象.事件 = 事件的处理程序)
+				document.getElementById("p2").onclick = function(){
+					document.getElementById("p2").style.color = "red";
+				}
+			}
+
+			//(3)行内绑定与动态绑定的区别
+			//在Javascript中，有一个特殊对象叫做this，其随着运行环境的不同，其指向也是不同的
+
+			//例1：探究行内绑定中的this指向
+			//定义display函数
+			function display(){
+				this.style.backgroundColor = "yellow";//this.style为空或不是对象
+				//this: [object Window]
+				alert(this);
+				//输出浏览器窗口的内高度、宽度
+				alert(this.innerHeight+" "+this.innerWidth);
+			}
+
+			//在行内绑定中其this并不是指向当前正在操作的dom对象
+			//行内绑定中其this指向了全局window对象！
+
+			//例2：探究动态绑定中的this指向
+			window.onload = function(){
+				document.getElementById("div2").onclick = function(){
+					//设置id = div1 的h1元素颜色
+					//document.getElementById("div2").style.backgroundColor = "yellow";
+					this.style.backgroundColor = "yellow";
+				}
+			}
+			//运行结果：id为box的div元素背景发生了变化
+			//由此可以得出结论：动态绑定中其this指向了当前正在操作的DOM对象。
+
+			// 综上所述：
+			// 行内绑定中，其事件处理中的this指向了全局window对象
+			// 动态绑定中，其事件处理中的this指向了当前正在操作的dom对象
+
+			//4.封装一个自定义函数
+			//封装一个自定义函数,专门用于获取指定id的dom对象
+			// function $(id){
+			// 	return document.getElementById("id");
+			// }
+			// //获得id为btn的dom对象
+			// $('btn').onclick = function(){
+			// 	alert("hello");
+			// }
+			
+
+			//事件
+			//onload    	  浏览器已经完成页面加载
+			//onunload 		  浏览器离开页面
+			//onchange		   HTML元素已被改变
+
+			//onmouseover		把鼠标移动到 HTML 元素上
+			//onmouseout		把鼠标移开 HTML 元素
+			
+			//onkeyup 				某个键盘按键被松开
+			//onkeydown 			用户按下键盘按键
+
+			//onfocus 元素获得焦点 如当输入字段获得焦点时改变其背景色
+			//onblur 元素失去焦点
+
+			//onsubmit 确认按钮被点击。
+
+			//onmousedown, onmouseup 以及 onclick
+			//onmousedown, onmouseup 以及 onclick 事件构成了完整的鼠标点击事件
+			//首先当鼠标按钮被点击时，onmousedown 事件被触发
+			//然后当鼠标按钮被释放时，onmouseup 事件被触发
+			//最后，当鼠标点击完成后，onclick 事件被触发
+
+			//onmouseover 鼠标移到某元素之上
+			//onmousemove 鼠标被移动
+			
+			//(1)onload onunload	
+
+			//(2)onchange
+			//onchange 事件经常与输入字段验证结合使用
+			//当用户改变输入字段内容时，会调用 upperCase() 函数
+			document.getElementById("fname").onchange = function(){
+				var x = this;//this==document.getElementById("fname")
+				x.value = x.value.toUpperCase();
+			}
+
+			//(3)onmouseover 和 onmouseout 事件
+			function Over(obj){
+				obj.innerHTML = "谢谢！";
+			}
+			function Out(obj){
+				obj.innerHTML = "请把鼠标移上来";
+			}
+			//(4)onmousedown, onmouseup 以及 onclick 事件
+			function mDown(obj){
+				obj.style.backgroundColor = "blue";
+				obj.innerHTML = "松开鼠标";
+			}
+			function mUp(obj){
+				obj.style.backgroundColor = "red";
+				obj.innerHTML = "请点击鼠标";
+			}
+
+			//(5)onfocus,onblur
+			//当输入字段获得焦点时改变其背景色
+			document.getElementById("username").onfocus = function(){
+				this.style.background = "yellow";	
+			}
+			//失去焦点时清空背景色
+			document.getElementById("username").onblur = function(){
+				this.style.background = "";
+				//this.style.background = null;
+			}
+
+			//注意：
+			//background-color
+			//background
+			//backgroundColor
+
+			//后续事件继续补充
+
+
+
+			//7.DOM 事件监听器
+			//addEventListener() 方法
+			
+			//语法:
+			//element.addEventListener(event, function, useCapture);
+			// 第一个参数是事件的类型（比如 "click" 或 "mousedown"）
+			// 第二个参数是当事件发生时我们需要调用的函数
+			// 第三个参数是布尔值，指定使用事件冒泡还是事件捕获。此参数是可选
+			//注意：请勿对事件使用 "on" 前缀；请使用 "click" 代替 "onclick"
+
+			//同时注意：onclick,监听器中的click事件，jQuery中的click三者的区别
+
+			//特点：
+			//1.addEventListener() 方法为元素附加事件处理程序而不会覆盖已有的事件处理程序
+			//2.能够向一个元素添加多个事件处理程序
+			//3.能够向一个元素添加多个相同类型的事件处理程序，例如两个 "click" 事件
+			//4.能够向任何 DOM 对象添加事件处理程序而非仅仅 HTML 元素，例如 window 对象
+			//5.addEventListener() 方法使我们更容易控制事件如何对冒泡作出反应
+			//6.能够通过使用 removeEventListener() 方法轻松地删除事件监听器
+
+			//详解：
+			//1.向元素添加事件处理程序
+			//当用户点击某个元素时提示 "Hello World!"：
+			//element.addEventListener("click", function(){ alert("Hello World!"); });
+			//添加当用户点击按钮时触发的事件监听器
+			document.getElementById("myButton").addEventListener("click",function(){
+				document.getElementById("p3").innerHTML = Date();
+			})
+			//或使用外部函数：
+			// document.getElementById("myButton").addEventListener("click",displayDate);
+			// function displayDate(){
+			// 	document.getElementById("p3").innerHTML = Date();
+			// }
+
+			//2.addEventListener() 方法允许您向相同元素添加多个事件，同时不覆盖已有事件
+			var buton = document.getElementById("myButton1");
+			buton.addEventListener("click",myFunction);
+			buton.addEventListener("click",mysecondFunction);
+			function myFunction(){
+				alert("第一个函数！");
+			}
+			function mysecondFunction(){
+				alert("第二个函数！");
+			}
+
+			//3.您能够向相同元素添加不同类型的事件：
+			// element.addEventListener("mouseover", myFunction);
+			// element.addEventListener("click", mySecondFunction);
+			// element.addEventListener("mouseout", myThirdFunction);
+
+			//4.向 Window 对象添加事件处理程序
+			//addEventListener() 允许您将事件监听器添加到任何 HTML DOM 对象上，比如 HTML 元素、HTML 对象、window 对象或其他支持事件的对象，比如 xmlHttpRequest 对象
+			//实例
+			//添加当用户调整窗口大小时触发的事件监听器：
+			//文档视图调整大小时会触发 resize 事件。
+			window.addEventListener("resize",function(){
+				 document.getElementById("p5").innerHTML = window.innerWidth;
+				 document.getElementById("p6").innerHTML = window.innerHeight;
+
+			});
+
+			
+
+
+
+
+		</script>
+	</body>
+</html>

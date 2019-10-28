@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JavaScript HTML DOM 文档</title>
+	</head>
+	<body>
+		<p id="demo" name="demo" class="demo"></p>
+
+		<div id="div1">The text above has been created dynamically.</div>
+
+		<div id="top" align="center">父节点
+			<div id="nested">子节点</div>
+		</div>
+
+		<P id="para-1">
+			<span>First span</span>
+		</P>
+
+		<P id="para-2"><span>First span</span></P>
+
+		<div>
+			<span id="childSpan">被替换节点</span>
+		</div>
+
+		<script>
+			//getElementById 是方法，而 innerHTML 是属性
+			document.getElementById('demo').innerHTML = 'Hello';
+
+			//alert(document.getElementById('demo').attributes);//[object NamedNodeMap]
+
+			//getElementById 方法
+			//getElementById 方法使用 id="demo" 来查找元素
+
+			//innerHTML 属性
+			//获取元素内容最简单的方法是使用 innerHTML 属性
+			//innerHTML 属性可用于获取或替换 HTML 元素的内容
+			//innerHTML 属性可用于获取或改变任何 HTML 元素，包括 <html> 和<body>	
+
+			
+			//HTML DOM Document 对象
+			// 文档对象代表您的网页
+			// 如果您希望访问 HTML 页面中的任何元素，那么您总是从访问 document 对象开始
+			// 下面是一些如何使用 document 对象来访问和操作 HTML 的实例
+
+
+			//1.查找HTML元素：
+			//1.1通过元素 id 来查找元素:返回一个对应的节点
+			document.getElementById('demo');
+			//1.2通过类名来查找元素:返回一个对应的节点-集合
+			document.getElementsByClassName('demo');
+			//1.3通过标签名来查找元素:返回一个对应的节点-集合
+			document.getElementsByTagName('p');
+
+			//alert(document.getElementById('demo')); 	//[object HTMLParagraphElement]
+			//alert(document.getElementsByClassName('demo'));//[object HTMLCollection]
+			//alert(document.getElementsByTagName('p'));  //[object HTMLCollection]
+			
+			//2.改变HTML元素
+			//element.innerHTML = new html content 改变元素的 inner HTML
+			document.getElementById('demo').innerHTML = '<p>这是修改后的段落';
+			
+			//alert(document.getElementsByClassName('demo')[0]);//[object HTMLParagraphElement]
+			document.getElementsByClassName('demo')[0].innerHTML = '这是第三个的段落';
+			
+			//alert(document.getElementsByTagName('p')[0]);
+			document.getElementsByTagName('p')[0].innerHTML = '这是第四个的段落';
+
+			//element.attribute = new value 改变 HTML 元素的属性值?
+
+
+			//element.style.property = new style 改变 HTML 元素的样式
+            document.getElementById('demo').style.color = 'red';
+			document.getElementById('demo').style.fontSize = '30px';
+
+
+			//element.setAttribute(attribute, value) 改变 HTML 元素的属性值?
+			// 创建一个空的span元素节点，没有id,没有任何属性和内容
+			var sp1 = document.createElement('span');
+			// 添加一个id/name/class属性
+			sp1.setAttribute('id','oldSpan');
+			sp1.setAttribute('name','oldSpanName');
+			sp1.setAttribute('class','oldSpanClass');
+			// 创建一个文本节点
+			var sp1Content = document.createTextNode('old元素的内容');
+			// 将文本节点插入到span元素中
+			sp1.appendChild(sp1Content);
+			var curDiv = document.getElementById('div1');
+			curDiv.appendChild(sp1);
+			
+			//使用设置的属性(id,name,class)设置sapn的样式
+			document.getElementById('oldSpan').style.color = 'red';//通过id属性设置字体颜色
+			//alert('oldSpanClass:'+document.getElementsByClassName('oldSpanClass'));
+			document.getElementsByClassName('oldSpanClass')[0].style.fontSize = '30px';
+			document.getElementsByName('oldSpanName')[0].style.fontWeight = '600';
+			
+			
+
+			//3.添加和删除元素
+			//document.createElement(element) 创建 HTML 元素
+			//document.removeChild(element) 删除 HTML 元素
+			//document.appendChild(element) 添加 HTML 元素
+			//document.replaceChild(element) 替换 HTML 元素
+			//document.write(text) 写入 HTML 输出流
+			
+			//3.1 document.createElement(element) 创建 HTML 元素
+			document.body.onload = addElement;////document.body 返回<body>元素
+			function addElement(){
+				// create a new div element and  give it some content
+				var newDiv = document.createElement("div");
+				var newContent = document.createTextNode('Hi,haha');
+				//add the text node to the newly created div.
+				newDiv.appendChild(newContent);
+
+				var currentDiv = document.getElementById('div1');
+				document.body.insertBefore(newDiv,currentDiv);
+				
+			}
+			
+			//3.2 document.removeChild(element) 删除 HTML 元素
+
+			//Node.removeChild() 方法从DOM中删除一个子节点。返回删除的节点。
+			//Node-->document
+
+			//语法:
+			//let oldChild = node.removeChild(child); //返回删除的节点
+			//OR
+			//element.removeChild(child);
+
+			// child 是要移除的那个子节点.
+			// node  是child的父节点.
+			// oldChild保存对删除的子节点的引用. oldChild === child.
+
+			//被移除的这个子节点仍然存在于内存中,只是没有添加到当前文档的DOM树中,因此,你还可以把这个节点重新添加回文档中,当然,实现要用另外一个变量比如上例中的oldChild来保存这个节点的引用.
+			//如果使用上述语法中的第二种方法, 即没有使用 oldChild 来保存对这个节点的引用, 则认为被移除的节点已经是无用的, 在短时间内将会被内存管理回收.
+			// 先定位父节点,然后删除其子节点
+			// var d = document.getElementById('top');
+			// var d_nested = document.getElementById('nested');
+			// var throwawayNode = d.removeChild(d_nested);
+
+			// 无须定位父节点,通过parentNode属性直接删除自身
+			// var node = document.getElementById('nested');
+			// if(node.parentNode){
+			// 	node.parentNode.removeChild(node);
+			// }
+
+			//移除一个元素节点的所有子节点
+			var element = document.getElementById('top');
+			// alert(element.nodeValue);
+			// alert(element.firstChild.nodeValue);
+			// while(element.firstChild){
+			// 	element.remove(element.firstChild);
+			// 	alert("");
+			// }
+
+			//3.3 Node.firstChild 只读属性返回树中节点的第一个子节点，如果节点是无子节点，则返回 null。
+			//语法：
+			//var childNode = node.firstChild;
+			//如果有一个子节点, childNode 是节点的第一个子节点的引用，否则为null
+			var p01 = document.getElementById('para-1');
+			alert(p01.firstChild.nodeName);
+			//提示框将显示 '#text',因为在<p>标签和<span>标签之前,有一个换行符和多个空格充当了一个文本节点
+			//</span>和</p>标签之间就是另外一个文本节点.
+
+			//移出对应的空白符,则不会有文本节点被插入,span元素就成为了第一个子节点
+			var p02 = document.getElementById('para-2');
+			alert(p02.firstChild.nodeName);//"SPAN"
+
+			//如果该文档有一个DTD(文档类型定义),则下面的语句会弹出[object DocumentType],如果该文档没有一个DTD,则下面的语句会弹出[object HTMLHtmlElement].
+			alert(document.firstChild);//<!DOCTYPE html --> sobject DocumentType
+
+			//3.4 document.appendChild(element) 添加 HTML 元素
+			//Node.appendChild() 方法将一个节点添加到指定父节点的子节点列表末尾
+			//语法:
+			//var child = node.appendChild(child);
+			//node 是要插入子节点的父节点.
+			//child 即是参数又是这个方法的返回值.
+
+			//appendChild 方法会把要插入的这个节点引用作为返回值返回.
+			
+			//创建一个新的段落p元素,添加到"para-1"段落后，克隆一份然后添加到body的最尾部
+			var p = document.createElement('p');
+			p.innerHTML = 'ha';
+
+			p01.appendChild(p);
+
+			//克隆节点
+			var dupNode = p.cloneNode(true);
+			alert(dupNode.innerHTML);
+			//如果deep参数设为false,则不克隆它的任何子节点.该节点所包含的所有文本也不会被克隆,因为文本本身也是一个或多个的Text节点.
+			//如果为true,属性以及属性值才会被拷贝-复制整棵DOM子树(包括那些可能存在的Text子节点)
+			
+
+			//将拷贝的节点添加到文档中
+			//拷贝的节点添加到文档中之前,拷贝节点并不属于当前文档树的一部分,也就是说没有父节点.
+			document.body.appendChild(dupNode);
+			//如果被插入的节点已经存在于当前文档的文档树中,则那个节点会首先从原先的位置移除,然后再插入到新的位置.
+			//如果你需要保留这个子节点在原先位置的显示,则你需要先用Node.cloneNode方法复制出一个节点的副本,然后在插入到新位置.
+			
+			//3.5 Node.cloneNode() 方法返回调用该方法的节点的一个副本
+			//语法:
+			//var dupNode = node.cloneNode(deep);
+			// node
+			// 将要被克隆的节点
+			// dupNode
+			// 克隆生成的副本节点
+			// deep 可选
+			// 是否采用深度克隆,如果为true,则该节点的所有后代节点也都会被克隆,如果为false,则只克隆该节点本身.
+
+
+			
+			//3.6 document.replaceChild(element) 替换 HTML 元素
+			//用指定的节点替换当前节点的一个子节点，并返回被替换掉的节点。
+			//语法：
+			//replacedNode = parentNode.replaceChild(newChild, oldChild);
+			// newChild 用来替换 oldChild 的新节点。如果该节点已经存在于DOM树中，则它会被从原始位置删除。
+			// oldChild  被替换掉的原始节点。
+			// replacedNode 和oldChild相等。
+			
+			//例子
+			// 创建一个空的span元素节点
+			// 没有id,没有任何属性和内容
+			var spNew = document.createElement("span");
+
+			// 添加一个id属性,值为'newSpan'
+			spNew.setAttribute("id", "newSpan");
+
+			// 创建一个文本节点
+			var spn_content = document.createTextNode("新的span元素的内容.");
+
+			// 将文本节点插入到span元素中
+			spNew.appendChild(spn_content);
+
+			// 获得被替换节点和其父节点的引用.
+			var sp2 = document.getElementById("childSpan");
+			var parentDiv = sp2.parentNode;
+
+			// 用新的span元素sp1来替换掉sp2
+			parentDiv.replaceChild(spNew,sp2);
+			//结果：
+			// <div>
+			// 	<span id="childSpan">被替换节点</span>
+			// </div>
+
+			// <div>
+			// 	<span id="newSpan">新的span元素的内容.</span>
+			// </div>
+
+
+		</script>
+	</body>
+</html>

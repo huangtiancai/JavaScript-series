@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Ajax-Fetch</title>
+
+    <style>
+        html,
+        pre {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 500px;
+            margin: 0 auto;
+            background-color: #ccc;
+        }
+
+        pre {
+            line-height: 1.5;
+            letter-spacing: 0.05rem;
+            padding: 1rem;
+            background-color: white;
+        }
+
+        label {
+            width: 200px;
+            margin-right: 33px;
+        }
+
+        select {
+            width: 350px;
+            padding: 5px;
+        }
+    </style>
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <h1>Ajax starting point</h1>
+
+    <form>
+        <label for="verse-choose">Choose a verse</label>
+        <select id="verse-choose" name="verse-choose">
+            <option>Verse 1</option>
+            <option>Verse 2</option>
+            <option>Verse 3</option>
+            <option>Verse 4</option>
+        </select>
+    </form>
+
+    <h2>The Conqueror Worm, <em>Edgar Allen Poe, 1843</em></h2>
+
+    <pre>
+
+    </pre>
+
+    <script>
+        var vereseChoose = document.querySelector('select');
+        var poemDisplay = document.querySelector('pre');
+
+        vereseChoose.onchange = function(){
+            var verese = vereseChoose.value;
+            //alert(verese);
+            updateDisplay(verese);
+        }
+
+        function updateDisplay(verese){
+            //alert('进入updateDisplay函数');
+            verese = verese.replace(' ','');
+            verese = verese.toLowerCase();
+            var url = verese + '.txt';
+
+            //Fetch
+            //fetch()返回一个promise，它将解析从服务器发回的响应
+            //使用then()来运行一些后续代码，这是我们在其内部定义的函数,相当于XHR版本中的onload事件处理程序。
+            
+            //fetch(url):调用了fetch()方法，将我们要获取的资源的URL传递给它,这相当于现代版的XHR中的request.open()
+            //           fetch()返回一个promise，它将解析从服务器发回的响应。
+            //.then() :Promise对象的then；使用then()来运行一些后续代码,在其内部定义的函数，相当于XHR版本中的onload事件处理程序
+            // 当fetch() promise 解析时，这个函数会自动将响应从服务器传递给参数-(response) 
+            fetch(url).then(function(response){
+                //在函数内部，我们获取响应(response)并运行其text()方法-将响应作为原始文本返回,这相当于在XHR版本中的responseType = 'text'。
+                //       text() 也返回了一个 promise,所以我们连接另外一个 .then() 到它上面
+                //                   在其中我们定义了一个函数来接收 text() promise解析的生文本-(text)。
+                response.text().then(function(text){
+                    poemDisplay.textContent = text;//在promise的函数内部, 设置<pre> 元素的文本内容为text的值。
+                });
+            });
+            
+
+        }
+
+        //首次加载时不会显示任何诗,设置默认加载（第一节），并确保 <select> 元素始终显示正确的值
+        updateDisplay('Verse 1');
+        vereseChoose.value = 'Verse 1';
+
+
+        //在server端运行例子
+        //如果只是从本地文件运行示例，一些浏览器(包括Chrome)将不会运行XHR请求。这是因为安全限制
+        //vscode-live server
+
+
+        //Fetch
+        //Fetch API基本上是XHR的一个现代替代品——它是最近在浏览器中引入的，它使异步HTTP请求在JavaScript中更容易实现
+        
+
+
+    </script>
+</body>
+
+</html>

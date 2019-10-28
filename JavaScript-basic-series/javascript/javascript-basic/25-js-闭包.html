@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JavaScript 闭包</title>
+	</head>
+	<body>
+		
+		<button type="button" onclick="Fun1()">计数</button>
+
+		<p id="p1">0</p>
+		<p id="p2">0</p>
+		<p id="p3">0</p>
+		<p id="p4">0</p>
+
+		<script>
+			//JavaScript 变量可以是局部变量或全局变量。
+			//全局变量能够通过闭包实现局部（私有）
+			//私有变量可以用到闭包
+
+			//1.全局变量/局部变量
+			//函数可以访问由函数内部定义的变量，如：
+			function myFunction() {
+				// 在function内部， 加var的是局部变量， 不加var的则是全局变量；
+				var a = 4;	//这里的a是局部变量
+				b = 5;		//b是全局变量
+				return a * a;
+			}
+
+			//函数也可以访问函数外部定义的变量，如：
+
+			//在function外部， 不管有没有使用var声明变量，都是全局变量，在function外部,var关键字一般可以省略，但是为了书写规范和维护方便以及可读性好，我个人不建议省略var关键字!
+			//c = 4;
+			//var c = 4;
+			
+			var c = 4;	// 这个a 是一个 全局 变量-->在web页面中全局变量属于 window 对象-->全局变量可应用于页面上的所有脚本
+			function myFunction1() {
+				return c * c;
+			}
+
+			//全局和局部变量即便名称相同，它们也是两个不同的变量。修改其中一个，不会影响另一个的值。
+			//变量声明时如果不使用 var 关键字，那么它就是一个全局变量，即便它在函数内定义。
+
+			//外部调用myFunction函数内的变量，先需要调用函数
+			myFunction();
+			//console.log("a:"+a);//Uncaught ReferenceError: a is not defined
+			console.log("b:"+b);
+
+			//计数器
+			var counter = 0;
+			function add(){
+				return counter +=1;
+			}
+
+
+			//调用三次add()=通过绑定事件（如点击事件）触发一个函数，再在这个函数中调用add();不需要手动写三个函数，直接三次触发就行
+			//function myFunction(){
+			// 	document.getElementById("demo").innerHTML = add();
+			// }
+
+
+			add();
+			add();
+			add();
+			document.getElementById("p1").innerHTML = counter;//3
+
+			//问题1：上述解决方案有一个问题：页面上的任何代码都可以更改计数器，而无需调用 add()
+			//对于 add() 函数，计数器应该是局部的，以防止其他代码更改它：
+
+			//可以删除全局计数器并访问本地计数器
+			function add1(){
+				var counter1 = 0;
+				return counter1 +=1;
+			}
+
+			//调用三次add1();
+			add1();
+			add1();
+			add1();
+			document.getElementById("p2").innerHTML = add1();//1
+			//问题2：每次调用的话都会将counter1置为0（重置本地计数器）
+
+			//JavaScript 嵌套函数
+			function add2(){
+				var counter2 = 0;
+				function plus(){
+					counter2 +=1;
+				}
+				plus();//内部函数 plus() 可以访问父函数中的 counter 计数器变量
+				return counter2;
+			}
+			document.getElementById("p3").innerHTML = add2();//1
+
+			//这样即可解决计数器困境，如果我们能够从外面访问 plus() 函数。
+			//我们还需要找到只执行一次 counter = 0 的方法---->JavaScript 闭包
+
+			//JavaScript 闭包
+			//使用自调用函数
+			var add3 = (function (){
+				var counter3 = 0;
+				return function () {return counter3 += 1;}
+			})();
+			function Fun1(){
+				document.getElementById("p4").innerHTML = add3();
+			}
+
+			
+
+		</script>
+
+	</body>
+</html>

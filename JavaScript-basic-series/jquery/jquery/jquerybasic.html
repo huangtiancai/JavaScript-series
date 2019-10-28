@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery</title>
+    <!--
+        引入jQuery:
+        1.下载代码文件至本地项目中，引入。
+        2.从 CDN 中载入 jQuery
+    -->
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+
+    <!--百度 CDN-->
+    <!-- <script src="https://apps.bdimg.com/libs/jquery/1.8.0/jquery.min.js"></script> -->
+    <!-- <script src="https://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script> -->
+    <style>
+        .img2Class {
+            width: 50px;
+            height: 60px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <button id="but">点我获取运行的jQuery版本</button>
+
+    <p>段落文本<span>这是span标签</span></p>
+    <p>继续点我!</p>
+    <p>接着点我!</p>
+    <p class="test">测试</p>
+
+    <input type="text" value="test">
+
+    <div id="div">jQuery获取的对象不是DOM对象</div>
+
+    <div id="div1">DIV1</div>
+    <span id="span1">SAPN1</span>
+
+    <br>
+
+    <button id="btn1">点我隐藏DIV1</button>
+    <button id="btn2">点我隐藏</button>
+    <button id="btn3">点我隐藏所有元素</button>
+    <button id="btn4">点我将会使我消失</button>
+   
+
+    <h1 class="center">这个标题不受影响</h1>
+    <p class="center">这个段落居中对齐。</p>
+    <button id="btn5">点我</button>
+
+    <br>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <button id="btn6">使用length属性输出li的数量</button>
+    <button id="btn7">使用size()方法输出li的数量</button>
+    <button id="btn8">使用get()方法获取dom元素</button>
+
+<br>
+    <p class="test1">text-这是段落中的 <b>粗体</b> 文本。</p>
+    <button id="btn9">使用text()方法显示文本</button>
+    <button id="btn10">使用text()方法显示文本设置文本</button>
+
+<br>
+    <p class="test2">html-这是段落中的 <b>粗体</b> 文本。</p>
+    <button id="btn11">使用html()方法显示HTML</button>
+    <button id="btn12">使用html()方法设置HTML</button>
+
+<br>
+    <!-- <p class="test3">名称：<input type="text" id="txt" value="这是一个文本框"></p> -->
+    <button id="btn13">val-使用val()方法显示value属性</button>
+    <button id="btn14">使用val()方法设置value属性</button>
+<br>
+
+    <ul id="ul1">
+        <li>Coffee</li>
+        <li>Milk</li>
+        <li>Soda</li>
+        <li>banaan</li>
+        <li id="stop">apple</li>
+        <li>orange</li>
+    </ul>
+    <button id="btn15">使用each(callback)方法输出每个列表项的值-callback无参数</button><br>
+    <button id="btn16">使用each(callback)方法输出每个列表项的值-callback有选择器位置参数</button><br>
+    <button id="btn17">使用each(callback)方法输出每个列表项的值-callback有选择器位置和当前的元素两个参数</button><br>
+    <button id="btn18">each(callback)</button><br>
+    <span class="sp"></span><br>
+
+
+    <button id="btn19">jQuery对象和DOM对象的转换</button>
+
+    <p id="ii">哈哈</p>
+    <button id="btn20">哈哈</button>
+
+    <div id="box">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="button" id="btn" onclick="myFunction()" value="点我">
+    </div>
+
+    <p id="oo">dom对象转换为jQuery对象</p>
+    <button id="btn21">点我将dom对象转换为jQuery对象</button>
+
+<br>
+
+    <img id="img1" class="img1Class" style="width: 200px;height:200px" src="imgs/pic.jpg" target="_blank">
+    <img id="img2" class="img1Class" src="imgs/pic.jpg" target="_blank2">
+    <img id="img3" src="imgs/pic3.gif" width="284px" height="213px" alt="Pulpit Rock">
+    <input id="in" value="OK">
+    <button id="btn22">切换</button>
+    <script>
+        //value属性-val()方法
+        function myFunction(){
+            //find() 返回被选元素的后代元素
+            //$(selector).find(filter)
+            var txt = $('#box').find(':text'); // 获取所有文本框
+            //jQuery :eq() 选择器
+            //$(":eq(index)")
+            alert("txt.eq(1):"+txt.eq(1));  //[object Object]-jQuery对象
+            alert("txt[0]:"+txt[0]);        //[object HTMLInputElement]-dom对象
+            var t1 = txt.eq(1).val();       //jquery的写法
+            var t2 = txt[0].value;          //JavaScript的写法
+            alert("t1:"+t1);
+            alert("t2:"+t2);
+            $(document).ready(function(){
+                $("p.test").click(function(){
+                $("p").hide();
+                });
+            });
+        }
+        
+
+        
+
+        //一、jQuery 语法:通过 jQuery，您可以选取（查询，query） HTML 元素，并对它们执行"操作"（actions）。
+        //1.基础语法： $(selector).action();
+        //- 美元符号定义 jQuery
+        //- 选择符（selector）"查询"和"查找" HTML 元素
+        //- jQuery 的 action() 执行对元素的操作
+
+        //2.实例:
+        // $(this).hide() - 隐藏当前元素
+        // $("p").hide() - 隐藏所有 <p> 元素
+        // $("p.test").hide() - 隐藏所有 class="test" 的 <p> 元素
+        // $("#test").hide() - 隐藏所有 id="test" 的元素
+        $(document).ready(function(){
+            $("p.test").click(function(){
+               $("p").hide();
+            });
+        });
+
+        //3.文档就绪事件
+        //为了防止文档在完全加载（就绪）之前运行 jQuery 代码，即在 DOM 加载完成后才可以对 DOM 进行操作。如果在文档没有完全加载之前就运行函数，操作可能失败。
+
+        //两种jQuery 入口函数：
+        //1)将jQuery 函数位于一个 document ready 函数中
+        $(document).ready(function(){
+            // 开始写 jQuery 代码...
+        });
+        //2)简介写法
+        $(function(){
+            // 开始写 jQuery 代码...
+        })
+
+        //JavaScript 入口函数:
+        window.onload = function(){
+             // 执行代码
+        }
+
+        
+        //jQuery 入口函数与 JavaScript 入口函数的区别：
+        //1).jQuery 的入口函数是在 html 所有标签(DOM)都加载之后，就会去执行;jQuery的入口函数可以写多个 并且按顺序执行
+        //2).JavaScript 的 window.onload 事件是等到所有内容，包括外部图片之类的文件加载完后，才会执行。
+
+        //3.使用jQuery获取对象
+        //如上述的实例中通过 $(selector) 来获取对象：$(this)、$("p")、$("p.test")、$("#test")等等...
+        //然后直接.对元素需要执行的操作
+
+        //将获取的对象赋给变量：
+        // var $obj=$(选择器);（$obj中的$只是区分jQuery对象）
+        // var $obj=jQuery(选择器);
+
+        //4.jQuery获取对象的方式使用选择器获取，其语法和CSS中选择器的语法相同
+        
+        //二、jQuery 选择器
+        //jQuery 选择器允许您对 HTML 元素组或单个元素进行操作。
+        //jQuery 选择器基于元素的 id、类、类型、属性、属性值等"查找"（或选择）HTML 元素。 它基于已经存在的 CSS 选择器
+        //jQuery 中所有选择器都以美元符号开头：$()
+
+        // 选择器:          作用：
+        // $("div")        标签选择器(元素选择器)，获取所有div标签对象
+        // $("#div")       id选择器，获取id为div的对象
+        // $(".div")       类选择器，获取加载了div类样式的标签对象
+        // $("div img")    层叠式级联选择器，获取所有div标签中的img标签对象
+
+        //标签选择器(元素选择器)
+        //jQuery 元素选择器基于元素名选取元素。在页面中选取所有 <p> 元素:$("p")
+        //实例：
+        // $(document).ready(function(){
+        //     $("p").click(function(){
+        //         alert("使用了标签选择器(元素选择器)");
+        //         $("p").hide();
+        //     });
+        // });
+
+        //#id 选择器
+        //jQuery #id 选择器通过 HTML 元素的 id 属性选取指定的元素。
+        //页面中元素的 id 应该是唯一的，所以您要在页面中选取唯一的元素需要通过 #id 选择器。
+        //通过 id 选取元素语法如下：$("#test")
+        //实例：
+        $(document).ready(function(){
+            $("#btn1").click(function(){
+                alert("使用了id选择器");
+                $("#div1").hide();
+            });
+        });
+
+        //.class 选择器
+        //jQuery 类选择器可以通过指定的 class 查找元素。
+        //语法如下：$(".test")
+        //实例：
+        $(document).ready(function(){
+            $("#btn2").click(function(){
+                alert("使用了id选择器");
+                $(".test").hide();
+            });
+        });
+
+        //$("*")
+        $(document).ready(function(){
+            $("#btn3").click(function(){
+                alert("选取所有元素");
+                $("*").hide();
+            });
+        });
+
+        //$(this)
+        $(document).ready(function(){
+            $("#btn4").click(function(){
+                alert("选取当前HTML元素");
+                $(this).hide();
+            });
+        });
+
+        //$("p.center")
+        //选取 center 为 intro 的 <p> 元素
+        $(document).ready(function(){
+            $("#btn5").click(function(){
+                alert("选取 class 为 center 的 <p> 元素");
+                //jQuery css() 方法
+                $("p.center").css("text-align","center");
+            });
+        });
+
+        //jQuery获取的对象不是DOM对象
+        // $("#div1"):jQuery获取的对象是封装后的数组对象
+        //document.getElementById("div1"):获取的是dom对象
+        //alert( $("#div1")==document.getElementById("div1"));//false
+
+        //jQuery获取的对象是封装后的数组对象，可以使用jQuery的方法对其进行操作
+        //下面详细归纳下jQuery对象的基本方法和属性
+
+        //三、jQuery对象的基本方法和属性
+        //jQuery属性
+        //jQuery 事件方法
+        //jQuery 效果方法
+        //jQuery HTML / CSS 方法
+        //jQuery 遍历方法
+        //jQuery AJAX 方法
+        //jQuery 杂项方法
+
+        //上面jQuery对象的基本方法对应jQuery各个模块：jQuery 效果、jQuery HTML、jQuery 遍历、jQuery AJAX等等
+        //后续各模块详细归纳
+        //下面归纳jQuery对象常用的基本方法和属性：
+
+        //基本属性:
+        //1.length:获取对象的数量
+        //语法: $(selector).length
+        $(document).ready(function(){
+            $("#btn6").click(function(){
+                alert("length属性");
+                alert("li的数量为:"+$("li").length);
+            });
+        });
+
+        //2.jQuery属性
+        //jquery 属性返回的字符串包含 jQuery 的版本号
+        //语法:$().jquery
+        $(document).ready(function(){
+            $("#but").click(function(){
+                var version = $().jquery;
+                alert("你正在运行的jQuery版本为:"+version);
+            });
+        });
+
+        //基本方法：
+        //1.size() 返回被 jQuery 选择器匹配的 DOM 元素的数量
+        //size() 方法等同于length,在 jQuery 版本 1.8 中被废弃。 请使用 length 属性代替？？？
+        //语法:$(selector).size()
+        $(document).ready(function(){
+            $("#btn7").click(function(){
+                alert("size()方法");
+                alert("li的数量为:"+$("li").size());
+            });
+        });
+
+        //2.get()/get(index)
+        //get() 方法获取由选择器指定的 DOM 元素。
+        //语法: $(selector).get(index) 
+        //index 可选。规定要获取哪个匹配的元素（通过 index 编号）。
+
+        //get():获取DOM元素的数组
+        //get(index):获取单个DOM元素
+
+        $(document).ready(function(){
+            $("#btn8").click(function(){
+                alert("get()方法");
+                alert("获取的DOM对象的数组:"+$("p").get());//[object HTMLParagraphElement],[object HTMLParagraphElement]...
+                alert("获取的单个DOM对象"+$("p").get(0));//[object HTMLParagraphElement]
+                alert("获取"+$("p"));//[object Object]
+            });
+        });
+
+        //jQuery对象和DOM对象的转换
+        //注意：
+        //1.js获取dom对象(元素)：document.getElementById("p");
+        //2.jQuery获取的不是dom对象(元素)：$("p") -jQuery获取的对象是封装后的数组对象
+        $(document).ready(function(){
+            $("#btn19").click(function(){
+                alert("获取的jQuery对象:"+$("p"));//[object Object]-jQuery对象
+                //既然是jQuery对象就可以使用jQuery对象的基本方法和属性
+                //获取jQuery对象长度
+                alert("获取的jQuery对象的长度:"+$("p").length);
+                //获取jQuery对象的值
+                //注意：
+                //只能通过text()、html()、val()获取jQuery对象的值
+                //一旦转换成dom对象就不能使用jQuery的方法了,如：$("p")[1].val()-->这个是完全错误的
+
+                //因为是数组对象，所以获取的值很多
+                alert("获取的jQuery对象的内容:"+$("p").text());
+                // alert("获取的jQuery对象的长度:"+$("p").val());
+                // alert("获取的jQuery对象的长度:"+$("p").val());
+
+
+                //jQuery对象转换为dom对象
+                //1.使用[index]
+                alert("获取的第一个dom对象："+$("p")[0]);//[object HTMLParagraphElement]
+                //2.使用get(index)
+                alert("获取的第一个dom对象："+$("p").get(0));//[object HTMLParagraphElement]
+                //3.get()-获取的dom对象的数组
+                alert("获取的dom对象的数组:"+$("p").get());//[object HTMLParagraphElement],[object HTMLParagraphElement]...
+                //alert("获取的dom对象的数组:"+$("p").get().length);
+
+                 //jQuery对象转换为dom对象后，取值必须用js的方法
+                alert("获取的第一个dom对象的值："+$("p")[0].innerHTML);//段落文本<span>这是span标签</span>
+                alert("获取的第一个dom对象的值："+$("p")[0].innerText);//段落文本这是span标签
+                alert("获取的第一个dom对象的值："+$("p")[0].textContent);//段落文本这是span标签
+                
+                //总结：
+                //javascript属性-jQuery方法
+
+                //1.innerHTML属性-html()方法
+                //获取节点内容：
+                //1)javascript: 对象.innerHTML; innerHTML会把节点包含的(文本 和 元素标签内容)都给抓取出来
+                //2)jQuery:     对象.html();
+                //设置节点内容(可以说是纯文本，也可以是html标签内容)
+                //1)javascript: 对象.innerHTML = "...";
+                //2)jQuery:     html(参数);
+                //如：
+                //对象.innerHTML = "这是<b>新设置</b>的内容，包括html标签:<a href='https://www.baidu.com/'>点我跳转</a>";
+                //对象.html("这是<b>新设置</b>的内容，包括html标签:<a href='https://www.baidu.com/'>点我跳转</a>");
+
+
+                //2.innerText属性-text()方法
+                //获取节点内容：
+                //1)javascript: 对象.innerText;  在JavaScript中，可以通过innerText方法，获取元素的纯文本内容
+                //2)jQuery:     对象.text();     这个方法只对文本起作用，在获取节点的内容时，会把html标签删除
+                //设置节点内容:
+                //1)javascript: 对象.innerText = "...";
+                //2)jQuery:     对象.text();
+                //注意：即使在内容里添加了html标签，也会被当做纯文本解析。
+                
+                //3.value属性-val()方法
+                //value是js中的属性，而val是jq方法
+                //val()类似于JavaScript中的value属性，可以用来设置和获取元素的值，无论元素是文本框、下拉列表还是单选框，它都可以返回元素的值，如果元素为多选，则返回一个包含所有选择的值的数组。
+                //见示例
+
+                //innerText与innerHtml区别？
+                
+            });
+        });
+
+        //innerHtml属性类似html()方法
+        $(document).ready(function(){
+            $("#btn20").click(function(){
+                document.getElementById("ii").innerHTML = "这是<b>新设置</b>的内容，包括html标签:<a href='https://www.baidu.com/'>点我跳转</a>";
+            });
+        });
+
+
+
+
+        //3.text()/html()/val() 
+        // text() 方法设置或返回被选元素的文本内容。
+        // 当该方法用于返回内容时，则返回所有匹配元素的文本内容（会删除 HTML 标记）。
+        // 当该方法用于设置内容时，则重写所有匹配元素的内容。
+        // 提示：如需设置或返回被选元素的 innerHTML（文本 + HTML 标记），请使用 html() 方法
+        // 语法:
+        // 返回文本内容：$(selector).text()
+        // 设置文本内容：$(selector).text(content)
+        // 使用函数设置文本内容：$(selector).text(function(index,currentcontent))
+
+        //<p class="test1">这是段落中的 <b>粗体</b> 文本。</p>
+        $(document).ready(function(){
+            $("#btn9").click(function(){
+                //获取class="test1"段落的文本内容
+                alert($("p.test1").text());
+            });
+            $("#btn10").click(function(){
+                //设置class="test1"段落的文本内容
+                $("p.test1").text("这是新设置的文本内容");
+            });
+        });
+
+        // html() 方法设置或返回被选元素的内容（innerHTML）
+        // 当该方法用于返回内容时，则返回第一个匹配元素的内容。
+        // 当该方法用于设置内容时，则重写所有匹配元素的内容。
+        // 语法:
+        // 返回内容：$(selector).html()
+        // 设置内容：$(selector).html(content)
+        // 使用函数设置内容：$(selector).html(function(index,currentcontent))
+        $(document).ready(function(){
+            $("#btn11").click(function(){
+                //获取class="test2"段落的内容（包括html标记）
+                alert($("p.test2").html());
+            });
+            $("#btn12").click(function(){
+                //设置class="test2"段落的内容(可以设置html标记)
+                //$("p.test2").html("这是<b>新设置</b>的内容");
+                $("p.test2").html("这是<b>新设置</b>的内容，包括html标签:<a href='https://www.baidu.com/'>点我跳转</a>");
+            });
+        });
+
+
+        // val() 设置或返回被选元素的属性值（针对表单元素）
+        // val() 方法返回或设置被选元素的 value 属性。
+        // 当用于返回值时：该方法返回第一个匹配元素的 value 属性的值。
+        // 当用于设置值时：该方法设置所有匹配元素的 value 属性的值。
+        // 注意：val() 方法通常与 HTML 表单元素一起使用。
+        // 语法：
+        // 返回 value 属性：$(selector).val()
+        // 设置 value 属性：$(selector).val(value)
+        // 通过函数设置 value 属性：$(selector).val(function(index,currentvalue))
+        $(document).ready(function(){
+            $("#btn13").click(function(){
+                //获取id="txt"文本框的 value 属性的值
+                alert("文本框的值为："+$("#txt").val());
+            });
+            $("#btn14").click(function(){
+                //设置id="txt"文本框的 value 属性的值
+                $("#txt").val("new content");
+            });
+        });
+
+        //4.each() 遍历数组中的对象
+        //定义和用法:
+        //each() 方法为每个匹配元素规定要运行的函数。
+        //提示：返回 false 可用于及早停止循环。
+
+        //语法: 
+        //$(selector).each(callback)
+        //$(selector).each(function(index,element))
+
+        //回调函数无参数
+        $(document).ready(function(){
+            $("#btn15").click(function(){
+                $("ul#ul1 li").each(function(){
+                    alert($(this).text());
+                });
+            });
+        });
+
+        //回调函数有一个参数：i
+        $(document).ready(function(){
+            $("#btn16").click(function(){
+                //每次回调函数执行时，会传递当前循环次数作为参数(index-从0开始计数）参数名可以任意取名
+                $("ul#ul1 li").each(function(i){
+                    alert(i);
+                    //回调函数是在当前DOM元素为上下文的语境中触发的。因此this总是指向这个元素。
+                    alert($(this).text());
+                    //返回 false 可用于及早停止循环
+                    //if(i>=4) return false;
+                });
+            });
+        });
+
+        //回调函数有两个参数：i ,dom
+        $(document).ready(function(){
+            $("#btn17").click(function(){
+                //i:当前循环次数作为参数(index-从0开始计数）
+                //dom：当前的元素（也可使用 "this" 选择器）---$(this)与$(dom)是等价的
+                $("ul#ul1 li").each(function(i,dom){
+                    alert(i);
+                    alert($(this).text());
+                    //$(this).css("color","red");
+                    $(dom).css("color","red");
+                });
+            });
+        });
+
+        $(document).ready(function(){
+            $("#btn18").click(function(){
+                $("ul#ul1 li").each(function(i,dom){
+                    alert(i);
+                    alert($(this).text());
+                    $(dom).css("color","red");
+                    if($(this).is("#stop")){
+                        $(".sp").text("停止在第"+(i+1)+"个li节点"+$(this).text());//注意在i+1必须加括号
+                        return false;
+                    }
+                });
+            });
+        });
+
+        //5.javascript和jQuery的基本方法的区别
+        //dom指某一个节点标签;jq指某一个jq标签对象
+
+        //1.取标签属性的值:
+        // dom.src
+        // jq[0].src
+        //设置标签属性的值:
+        // dom.src=""
+        // jq[0].src=""
+
+        //2.取/设置css样式:
+        //dom.style.属性=”值”
+        //Jq.css(“属性”,”值”)-单个样式   
+        //Jq.css({“属性”:”值”,”属性”:”值”,…..})-多个样式
+
+        //3.为节点添加类样式:
+        //dom.className=”类样式名”
+        //Jq.addClass(“类样式名”)
+
+        //4.取/设置
+        //dom.innerText;
+        //dom.innerHTML;
+        //dom.value;
+
+        //dom.innerText=”文本”;
+        //dom.innerHTML=”文本”;
+        //dom.value=””;
+
+        //jq.text();
+        //jq.html();
+        //jq.val();
+
+        //jq.text("文本");
+        //jq.html("文本/标签");
+        //jq.val("值");
+        
+        //5.属性操作(取/添加/删除)
+        //dom.getAttribute(“name”)
+        //dom.setAttribute(“name”,value)
+        //dom.reomveAttribute(“name”)
+
+        //Jq.attr(“name”)
+        //Jq.attr(“name”,”value”)
+        //Jq.removeAttr(“name”)
+
+        //获取属性
+        $(document).ready(function(){
+            $("#img1").click(function(){
+                //1.取标签属性的值
+                alert(document.getElementById("img1").src);//等同于alert($("#img1")[0].src); 
+                alert($("#img1")[0].src);
+
+                //2.取css样式
+                alert(document.getElementById("img1").style.width);//等同于alert($("#img1")[0].style.width);
+                alert($("#img1")[0].style.width);
+                //注意css的区别：
+                alert($("#img1").css("width"));
+
+                //3.取当前img的类名
+                alert(document.getElementById("img1").className);
+                alert($("#img1")[0].className);
+
+                //4.属性操作(取)
+                alert(document.getElementById("img1").getAttribute("target"));
+                alert($("#img1")[0].getAttribute("target"));
+                alert($("#img1").attr("target"));
+
+            });
+        });
+        //设置属性
+        $(document).ready(function(){
+            $("#btn22").click(function(){
+                //1.设置标签属性的值
+                //document.getElementById("img1").src = "imgs/pic1.jpg";
+                //$("#img1")[0].src = "imgs/pic1.jpg"
+
+                //2.设置css样式
+                //document.getElementById("img1").style.width = "400px";
+                //$("#img1")[0].style.width = "400px";
+                //注意css的区别：
+                //$("#img1").css("width","400px");
+                //$("#img1").css({"width":"400px","height":"500px"});
+                
+                //3.为节点添加类样式
+                //注意：style放在img内部添加，类样式无效
+                //document.getElementById("img2").className = "img2Class";
+                //$("#img2")[0].className = "img2Class";
+
+                //$("#img2").addClass("img2Class");
+
+                //4.属性操作(添加/删除)
+                //将普通文本框添设置按钮的类型属性
+                //document.getElementById("in").setAttribute("type","button");
+                //$("#in")[0].setAttribute("type","button");
+
+                //$("#img3").attr("width","500px");
+
+                //reomveAttribute
+                //document.getElementById("img3").removeAttribute("width");
+                //$("#img3")[0].removeAttribute("width");
+                $("#img3").removeAttr("width");
+
+            });
+        });
+
+
+
+
+        //四、jQuery和dom对象的转换
+        //将获取的对象赋给变量：
+        // var $obj=$(选择器);（$obj中的$只是区分jQuery对象）
+        // var $obj=jQuery(选择器);
+
+        //1.获取jQuery对象
+        var $obj = $("input");//获取的对象是jQuery对象--->赋值给变量$obj
+        //alert($obj);//[object Object]
+
+        //alert($obj.length);
+        //alert($obj.val());
+
+        //2.jQuery和dom对象的转换:jQuery-->dom-->jQuery
+        //$obj：jQuery对象
+        //1)jQuery对象转换为dom对象(使用[index]或get(index))
+        var obj = $obj[0];
+        //alert(obj);//[object HTMLInputElement]
+        //2)dom对象转换为jQuery对象
+        var $ob = $(obj);
+        //alert($ob);//[object Object]
+
+        //3.dom对象转换为jQuery对象:dom-->jQuery
+        $(document).ready(function(){
+            $("#btn21").click(function(){
+                var jObject = $(document.getElementById("oo"));
+                alert(document.getElementById("oo"));//[object HTMLParagraphElement]
+                alert("jObject:"+jObject);//[object Object]
+            });
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>

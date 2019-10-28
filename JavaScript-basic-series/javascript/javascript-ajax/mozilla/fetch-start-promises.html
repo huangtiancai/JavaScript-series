@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Ajax-Fetch-promises</title>
+
+    <style>
+        html,
+        pre {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 500px;
+            margin: 0 auto;
+            background-color: #ccc;
+        }
+
+        pre {
+            line-height: 1.5;
+            letter-spacing: 0.05rem;
+            padding: 1rem;
+            background-color: white;
+        }
+
+        label {
+            width: 200px;
+            margin-right: 33px;
+        }
+
+        select {
+            width: 350px;
+            padding: 5px;
+        }
+    </style>
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <h1>Ajax starting point</h1>
+
+    <form>
+        <label for="verse-choose">Choose a verse</label>
+        <select id="verse-choose" name="verse-choose">
+            <option>Verse 1</option>
+            <option>Verse 2</option>
+            <option>Verse 3</option>
+            <option>Verse 4</option>
+        </select>
+    </form>
+
+    <h2>The Conqueror Worm, <em>Edgar Allen Poe, 1843</em></h2>
+
+    <pre>
+
+    </pre>
+
+    <script>
+        var vereseChoose = document.querySelector('select');
+        var poemDisplay = document.querySelector('pre');
+
+        vereseChoose.onchange = function(){
+            var verese = vereseChoose.value;
+            //alert(verese);
+            updateDisplay(verese);
+        }
+
+        function updateDisplay(verese){
+            //alert('进入updateDisplay函数');
+            verese = verese.replace(' ','');
+            verese = verese.toLowerCase();
+            var url = verese + '.txt';
+
+            //Fetch
+            //多数现代的JavaScript api都是基于promises的。
+            
+            // fetch(url).then(function(response) {
+            //     response.text().then(function(text) {
+            //         poemDisplay.textContent = text;
+            //     });
+            // });
+
+
+            //第一行 
+            //fetch(url)) 是说‘’获取位于url里的资源,fetch()返回一个promise,它将解析从服务器发回的响应。
+            //           "解析"的意思是"在将来某一时刻完成指定的操作" = 从指定的URL(使用HTTP请求)获取资源，并返回对我们执行某些操作的响应。
+            //promise解析后运行指定的函数(.then(function() { ... }))”
+            //实际上，传递给 then() 是一段不会立即执行的代码 — 而是当返回响应时代码会被运行。
+
+
+            //注意:你还可以选择把你的 promise 保存到一个变量里,
+            //方法 fetch() 返回一个解析HTTP响应的promise
+            //在 .then() 中定义的任何函数会被自动给一个响应作为一个参数(参数可以取任何名字，可以命名为response......)
+
+            // var myFetch = fetch(url);
+            // myFetch.then(function(response) {
+            //     response.text().then(function(text) {
+            //         poemDisplay.textContent = text;
+            //     });
+            // });
+
+
+            //第二行
+            //response 对象有个 text()方法, 获取响应主体中的原始数据并把它转换成纯文本
+            //同时也返回一个解析文本字符串的promise
+            //所以这里我们再使用.then(), 在里面我们再定义一个操作文本字符串的函数
+            
+            //第三行
+            //设置诗歌的<pre> 元素的 textContent 属性和这个文本字符串相同
+
+            //可以直接将promise块 (.then()块, 但也有其他类型) 链接到另一个的尾部, 顺着链条将每个块的结果传到下一个块。 这使得promises非常强大
+            //每一个promise(承诺）接续上一个promise，而不是在上一个promise的里面(会使得整个代码笨重起来，难以理解）。
+            fetch(url).then(function(response){
+                return response.text(); //注意return，把这一部分的结果传向promise链的下一段
+            }).then(function(text){
+                poemDisplay.textContent = text;
+            });
+
+            //以上两种写法还有一个不同的地方是我们在response.text() 语句之前得包含一个 return 语句, 用来把这一部分的结果传向promise链的下一段。
+
+        }
+
+
+        updateDisplay('Verse 1');
+        vereseChoose.value = 'Verse 1';
+
+        
+
+
+    </script>
+</body>
+
+</html>

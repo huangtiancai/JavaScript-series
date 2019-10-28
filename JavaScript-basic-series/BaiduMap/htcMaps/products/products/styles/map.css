@@ -1,0 +1,564 @@
+@charset "UTF-8";
+@keyframes breath {
+  from {
+    box-shadow: 0px 0px 0px 0px #eeeeee; }
+  /* 动画开始时的不透明度 */
+  50% {
+    box-shadow: 1px 2px 3px 3px #eeeeee; }
+  /* 动画50% 时的不透明度 */
+  to {
+    box-shadow: 3px 3px 5px 5px #eeeeee; }
+  /* 动画结束时的不透明度 */ }
+
+html, body {
+  min-width: 1300px; }
+
+.lbsyun-g-footer {
+  padding: 0 !important; }
+  .lbsyun-g-footer .main-footer .footer-box li a:hover {
+    text-decoration: none !important; }
+  .lbsyun-g-footer .main-footer .footer-box li a:link {
+    text-decoration: none !important; }
+
+.content-size {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto; }
+
+.head {
+  width: 100%;
+  background: #06071f; }
+  .head .header-bg {
+    margin: 0 auto;
+    height: 420px;
+    background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/map-banner.jpg") no-repeat center;
+    background-size: 2000px 420px;
+    overflow: hidden; }
+    .head .header-bg .header-title {
+      margin-top: 132px;
+      font-size: 40px;
+      color: #FFFFFF;
+      letter-spacing: 2px;
+      text-align: center;
+      line-height: 48px; }
+    .head .header-bg .header-p {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      text-align: center;
+      line-height: 20px; }
+    .head .header-bg .header-use {
+      display: block;
+      margin: 28px auto 0;
+      width: 298px;
+      height: 19px;
+      background: url("/products/common/images/location-logo.png") no-repeat center;
+      background-size: 100% 100%; }
+
+.content {
+  width: 100%;
+  margin: 0; }
+  .content .top {
+    height: 388px;
+    overflow: hidden; }
+    .content .top .top-title {
+      margin: 80px auto 0;
+      width: 970px;
+      height: 34px;
+      background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/map-ai2.png") no-repeat center;
+      background-size: 970px 34px; }
+    .content .top .top-box {
+      position: relative;
+      margin-top: 88px; }
+      .content .top .top-box li {
+        float: left;
+        width: 240px;
+        height: 80px;
+        border-right: 1px solid #E8E8E8; }
+        .content .top .top-box li i {
+          display: block;
+          margin: -28px auto 0;
+          width: 70px;
+          height: 70px;
+          background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/mapuse.png") no-repeat center;
+          background-size: 280px 70px; }
+        .content .top .top-box li .top-icon1 {
+          background-position: -0px -0px; }
+        .content .top .top-box li .top-icon2 {
+          background-position: -70px 0px; }
+        .content .top .top-box li .top-icon3 {
+          background-position: -140px 0px; }
+        .content .top .top-box li .top-icon4 {
+          background-position: -210px -0px; }
+        .content .top .top-box li p {
+          margin-top: 15px;
+          font-size: 12px;
+          color: #666666;
+          letter-spacing: 0;
+          line-height: 20px;
+          text-align: center; }
+        .content .top .top-box li .indoor-content-title {
+          font-size: 18px;
+          color: #666666;
+          letter-spacing: 0;
+          text-align: center;
+          line-height: 18px;
+          margin-bottom: 0; }
+        .content .top .top-box li .indoor-content-txt {
+          font-size: 12px;
+          color: #999999;
+          text-align: center;
+          margin-top: 10px;
+          line-height: 18px; }
+      .content .top .top-box .box1 {
+        margin-left: 120px; }
+      .content .top .top-box .box4 {
+        border: none; }
+  .content .middle-map {
+    height: 800px;
+    overflow: hidden;
+    background: #FBFBFB; }
+    .content .middle-map .map-title {
+      margin: 60px auto 0;
+      width: 1025px;
+      height: 79px;
+      background: url("../images/map_selstyle.png") no-repeat center;
+      background-size: 1025px 75px; }
+    .content .middle-map .map-ex {
+      margin: 50px auto 0;
+      width: 861px;
+      height: 83px;
+      background-size: 861px 79px; }
+      .content .middle-map .map-ex li {
+        float: left;
+        width: 98px;
+        height: 83px;
+        margin-left: 43px; }
+        .content .middle-map .map-ex li .map-border-selec {
+          width: 94px;
+          height: 10px;
+          border: 1px solid #ff0000;
+          border-radius: 4px;
+          padding: 3px;
+          background: #ffffff; }  
+        .content .middle-map .map-ex li #determine {
+          background: rgba(255, 78, 64, 0.05);
+          border: 1px solid #FF4E40; }
+        .content .middle-map .map-ex li #determine:after {
+          content: '';
+          display: block; 
+          width: 20px;
+          height: 20px;
+          background: url(../images/quota-icon.png?a) -80px 0 no-repeat;
+          background-size: 100px 100px;
+          position: absolute;
+          right: 0;
+          top: 0;
+          z-index: 5; }
+        .content .middle-map .map-ex li .map-border {
+          position: relative;
+          width: 94px;
+          height: 54px;
+          background: #FFFFFF;
+          border: 1px solid #E8E8E8;
+          border-radius: 4px;
+          padding: 3px;
+          position: relative; }
+          .content .middle-map .map-ex li .map-border i {
+            display: block;
+            width: 94px;
+            height: 54px;
+            background: url("http://mapopen-website-wiki.cdn.bcebos.com/products/map/mapex.jpg") no-repeat center;
+            background-size: 520px 64px; }
+          .content .middle-map .map-ex li .map-border .map-icon1 {
+            background-position: -421px -5px; }
+          .content .middle-map .map-ex li .map-border .map-icon2 {
+            background-position: -109px -5px; }
+          .content .middle-map .map-ex li .map-border .map-icon3 {
+            background-position: -213px -5px; }
+          .content .middle-map .map-ex li .map-border .map-icon4 {
+            background-position: -317px -5px; }
+          .content .middle-map .map-ex li .map-border .map-icon5 {
+            background-position: -5px -5px; }
+        .content .middle-map .map-ex li p {
+          font-size: 14px;
+          color: #666666;
+          letter-spacing: 0;
+          text-align: center;
+          line-height: 18px;
+          margin-top: 5px; }
+      .content .middle-map .map-ex .box1 {
+        margin-left: 100px; }
+    .content .middle-map .map-container {
+      margin: 20px auto 0;
+      width: 998px;
+      height: 358px;
+      padding: 10px;
+      border: 1px solid #EFEFEF;
+      border-radius: 5px; }
+      .content .middle-map .map-container .mapstyle-bg {
+        width: 998px;
+        height: 358px;
+        background: url("https://mapopen-website-wiki.cdn.bcebos.com/products/map/qinghuaci.jpg.jpg") no-repeat center;
+        }
+    .content .middle-map .checkMore {
+      display: block;
+      text-decoration: none;
+      height: 34px;
+      width: 160px;
+      border: 1px solid #9598a9;
+      border-radius: 20px;
+      margin: 30px auto 0;
+      font-size: 14px;
+      line-height: 34px;
+      text-align: center;
+      cursor: pointer;
+      background: none;
+      color: #8890A4; }
+    .content .middle-map .checkMore:hover {
+      color: #F5533D;
+      border: 1px solid #F5533D;
+      background: rgba(245, 83, 61, 0.1); }
+  .content .middle-cover {
+    height: 639px;
+    overflow: hidden; }
+    .content .middle-cover .cover-title {
+      margin: 60px auto 0;
+      width: 414px;
+      height: 79px;
+      background: url("../images/map_overlay.png") no-repeat center;
+      background-size: 414px 75px; }
+    .content .middle-cover .cover-bg {
+      margin-top: 40px;
+      width: 100%;
+      height: 460px;
+      background: url("https://mapopen-website-wiki.bj.bcebos.com/products/map/point.jpg") no-repeat center;
+      background-size: 2000px 460px;
+      z-index: -999; }
+      .content .middle-cover .cover-bg .cover-ex {
+        margin-left: 200px;
+        width: 900px;
+        height: 83px;
+        padding-top: 50px;
+        z-index: -999; }
+        .content .middle-cover .cover-bg .cover-ex .point {
+          margin-top: 160px;
+          margin-left: 380px;
+          display: none;
+          height: 40px;
+          width: 40px;
+          z-index: 10; }
+          .content .middle-cover .cover-bg .cover-ex .point i.area1 {
+            background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/point.png") no-repeat center;
+            background-size: 26px 35px;
+            width: 26px;
+            height: 35px;
+            display: block; }
+        .content .middle-cover .cover-bg .cover-ex .polyline {
+          margin: 160px auto 0;
+          display: none;
+          height: 27px;
+          width: 400px;
+          z-index: 10; }
+          .content .middle-cover .cover-bg .cover-ex .polyline i.round1 {
+            background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/polline.png") no-repeat center;
+            background-size: 400px 27px;
+            width: 400px;
+            height: 27px;
+            display: block; }
+        .content .middle-cover .cover-bg .cover-ex .polygon {
+          margin-top: 100px;
+          margin-left: 275px;
+          display: none;
+          height: 250px;
+          width: 250px;
+          z-index: 10; }
+          .content .middle-cover .cover-bg .cover-ex .polygon i.rectangular1 {
+            background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/polygon.png") no-repeat center;
+            background-size: 250px 250px;
+            width: 250px;
+            height: 250px;
+            display: block;
+            border-radius: 125px; }
+        .content .middle-cover .cover-bg .cover-ex .hotarea {
+          margin-top: 80px;
+          margin-left: 150px;
+          display: none;
+          height: 490px;
+          width: 299px;
+          z-index: 10; }
+          .content .middle-cover .cover-bg .cover-ex .hotarea i.rectangular1 {
+            background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/hot-area.png") no-repeat center;
+            background-size: 490px 299px;
+            width: 490px;
+            height: 299px;
+            display: block; }
+        .content .middle-cover .cover-bg .cover-ex .cover-select {
+          display: block; }
+        .content .middle-cover .cover-bg .cover-ex .line1 {
+          position: absolute;
+          top: 90px;
+          left: 200px;
+          width: 158px;
+          border-top: 3px solid #F5533D; }
+        .content .middle-cover .cover-bg .cover-ex li {
+          float: left;
+          width: 160px;
+          height: 41px;
+          border-bottom: 1px solid #eaeaea;
+          font-size: 18px;
+          color: #999999;
+          letter-spacing: 0;
+          text-align: center;
+          line-height: 18px; }
+        .content .middle-cover .cover-bg .cover-ex .active {
+          color: #F5533D; }
+  .content .middle-mapv {
+    height: 569px;
+    background: #FFFFFF; }
+    .content .middle-mapv .middle-mapv-title {
+      margin: 80px auto 0;
+      width: 396px;
+      height: 79px;
+      background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/mapv.png") no-repeat center;
+      background-size: 396px 74px; }
+  .content .middle-data {
+    height: 388px; }
+    .content .middle-data .data-title {
+      margin: 100px auto 0;
+      width: 252px;
+      height: 79px;
+      background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/map-data.png") no-repeat center;
+      background-size: 249px 74px; }
+    .content .middle-data .data-box li {
+      float: left;
+      width: 220px;
+      height: 220px;
+      margin: 30px 10px 0 0; }
+      .content .middle-data .data-box li i {
+        display: block;
+        width: 220px;
+        height: 220px;
+        background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/mapab.png") no-repeat center;
+        background-size: 1100px 220px; }
+      .content .middle-data .data-box li .data-icon1 {
+        background-position: 0 0; }
+      .content .middle-data .data-box li .data-icon2 {
+        background-position: -220px 0; }
+      .content .middle-data .data-box li .data-icon3 {
+        background-position: -440px -5px; }
+      .content .middle-data .data-box li .data-icon4 {
+        background-position: -660px -5px; }
+      .content .middle-data .data-box li .data-icon5 {
+        background-position: -880px -5px; }
+      .content .middle-data .data-box li p {
+        font-size: 18px;
+        color: #666666;
+        letter-spacing: 0;
+        text-align: center;
+        line-height: 18px;
+        margin-top: 10px;
+        margin-bottom: 0px; }
+    .content .middle-data .data-box .box1 {
+      margin-left: 40px; }
+  .content .middle-footer {
+    background: #FAFAFA;
+    height: 540px;
+    padding-top: 1px;
+    margin-top: 80px; }
+    .content .middle-footer .active {
+      color: #F5533D; }
+    .content .middle-footer div.selected {
+      display: block; }
+    .content .middle-footer .line {
+      position: absolute;
+      top: 150px;
+      left: 180px;
+      width: 168px;
+      border-top: 3px solid #F5533D; }
+    .content .middle-footer .footer-title {
+      margin: 80px auto 60px;
+      width: 440px;
+      height: 34px;
+      background: url("https://mapopen-website-wiki.cdn.bcebos.com/products/map/allindustry.png") no-repeat center;
+      background-size: 100% 100%; }
+    .content .middle-footer ul {
+      width: 840px;
+      margin: 0 auto; }
+      .content .middle-footer ul li {
+        float: left;
+        height: 57px;
+        width: 168px;
+        border-bottom: 1px solid #eaeaea;
+        font-size: 18px;
+        color: #999999;
+        letter-spacing: 0;
+        text-align: center;
+        line-height: 58px;
+        user-select: none;
+        cursor: pointer; }
+      .content .middle-footer ul .foot-select {
+        color: #333333;
+        border-bottom: 2px solid #F5533D; }
+    .content .middle-footer .footer-list {
+      background: #FAFAFA;
+      display: none;
+      position: absolute;
+      top: 154px;
+      left: 180px;
+      width: 840px;
+      height: 256px; }
+      .content .middle-footer .footer-list p {
+        margin-top: 44px;
+        font-size: 14px;
+        color: #333333;
+        letter-spacing: 0;
+        text-align: justify;
+        line-height: 24px;
+        height: 90px; }
+      .content .middle-footer .footer-list .logo-list {
+        margin-top: 30px; }
+        .content .middle-footer .footer-list .logo-list i {
+          float: left;
+          display: block;
+          margin-left: 15px;
+          width: 122px;
+          height: 30px;
+          background: url("//mapopen-website-wiki.cdn.bcebos.com/products/map/map-log.png") no-repeat center;
+          background-size: 132px 1500px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo1 {
+          background-position: -5px -850px;
+          height: 40px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo2 {
+          background: url("//mapopen-website-wiki.cdn.bcebos.com/products/location-footLogo.png") no-repeat 10px -45px;
+          background-size: 132px 840px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo3 {
+          background-position: -11px -1182px;
+          height: 40px;
+          background-color: #194cb3;
+          margin-top: -5px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo4 {
+          background: url("//mapopen-website-wiki.cdn.bcebos.com/products/location-footLogo.png") no-repeat -5px -485px;
+          background-size: 132px 840px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo5 {
+          background: url("//mapopen-website-wiki.cdn.bcebos.com/products/location-footLogo.png") no-repeat -5px -805px;
+          background-size: 132px 840px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo6 {
+          background-position: -12px -1123px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo7 {
+          background: url("//mapopen-website-wiki.cdn.bcebos.com/products/location-footLogo.png") no-repeat 10px -5px;
+          background-size: 132px 840px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo8 {
+          background-position: -10px -1061px;
+          height: 35px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo9 {
+          background-position: -5px -901px;
+          height: 40px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo10 {
+          background-position: -10px -948px;
+          height: 35px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo11 {
+          background-position: -10px -1003px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo12 {
+          background: url("//mapopen-website-wiki.cdn.bcebos.com/products/location-footLogo.png") no-repeat -5px -725px;
+          background-size: 132px 840px; }
+        .content .middle-footer .footer-list .logo-list .footer-logo13 {
+          background: url("//mapopen-website-wiki.cdn.bcebos.com/products/location-footLogo.png") no-repeat -5px -765px;
+          background-size: 132px 840px; }
+
+.foot {
+  height: 400px;
+  background: #292D36;
+  overflow: hidden; }
+  .foot .foot-bg {
+    width: 100%;
+    height: 400px;
+    background: #2B2F38 url("https://mapopen-website-wiki.cdn.bcebos.com/products/begain-user.jpg") no-repeat center;
+    background-size: 2000px 400px;
+    overflow: hidden; }
+  .foot .foot-go {
+    margin: 70px auto 76px;
+    width: 130px;
+    height: 32px;
+    background: url("//mapopen-website-wiki.cdn.bcebos.com/products%2Flocation-begin.png") no-repeat center;
+    background-size: 130px 32px; }
+  .foot ul {
+    padding-left: 180px; }
+    .foot ul li {
+      float: left;
+      margin: 0 20px 40px;
+      width: 240px;
+      height: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 100px; }
+    .foot ul a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-size: 14px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      text-align: center;
+      line-height: 50px;
+      user-select: none;
+      text-decoration: none; }
+    .foot ul li:hover {
+      background: rgba(245, 83, 61, 0.1);
+      border: 1px solid #F5533D; }
+    .foot ul a:hover {
+      color: #F5533D; }
+    .foot ul .foot-select {
+      margin-right: 0; }
+
+#slider {
+  position: absolute;
+  width: 1160px;
+  height: 450px;
+  left: 10px;
+  top: 119px;
+  overflow: hidden;
+  background: #FFf; }
+
+#slider .slide {
+  position: absolute;
+  top: 0px;
+  height: 450px;
+  width: 540px;
+  background: #fff;
+  overflow: hidden;
+  border-left: #fff solid 1px;
+  cursor: default;
+  padding-left: 10px; }
+
+#slider .title {
+  color: #F80;
+  font-weiht: bold;
+  font-size: 1.2em;
+  margin-right: 1.5em;
+  text-decoration: none; }
+
+#slider .text {
+  position: absolute;
+  top: 100%;
+  color: #FFF;
+  font-family: verdana, arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  text-align: justify;
+  width: 470px;
+  left: 10px; }
+
+#slider .diapo {
+  position: absolute;
+  opacity: 1;
+  visibility: hidden; }
+
+.lbsyun-g-footer {
+  min-width: 1200px !important; }
+
+.footer-box a:hover {
+  text-decoration: none; }
+
+.footer-box li span {
+  position: relative;
+  top: 12px !important; }

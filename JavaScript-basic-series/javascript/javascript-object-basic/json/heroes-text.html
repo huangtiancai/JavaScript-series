@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Our superheroes</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+
+  <body>
+
+      <header>
+
+      </header>
+
+      <section>
+
+      </section>
+
+    <script>
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+
+        //加载我们的JSON
+
+        //XMLHTTPRequest的API（常称为XHR）
+        //这是一个非常有用的 JavaScript 对象，使我们能够通过代码来向服务器请求资源文件(如：图片，文本，JSON，甚至HTML片段)，意味着我们可以更新小段内容而不用重新加载整个页面。
+
+        //1.首先，我们将保存一个即将访问的 URL 作为变量
+        var requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json'; 
+        //2.为了创建一个HTTP请求，我们需要创建一个HTTP请求对象，通过 new 构造函数的形式
+        var request = new XMLHttpRequest();
+        //3.现在我们需要使用 open() 函数打开一个新的请求
+        // HTTP 方法，网络连接时使用。这个示例中 GET 就可以了，因为我们只要获得简单的数据。
+        // URL，用于指向请求的地址,使用之前保存的变量。
+        request.open('Get',requestURL);
+        //4.设定 responseType 为 text,所以服务器将知道我们想要返回一个 文本字符串
+        request.responseType = 'text'; //now we're getting a string!
+        //然后发送请求 
+        request.send();
+        //5.处理来自服务器的返回数据
+        request.onload = function(){
+            var superHeroesText = request.response;         // get the string from the response
+            alert(typeof superHeroesText);  //string
+            console.log(superHeroesText);   //在控制台输出一段字符串（json字符串）
+
+            var superHeroes = JSON.parse(superHeroesText);  // convert it to an object
+            alert(typeof superHeroes);  //object
+            console.log(superHeroes);   //返回的就是一个对象(json对象)：{}
+
+            populateHeader(superHeroes);
+            showHeros(superHeroes);
+        }
+
+        //定位 header
+        function populateHeader(jsonObj){
+            var myH1 = document.createElement("h1");
+            myH1.textContent = jsonObj['squadName'];
+            header.appendChild(myH1);
+
+            var myPara = document.createElement("p");
+            myPara.textContent = 'homeTown:'+jsonObj['homeTown']+' formed:'+jsonObj['formed'];
+            header.appendChild(myPara);
+        }
+
+        //创建英雄信息卡片
+        function showHeros(jsonObj){
+            var heroes = jsonObj['members'];
+            // alert(heroes);//[object Object],[object Object],[object Object]
+            // console.log(heroes);
+            for(i = 0;i<heroes.length;i++){
+                var myArticle = document.createElement('article');
+
+                var myH2 = document.createElement('h2');
+                var myPara1 = document.createElement('p');
+                var myPara2 = document.createElement('p');
+                var myPara3 = document.createElement('p');
+                var myList = document.createElement('ul');
+
+                myH2.textContent = heroes[i]['name'];
+                myPara1.textContent = 'secretIdentity:'+heroes[i]['secretIdentity'];
+                myPara2.textContent = 'age:'+heroes[i]['age'];
+                myPara3.textContent = 'Superpowers';
+                var Superpowers = heroes[i]['powers'];
+                for(j=0;j<Superpowers.length;j++){
+                    var listItem = document.createElement('li');
+                    listItem.textContent = Superpowers[j];
+                    myList.appendChild(listItem);
+                }
+
+                myArticle.appendChild(myH2);
+                myArticle.appendChild(myPara1);
+                myArticle.appendChild(myPara2);
+                myArticle.appendChild(myPara3);
+                myArticle.appendChild(myList);
+
+                section.appendChild(myArticle);
+            }
+        }
+
+        //1. 创建几个元素： 一个 <article>,一个 <h2>, 三个 <p>s, 和一个 <ul>。
+        //2. 设置 <h2> 为当前英雄的 name。
+        //3. 使用他们的secretIdentity, age, "Superpowers:" 介绍信息列表 填充三个段落来。
+        //4. 保存 powers 属性于另一个变量 superPowers，包含英雄的superpowers列表。
+        //5. 使用另一个循环来遍历当前的英雄的 superpowers ，对于每一个元素我们创建<li>元素，把superpower放进去，然后使用appendChild()把 listItem 放入<ul> 元素中。
+        //6. 最后一件事情是追加<h2>,<p>,还有<ul>进入 <article> (myArticle)。然后将<article> 追加到 <section>。追加的顺序很重要，因为他们将被展示在 HTML 中。
+
+
+
+    </script>
+  </body>
+</html>

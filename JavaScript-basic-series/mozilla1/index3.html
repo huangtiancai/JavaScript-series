@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+  </head>
+
+<body>
+    <label for="guesses">请猜数：</label>
+    <input type="text" id="guessesField" class="guessField">
+    <input type="submit" value="确定" class="guessSubmit">
+
+    <p class="guesses"></p>
+    <p class="lastResult"></p>
+    <p class="lowOrHi"></p>
+
+    <script>
+
+        //guessField.focus();
+
+        //随机数
+        //Math.random()  产生[0，1）随机数
+        //生成一个 1 到 100 之间的随机数，并赋值给第一个变量（randomNumber）。
+        //三个常量均存储着一个引用，分别指向HTML结果段落中某个元素，用于在代码后面段落中插入值  
+        let randomNumber =  Math.floor(Math.random()*100)+1;
+        alert("randomNumber:"+randomNumber);
+
+        let lastResult = document.querySelector('.lastResult');
+        const guesses = document.querySelector('.guesses');
+        const lowOrHi = document.querySelector('.lowOrHi');
+ 
+        //两个常量存储对表单文本输入和提交按钮的引用，并用于控制以后提交猜测
+        const guessSubmit = document.querySelector('.guessSubmit');
+        const guessField = document.querySelector('.guessField');
+
+        //倒数第二个变量存储一个计数器并初始化为 1（用于跟踪玩家猜测的次数）
+        let guessCount = 1;
+        //最后一个变量存储对重置按钮的引用，这个按钮尚不存在（但稍后就有了）
+        let resetButton;
+
+        //定义函数的方法很多，但现在我们先集中考虑当前这个简单的方式
+        //这里我们使用关键字 function 、一个函数名、一对小括号定义了一个函数。
+        //随后是一对花括号({}),花括号内部是调用函数时要运行的所有代码。
+        function checkGuess(){
+            //在控制台输入checkGuess()进行调试
+            //alert("guessesField:"+guessField);//object HTMLInputElement
+            //alert(guessField.value);//文本框输入的字符串
+            //alert(typeof(guessField.value));//string
+            //alert(Number(guessField.value));//文本框输入的字符串转换成数字
+            //alert(typeof(Number(guessField.value)));//number
+
+            let userGuess = Number(guessField.value);//对这个值应用了内置的 Number() 方法，只是为了确保该值是一个数字。
+
+            if(guessCount==1){
+              //第一次猜上次猜的数为空
+              guesses.textContent = '上次猜的数是：';
+            }
+
+            //将当前 userGuess 值附加到 guesses 段落的末尾，并加上一个空格,以使每两个猜测值之间有一个空格
+            //guesses.textContent = guesses.textContent + userGuess + ' ';  其中guesses.textContent等于 '上次猜的数是：'
+            guesses.textContent += userGuess + ' ';// '上次猜的数是：' + userGuess + ' ';
+            //第一次如输入30
+            //显示："上次猜的数是：30 ",第二次再次拼接userGuess..........
+
+            if(userGuess==randomNumber){
+              lastResult.textContent = '恭喜你！猜对了';
+              lastResult.style.backgroundColor = 'green'; //显示一个漂亮的绿色的祝贺信息
+              lowOrHi.textContent = ' ';//清除“高了 / 低了”信息框的内容
+              setGameOver();            //调用 setGameOver() 方法
+            }else if(guessCount===10){
+              lastResult.textContent = 'Game Over!';
+              setGameOver();
+            }else{
+              lastResult.textContent = '你猜错了！';
+              lastResult.style.backgroundColor = 'red';
+              if(userGuess<randomNumber){
+                lowOrHi.textContent = '你猜小了！';
+              } else if(userGuess>randomNumber){
+                lowOrHi.textContent = '你猜大了！';
+              }
+            }
+
+            //累加
+            guessCount++;
+            alert("累加后的guessCount:"+guessCount)
+            //把表单中文本域的值清空
+            guessField.value = '';
+            //重新聚焦于此
+            guessField.focus();
+            
+
+
+            //name += ' says hello!';
+            //等价于：
+            //name = name + ' says hello!';
+
+            //guesses.textContent += userGuess + ' ';
+            //                      取上次猜的值         + 这次猜的值
+            //guesses.textContent = guesses.textContent + userGuess + ' ';
+
+
+
+        }
+
+        //添加事件(Event)
+        //事件监听器（Event Listener）
+        //响应事件触发而运行的代码块被称为事件处理器（Event Handler）
+
+        //这里为guessSubmit按钮添加一个事件监听器
+        //addEventListener() 方法:两个参数（argument）
+        //第一个参数：监听事件的类型：本例为"click"
+        //第二个参数：当事件发生时我们想要执行的代码：本例为checkGuess()函数---注意addEventListener()中作为参数的函数名不加括号
+        guessSubmit.addEventListener('click',checkGuess);
+
+
+        //补全游戏功能，添加一个 setGameOver() 函数
+        function setGameOver(){
+            //通过将 disable 属性设置为 true 来禁用表单文本输入和按钮
+            guessField.disabled = true;
+            guessSubmit.disabled = true;
+
+            //创建一个新的  <button> 元素，设置它的文本为“开始新游戏”
+            resetButton = document.createElement('button');
+            resetButton.textContent = '开始新游戏';
+            //把它添加到当前 HTML 的底部
+            document.body.appendChild(resetButton);
+            
+            //在新按钮上设置了一个事件监听器，当它被点击时，一个名为 resetGame() 的函数被将被调用
+            resetButton.addEventListener('click',resetGame);
+
+        }
+
+        function resetGame(){
+            guessCount = 1;
+
+            //通过 querySelectorAll() 方法创建了一个包含 <div class="resultParas"> 内所有段落的变量
+            //注意：段落的变量
+            const resetParas = document.querySelectorAll('.resultParas p');
+            //然后通过循环迭代，删除每个段落的文本内容
+            for(let i = 0;i<resetParas.length;i++){
+                resetParas[i].textContent='';
+            }
+
+            resetButton.parentNode.removeChild(resetButton);
+
+            guessField.disabled = false;
+            guessSubmit.disabled = false;
+            guessField.value = '';
+            guessField.focus();
+            
+            lastResult.style.backgroundColor = 'white';
+
+            randomNumber = Math.floor(Math.random() * 100)+1;
+            alert(randomNumber);
+
+        }
+
+        //对象（Object）
+
+        //const guessField = document.querySelector('.guessField');
+        //1.使用 document 对象的 querySelector() 方法可以获得一个引用
+        //2.然后创建一个 guessField 常量来存储对 HTML 中的文本输入表单域的引用
+        //3.querySelector() 需要一个信息：用一个 CSS选择器 可以选中需要引用的元素（input）
+        //4.guessField 现在包含一个指向 <input> 元素的引用
+        //5.它现在就能够访问一系列的属性（存储于对象内部的基础变量，其中一些的值无法改变）和方法（存储在对象内部的基础函数)
+        
+
+
+
+        //要运行一个函数代码时，可以输入函数名加一对小括号
+        //checkGuess();
+
+    </script>
+</body>
+</html>

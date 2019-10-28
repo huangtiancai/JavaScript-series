@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JSON创建、处理、访问</title>
+  </head>
+
+  <body>
+    
+
+  </body>
+
+    <script>
+      //什么是 JSON?  
+      //JSON可以作为一个对象或者字符串存在，前者用于解读 JSON 中的数据，后者用于通过网络传输 JSON 数据
+      //一个 JSON 对象可以被储存在文件中，这是一个文本文件，扩展名为 .json
+      
+      //JSON 结构
+      //JSON 对象就是基于 JavaScript 对象
+      //可以把 JavaScript 对象原原本本的写入 JSON 数据——字符串，数字，数组，布尔还有其它的字面值对象。这允许您构造出一个对象树，如下：
+
+      //JSONObject和JSONArray的数据表示形式
+      //1.JSONObject的数据是用 { } 来表示的
+      //例如：  { "id" : "123", "courseID" : "huangt-test", "title" : "提交作业", "content" : null  }  
+
+      //2.JSONArray，顾名思义是由JSONObject构成的数组，用  [ { } , { } , ......  , { } ]  来表示
+      //例如：[ { "id" : "123", "courseID" : "huangt-test", "title" : "提交作业" }  ,  {  "content" : null, "beginTime" : 1398873600000  "endTime" } ] ； 
+      //表示了包含2个JSONObject的JSONArray
+
+      //可以看到一个很明显的区别，一个最外面用的是 {  }  ，一个最外面用的是 [  ]  ；
+
+      //JSON具有以下这些形式：
+      //对象是一个无序的“‘名称/值’对”集合。一个对象以 {左括号 开始， }右括号 结束。每个“名称”后跟一个 :冒号 ；“‘名称/值’ 对”之间使用 ,逗号 分隔。
+      //数组是值（value）的有序集合。一个数组以 [左中括号 开始， ]右中括号 结束。值之间使用 ,逗号 分隔。
+      //值（value）可以是双引号括起来的字符串（string）、数值(number)、true、false、 null、对象（object）或者数组（array）。这些结构可以嵌套
+      //字符串（string）是由双引号包围的任意数量Unicode字符的集合，使用反斜线转义。一个字符（character）即一个单独的字符串（character string）。
+      //....
+
+      //对象树
+      //superHeroes变量储存对象
+      superHeroes = {
+        "squadName" : "Super hero squad",//1.JSONObject成员 key:value
+        "homeTown" : "Metro City",
+        "formed" : 2016,
+        "secretBase" : "Super tower",
+        "active" : true,
+        "members" : [ //2.JSONObject成员 key:value(这个value是一个对象数组或称为JSONArray[{},{},..{}]，{}代表一个子JSONObject)
+          {
+            "name" : "Molecule Man",    //2.1子JSONObject成员 key:value
+            "age" : 29,
+            "secretIdentity" : "Dan Jukes",
+            "powers" : [                //2.2子JSONObject成员 key:value(这个value是个普通数组["","",""])
+              "Radiation resistance",
+              "Turning tiny",
+              "Radiation blast"
+            ]
+          },
+          {
+            "name" : "Madame Uppercut",
+            "age" : 39,
+            "secretIdentity" : "Jane Wilson",
+            "powers" : [
+              "Million tonne punch",
+              "Damage resistance",
+              "Superhuman reflexes"
+            ]
+          },
+          {
+            "name" : "Eternal Flame",
+            "age" : 1000000,
+            "secretIdentity" : "Unknown",
+            "powers" : [
+              "Immortality",
+              "Heat Immunity",
+              "Inferno",
+              "Teleportation",
+              "Interdimensional travel"
+            ]
+          }
+        ]
+      }
+
+      //使用 . 或 [] 访问对象内的数据
+      superHeroes.homeTown;
+      superHeroes['active'];
+      //访问对象中的对象，只需简单地链式访问（通过属性名和数组索引）
+      superHeroes['members'][1]['powers'][2];
+
+      // 首先我们有变量superHeroes，储存对象 。
+      // 在对象中我们想访问 members 属性，所以我们使用 ["members"]。
+      // members 包含有对象数组，我们想要访问第二个元素，所以我们使用[1]。
+      // 在对象内，我们想访问 powers 属性，所以我们使用 ["powers"]。
+      // powers 属性是一个包含英雄技能的数组。我们想要第三个，所以我们使用[2]。
+              
+      //JSON数组(JSONArray)  格式：[{},{},..{}] 其中{}代表一个对象（JSONObject） 所以[{},{},..{}]也叫作对象数组
+      [
+        {
+          "name" : "Molecule Man",
+          "age" : 29,
+          "secretIdentity" : "Dan Jukes",
+          "powers" : [
+            "Radiation resistance",
+            "Turning tiny",
+            "Radiation blast"
+          ]
+        },
+        {
+          "name" : "Madame Uppercut",
+          "age" : 39,
+          "secretIdentity" : "Jane Wilson",
+          "powers" : [
+            "Million tonne punch",
+            "Damage resistance",
+            "Superhuman reflexes"
+          ]
+        }
+      ]
+
+      //其他注意：
+      // JSON 是一种纯数据格式，它只包含属性，没有方法。
+      // JSON 要求有两头的 { } 来使其合法。最安全的写法是有两边的括号，而不是一边。
+      // 甚至一个错位的逗号或分号就可以导致  JSON 文件出错
+      // JSON 可以将任何标准合法的 JSON 数据格式化保存，不只是数组和对象。比如，一个单一的字符串或者数字可以是合法的 JSON 对象。虽然不是特别有用处……
+      // 不像 JavaScript 标识符可以用作属性，在 JSON 中，只有字符串才能用作属性。
+
+      //对象和文本间的转换
+      //heroes就访问 JSON 而言是简单的，因为设置了 XHR 来访问 JSON 格式数据:request.responseType = 'json';
+
+      //但是我们通常是接收到字符串作为 JSON 数据，然后我们想要将它转换为对象。
+      //当我们想要发送 JSON 数据作为信息，我们将需要转换它为字符串，我们经常需要正确的转换数据
+      
+      //这两个问题在web环境中是那么普遍以至于浏览器拥有一个内建的 JSON，包含以下两个方法。
+      //1. parse(): 以文本字符串形式接受JSON对象作为参数，并返回相应的对象。
+      //2. stringify(): 接收一个对象作为参数，返回一个对应的JSON字符串。
+      
+      //1. parse()       JSON字符串-->JSON对象
+      
+      ///2. stringify()  JSON对象-->JSON字符串
+      //浏览器 JS 控制台:
+      // var myJSON = { "name" : "Chris", "age" : "38" };
+      // myJSON
+      // {name: "Chris", age: "38"}               -JSON对象
+      // var myString = JSON.stringify(myJSON);
+      // myString
+      // "{"name":"Chris","age":"38"}"            -JSON字符串
+
+
+
+    </script>
+</html>

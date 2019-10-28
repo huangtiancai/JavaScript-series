@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery - AJAX get()方法</title>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+</head>
+
+<body>
+
+    <button>向页面发送 HTTP GET 请求，然后获得返回的结果</button>
+    
+    <script>
+        
+        //jQuery get() 和 post() 方法用于通过 HTTP GET 或 POST 请求从服务器请求数据。
+        //HTTP 请求：GET vs. POST
+        //两种在客户端和服务器端进行请求-响应的常用方法是：GET 和 POST。
+        //GET - 从指定的资源请求数据
+        //POST - 向指定的资源提交要处理的数据
+
+        //jQuery $.get() 方法
+        //$.get() 方法通过 HTTP GET 请求从服务器上请求数据。
+
+        //语法：
+        //$.get(URL,callback);
+        //1.必需的 URL 参数规定您希望请求的 URL。
+        //2.可选的 callback 参数是请求成功后所执行的函数名。(回调函数)   
+
+        //下面的例子使用 $.get() 方法从服务器上的一个文件中取回数据：
+        $(document).ready(function(){
+            //其他的 jQuery 事件和函数
+            $('button').click(function(){
+                //回调函数:第一个回调参数存有被请求页面的内容，第二个回调参数存有请求的状态。
+                $.get('file/demo_get.txt',function(data,status){
+                    alert('数据：'+data+'\n状态：'+status);
+                });
+            });
+
+        });
+
+
+        //在文档加载后激活函数
+        //当 DOM（文档对象模型） 已经加载，并且页面（包括图像）已经完全呈现时，会发生 ready 事件。
+        //由于该事件在文档就绪后发生，因此把所有其他的 jQuery 事件和函数置于该事件中是非常好的做法。
+        //1.ready() 函数规定当 ready 事件发生时执行的代码
+        //2.ready() 函数仅能用于当前文档，因此无需选择器。
+
+    </script>
+</body>
+
+</html>

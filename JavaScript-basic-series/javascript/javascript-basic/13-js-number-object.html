@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JavaScript Number 对象</title>
+	</head>
+	<body>
+		<script>
+			// Number 对象
+			// Number 对象是原始数值的包装对象。
+			// 创建 Number 对象的语法：
+			// var myNum=new Number(value);
+			// var myNum=Number(value);
+
+
+			//Number 对象属性(数值属性)
+			// constructor	返回对创建此对象的 Number 函数的引用。
+			// MAX_VALUE	可表示的最大的数。
+			// MIN_VALUE	可表示的最小的数。
+			// NaN	非数字值。
+			// NEGATIVE_INFINITY	负无穷大，溢出时返回该值。
+			// POSITIVE_INFINITY	正无穷大，溢出时返回该值。
+			// prototype	使您有能力向对象添加属性和方法。
+
+			Number.MAX_VALUE;           //1.7976931348623157e+308
+			Number.MIN_VALUE;		    //5e-324
+			Number.POSITIVE_INFINITY;   //Infinity
+			Number.NEGATIVE_INFINITY;   //-Infinity
+			Number.NaN; 			    //NaN
+
+			// 这些属性只能作为 Number.MAX_VALUE 访问。
+			// 使用 myNumber.MAX_VALUE，其中 myNumber 是变量、表达式或值，将返回 undefined：
+			var z = 20;
+			var z1 = z.MAX_VALUE;//undefined
+
+
+			//Number 对象方法
+			// toString	把数字转换为字符串，使用指定的基数。
+			// toLocaleString	把数字转换为字符串，使用本地数字格式顺序。
+			// toFixed	把数字转换为字符串，结果的小数点后有指定位数的数字。
+			// toExponential	把对象的值转换为指数计数法。
+			// toPrecision	把数字格式化为指定的长度。
+			// valueOf	返回一个 Number 对象的基本数字值。
+			var x = 10;
+			x.toExponential();
+			x.toFixed();
+			x.toLocaleString();
+			x.toPrecision();
+			x.toString();
+			x.valueOf();
+			
+			//等
+			
+
+
+		</script>
+	</body>
+</html>

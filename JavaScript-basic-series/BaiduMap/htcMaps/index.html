@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<!-- saved from url=(0024)http://lbsyun.baidu.com/ -->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="baidu-site-verification" content="ziNpZaSZr7">
+        
+        <title>百度地图开放平台 | 百度地图API SDK | 地图开发</title>
+        <meta name="keywords" content="百度地图api,百度地图API,地图API,地图api,百度地图开放平台,地图开放平台,开放平台,百度地图 api,百度手机API,LBS云,百度地图API Android,百度地图API iOS,URI API">
+        <meta name="description" content="百度地图API是一套为开发者提供的基于百度地图的应用程序接口，包括JavaScript、iOS、Andriod、静态地图、Web服务等多种版本，提供基本地图、位置搜索、周边搜索、公交驾车导航、定位服务、地理编码及逆地理编码等丰富功能。LBS·云是百度地图针对LBS开发者全新推出的平台级服务。通过地图API，一方面解决移动开发者服务器端日益增长的海量位置数据的存储维护压力，另一方面彻底解决所有LBS开发者基于位置数据的高并发检索瓶颈。">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        
+        <link rel="stylesheet" type="text/css" href="./styles/common.css">
+        <script src="./js/hm.js"></script>
+        <script src="./js/jquery-1.8.3.min.js"></script>
+    </head>
+    <body>
+        <div class="ieBrowser">
+            <div class="ieBrowser-close">
+                <svg class="icon icon-web-videoclose" width="48px" height="48.00px" viewBox="0 0 1024 1024" version="1.1" style="width:18px; fill:#E29629;">
+                    <path d="M817.707 250.826c14.122-14.122 14.39-37.69 0.018-52.061-14.471-14.471-37.679-14.363-52.061 0.018L505.469 458.979 245.274 198.783c-14.122-14.122-37.689-14.389-52.061-0.018-14.471 14.471-14.363 37.68 0.019 52.061l260.195 260.195-260.196 260.196c-14.122 14.122-14.39 37.69-0.019 52.061 14.471 14.471 37.68 14.363 52.061-0.018l260.195-260.195L765.663 823.26c14.122 14.122 37.691 14.389 52.061 0.018 14.472-14.471 14.363-37.68-0.018-52.061L557.512 511.021l260.195-260.195z"></path>
+                     <path d="M817.707 250.826c14.122-14.122 14.39-37.69 0.018-52.061-14.471-14.471-37.679-14.363-52.061 0.018L505.469 458.979 245.274 198.783c-14.122-14.122-37.689-14.389-52.061-0.018-14.471 14.471-14.363 37.68 0.019 52.061l260.195 260.195-260.196 260.196c-14.122 14.122-14.39 37.69-0.019 52.061 14.471 14.471 37.68 14.363 52.061-0.018l260.195-260.195L765.663 823.26c14.122 14.122 37.691 14.389 52.061 0.018 14.472-14.471 14.363-37.68-0.018-52.061L557.512 511.021l260.195-260.195z"></path>
+                </svg>
+            </div>
+            浏览器版本低！无法浏览完整内容，建议升级或更换浏览器。
+        </div>
+        <header class="lbsyun-g-header has-transition">
+            <div class="header-box">
+                <a href="" class="logo"></a>
+                <div class="header-right" id="header-user">
+                    <div class="login-bw">
+                    <a href="https://passport.baidu.com/?login&amp;u=http://lbsyun.baidu.com/" class="logi-btn">
+                        <span>登录</span>
+                    </a>
+                </div>
+            </div>
+                <ul class="main-menu-li">
+                    <span class="menu-line" style="left: 1079px; opacity: 0; display: inline; width: 0px;"></span>
+                    <li class="main-m-li">
+                        <a href="http://lbsyun.baidu.com/index.php?title=%E9%A6%96%E9%A1%B5">
+                    
+                            <span>首页</span>
+                        </a>
+                    </li>
+                    <li class="main-m-li menu-big menu-service">
+                        <a href="javascript:;">
+                            <span>功能与服务</span>
+                        </a>
+                        <div class="full-menu full-menu-service" data-v="service"><div class="sub-menu-warp">
+            <ul class="menu-ctx-ul"><li class="mitem">
+                        <div class="caption">
+                                    <span class="mh-txt">基础服务</span>
+                                </div>
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/products/products/location" class="tm_link" target="_blank">
+                                    <span class="mh-txt">定位</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/products/products/map" class="tm_link" target="_blank">
+                                    <span class="mh-txt">地图</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/products/products/search" class="tm_link" target="_blank">
+                                    <span class="mh-txt">搜索</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/products/products/yingyan" class="tm_link" target="_blank">
+                                    <span class="mh-txt">鹰眼轨迹</span>
+                                </a><span class="newIcon" style="position:absolute; top:-14px; right:63px;">HOT !</span></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/products/products/navigation" class="tm_link" target="_blank">
+                                    <span class="mh-txt">导航</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/products/products/direction" class="tm_link" target="_blank">
+                                    <span class="mh-txt">路线规划</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/products/products/traffic" class="tm_link" target="_blank">
+                                    <span class="mh-txt">路况</span>
+                                </a></li>
+                        </ul>
+                        </li><li class="mitem">
+                        <div class="caption">
+                                    <span class="mh-txt">特色功能</span>
+                                </div>
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=open/custom" class="tm_link" target="_blank">
+                                    <span class="mh-txt">个性化地图</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/cashier/abroad" class="tm_link" target="_blank">
+                                    <span class="mh-txt">全球服务</span>
+                                </a><span class="newIcon" style="position:absolute; top:-14px; right:63px;">HOT !</span></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/products/products/indoor" class="tm_link" target="_blank">
+                                    <span class="mh-txt">室内图</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://jiaotong.baidu.com/dugis/" class="tm_link" target="_blank">
+                                    <span class="mh-txt">专网地图</span>
+                                </a><span class="newIcon" style="position:absolute; top:-14px; right:63px;">NEW !</span></li>
+                        </ul>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+                    </li>
+                    <li class="main-m-li menu-big menu-service">
+                        <a href="javascript:;">
+                            <span>解决方案</span>
+                            <span style="font-style:italic; color:#ff280b; font-size:12px; position:absolute; top:-15px; right:-20px;">NEW !</span>
+                        </a>
+                        <div class="full-menu full-menu-service full-menu-resolve" data-v="solution"><div class="sub-menu-warp">
+            <ul class="menu-ctx-ul"><li class="mitem">
+                        
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=open/netcar" class="tm_link" target="_blank">
+                                    <span class="mh-txt">网约车</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/solutions/solutions/logistics" class="tm_link" target="_blank">
+                                    <span class="mh-txt">快递物流</span>
+                                </a><span class="newIcon" style="position:absolute; top:-14px; right:63px;">NEW !</span></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/solutions/solutions/smartdress" class="tm_link" target="_blank">
+                                    <span class="mh-txt">智能穿戴</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/solutions/solutions/scenicspot" class="tm_link" target="_blank">
+                                    <span class="mh-txt">智能景区</span>
+                                </a><span class="newIcon" style="position:absolute; top:-14px; right:63px;">NEW !</span></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=transportationSecurity" class="tm_link" target="_blank">
+                                    <span class="mh-txt">运输安全监控</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=open/case" class="tm_link" target="_blank">
+                                    <span class="mh-txt">房产行业</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=open/o2o1" class="tm_link" target="_blank">
+                                    <span class="mh-txt">上门服务</span>
+                                </a></li>
+                        </ul>
+                        </li><li class="mitem">
+                        
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://jiaotong.baidu.com/" class="tm_link" target="_blank">
+                                    <span class="mh-txt">智慧交通</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://huiyan.baidu.com/" class="tm_link" target="_blank">
+                                    <span class="mh-txt">商业地理</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=share_economy/sharebike" class="tm_link" target="_blank">
+                                    <span class="mh-txt">共享出行</span>
+                                </a></li>
+                        </ul>
+                        </li></ul>
+            </div></div>
+                    </li>
+                    <li class="main-m-li menu-big">
+                        <a href="javascript:;">
+                            <span>开发文档</span>
+                        </a>
+                        <div class="full-menu" data-v="divDoc"><div class="sub-menu-warp">
+            <ul class="menu-ctx-ul"><li class="mitem">
+                        <div class="caption">
+                                    <span class="mh-txt">Web开发</span>
+                                </div>
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=jspopular3.0" class="tm_link" target="_blank">
+                                    <span class="mh-txt">JavaScript API</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=wxjsapi" class="tm_link" target="_blank">
+                                    <span class="mh-txt">微信小程序JavaScript API</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=subway" class="tm_link" target="_blank">
+                                    <span class="mh-txt">地铁图JavaScript API</span>
+                                </a></li>
+                        </ul>
+                        </li><li class="mitem">
+                        <div class="caption">
+                                    <span class="mh-txt">Android开发</span>
+                                </div>
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=androidsdk" class="tm_link" target="_blank">
+                                    <span class="mh-txt">Android地图SDK</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=android-locsdk" class="tm_link" target="_blank">
+                                    <span class="mh-txt">Android定位SDK</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=android-yingyan" class="tm_link" target="_blank">
+                                    <span class="mh-txt">Android鹰眼轨迹SDK</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=android-navsdk" class="tm_link" target="_blank">
+                                    <span class="mh-txt">Android导航SDK</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=android-panosdk" class="tm_link" target="_blank">
+                                    <span class="mh-txt">Android全景SDK</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=android-arsdk" class="tm_link" target="_blank">
+                                    <span class="mh-txt">Android AR识别SDK</span>
+                                </a></li>
+                        </ul>
+                        </li><li class="mitem">
+                        <div class="caption">
+                                    <span class="mh-txt">iOS开发</span>
+                                </div>
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=iossdk" class="tm_link" target="_blank">
+                                    <span class="mh-txt">iOS地图SDK</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=ios-locsdk" class="tm_link" target="_blank">
+                                    <span class="mh-txt">iOS定位SDK</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=ios-yingyan" class="tm_link" target="_blank">
+                                    <span class="mh-txt">iOS鹰眼轨迹SDK</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=ios-navsdk" class="tm_link" target="_blank">
+                                    <span class="mh-txt">iOS导航SDK</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=ios-panosdk" class="tm_link" target="_blank">
+                                    <span class="mh-txt">iOS全景SDK</span>
+                                </a></li>
+                        </ul>
+                        </li><li class="mitem">
+                        <div class="caption">
+                                    <span class="mh-txt">服务接口</span>
+                                </div>
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=lbscloud" class="tm_link" target="_blank">
+                                    <span class="mh-txt">LBS云</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=yingyan" class="tm_link" target="_blank">
+                                    <span class="mh-txt">鹰眼轨迹服务</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=webapi" class="tm_link" target="_blank">
+                                    <span class="mh-txt">Web服务API</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=uri" class="tm_link" target="_blank">
+                                    <span class="mh-txt">地图调起API</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=vehicle" class="tm_link" target="_blank">
+                                    <span class="mh-txt">百度地图车机版</span>
+                                </a></li>
+                        </ul>
+                        </li><li class="mitem">
+                        <div class="caption">
+                                    <span class="mh-txt">工具支持</span>
+                                </div>
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=open/custom" class="tm_link" target="_blank">
+                                    <span class="mh-txt">个性化地图编辑器</span>
+                                </a><span class="newIcon" style="position:absolute; top:-10px; right:-17px;">NEW !</span></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/data/mydata" class="tm_link" target="_blank">
+                                    <span class="mh-txt">数据管理平台</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/trace/admin/service" class="tm_link" target="_blank">
+                                    <span class="mh-txt">鹰眼轨迹管理台</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/indoor/indoormap/introduct" class="tm_link" target="_blank">
+                                    <span class="mh-txt">室内定位管理平台</span>
+                                </a><span class="newIcon" style="position:absolute; top:-10px; right:-17px;">NEW !</span></li><li class="tm_item">
+                                <a href="http://api.map.baidu.com/lbsapi/getpoint/index.html" class="tm_link" target="_blank">
+                                    <span class="mh-txt">坐标拾取器</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://api.map.baidu.com/lbsapi/createmap/index.html" class="tm_link" target="_blank">
+                                    <span class="mh-txt">地图生成器</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://api.map.baidu.com/mapCard/" class="tm_link" target="_blank">
+                                    <span class="mh-txt">地图名片</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=coordinate" class="tm_link" target="_blank">
+                                    <span class="mh-txt">坐标系说明</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/index.php?title=open/dev-res" class="tm_link" target="_blank">
+                                    <span class="mh-txt">开发资源</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://quanjing.baidu.com/apipickup/" class="tm_link" target="_blank">
+                                    <span class="mh-txt">全景选择工具</span>
+                                </a></li>
+                        </ul>
+                        </li></ul>
+            </div></div>
+                    </li>
+                    <li target="_blank" class="main-m-li">
+                        <a href="http://lbsyun.baidu.com/index.php?title=FAQ/tags" target="_blank">
+                            <span>反馈与帮助</span>
+                        </a>
+                    </li>
+                    <li class="main-m-li menu-big menu-service">
+                        <a href="javascript:;">
+                            <span>服务升级</span>
+                            <span style="font-style:italic; color:#ff280b; font-size:12px; position:absolute; top:-15px; right:-20px;">NEW !</span>
+                        </a>
+                        <div class="full-menu full-menu-service full-menu-upgrade " data-v="upgrade"><div class="sub-menu-warp">
+            <ul class="menu-ctx-ul"><li class="mitem">
+                        
+                        <ul class="three-menu-ul">
+                            <li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/cashier/quota" class="tm_link" target="_blank">
+                                    <span class="mh-txt">额度提升</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/cashier/auth" class="tm_link" target="_blank">
+                                    <span class="mh-txt">商用授权</span>
+                                </a></li><li class="tm_item">
+                                <a href="http://lbsyun.baidu.com/cashier/service" class="tm_link" target="_blank">
+                                    <span class="mh-txt">高级服务</span>
+                                </a><span class="newIcon" style="position:absolute; top:-14px; right:50px;">NEW !</span></li>
+                        </ul>
+                        </li></ul>
+            </div></div>
+                    </li>
+                    <li class="main-m-li">
+                        <a target="_blank" href="http://lbsyun.baidu.com/apiconsole/center" id="count-apiconsole" onclick="toControlStation()">
+                            <span>控制台</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <ul class="quick-entrance">
+            <li>
+                <a href="http://lbsyun.baidu.com/index.php?title=FAQ/tags" target="_blank">
+                    <svg class="icon icon-hz" width="48px" height="48.00px" viewBox="0 0 1024 1024" version="1.1">
+                        <path d="M862.633 841.2v180.783L683.951 911.981c-24.774 4.044-50.209 6.407-76.323 6.407-122.739 0-232.687-46.969-308.556-121.141 12.492 0.716 24.914 1.617 37.611 1.617 17.807 0 35.366-0.874 52.731-2.271 59.91 41.242 135.656 66.022 218.211 66.022 28.451 0 55.968-3.237 82.49-8.776l62.069 41.399c-0.066 0.028-0.122 0.062-0.189 0.09l46.881 31.031V813.434c95.876-54.031 159.378-147.354 159.378-253.618 0-67.206-25.651-129.087-68.546-179.327 2.834-19.606 4.796-39.454 4.796-59.729 0-9.278-0.996-18.322-1.617-27.454C972.261 359.357 1022 452.411 1022 555.827c0.006 116.011-62.504 219.01-159.373 285.373h0.006M416.377 727.149c-26.117 0-51.563-2.363-76.329-6.413L161.373 830.738v-180.75C64.506 583.594 2 480.595 2 364.58 2 164.343 187.523 2.017 416.377 2.017S830.752 164.346 830.752 364.58c0 200.243-185.521 362.569-414.375 362.569m0-661.382c-193.65 0-350.626 135.588-350.626 302.8 0 106.252 63.499 199.557 159.375 253.626v112.928l46.879-31.035a2.347 2.347 0 0 1-0.199-0.095l62.1-41.399c26.503 5.544 54.021 8.775 82.472 8.775 193.65 0 350.626-135.556 350.626-302.8 0-167.211-156.98-302.8-350.627-302.8m207.189 350.609c-26.396 0-47.816-21.398-47.816-47.807 0-26.399 21.421-47.817 47.816-47.817 26.399 0 47.813 21.415 47.813 47.817 0 26.409-21.413 47.807-47.813 47.807m-191.254 0c-26.409 0-47.813-21.398-47.813-47.807 0-26.399 21.404-47.817 47.813-47.817 26.417 0 47.815 21.415 47.815 47.817 0 26.409-21.398 47.807-47.815 47.807m-191.246 0c-26.417 0-47.815-21.398-47.815-47.807 0-26.399 21.4-47.817 47.815-47.817 26.409 0 47.809 21.415 47.809 47.817 0 26.409-21.397 47.807-47.809 47.807m0 0z" p-id="5730"></path>
+                    </svg>
+                </a>
+                <div>反馈与帮助</div>
+            </li>
+            <li>
+                <span class="goTop" style="display: none;">
+                    <svg class="icon icon-fhdb" width="48px" height="48.00px" viewBox="0 0 1024 1024" version="1.1">
+                        <path d="M486.0416 291.908267 175.0528 606.498133c-17.937067 18.090667-25.6512 39.68-7.697067 57.821867 17.92 18.141867 39.2704 10.308267 57.173333-7.799467L485.888 392.192l0 475.904c0 23.620267 10.171733 42.752 33.518933 42.752 23.364267 0 36.4544-19.131733 36.4544-42.752L555.861333 392.192l260.9664 263.953067c17.937067 18.107733 38.7584 26.4704 56.712533 8.328533 17.92-18.141867 10.683733-40.2432-7.236267-58.350933L555.264 291.515733c0 0-18.653867-21.435733-32.785067-21.435733C505.685333 270.08 486.0416 291.908267 486.0416 291.908267zM204.544 200.977067l631.9104 0c29.149867 0 45.909333-8.994133 45.909333-34.6624 0-25.6-14.557867-36.096-45.909333-36.096L204.544 130.218667c-28.996267 0-45.892267 9.745067-45.892267 35.3792S175.9744 200.977067 204.544 200.977067z" p-id="4363"></path>
+                    </svg>
+                </span>
+                <div style="display: none;">返回顶部</div>
+            </li>
+        </ul>
+
+        <script type="text/template" id="login_suc">
+        <div class="user-area">
+            <a href="javascript:;" class='user-info'>
+                <span class="uinfo-w">
+                    <span class="uname">
+                        <i class="icon">
+                            <svg class="icon" viewBox="0 0 1024 1024" version="1.1" width="16" height="16"><path d="M160.16 844.48l23.52 10.24c33.6-76.8 93.44-139.52 168.16-176.96l-11.52-22.88c-80.16 40.16-144.16 107.36-180.16 189.6z" p-id="2765"></path><path d="M644.32 530.24C733.12 482.88 793.6 389.28 793.6 281.6 793.6 126.08 667.52 0 512 0S230.4 126.08 230.4 281.6c0 107.68 60.48 201.28 149.28 248.64C175.36 587.84 25.6 775.68 25.6 998.4c0 14.08 11.52 25.6 25.6 25.6s25.6-11.52 25.6-25.6c0-240.32 194.88-435.2 435.2-435.2s435.2 194.88 435.2 435.2c0 14.08 11.52 25.6 25.6 25.6s25.6-11.52 25.6-25.6c0-222.72-149.76-410.56-354.08-468.16zM512 512c-127.2 0-230.4-103.2-230.4-230.4S384.8 51.2 512 51.2s230.4 103.2 230.4 230.4-103.2 230.4-230.4 230.4z" p-id="2766"></path></svg>
+                        </i>
+                        <b>${username}<em id="totalNum" class="numstatistics"></em></b>
+                    </span>
+                </span>
+            </a>
+            <div class="user-control">
+                <div class="uc-menu-w">
+                    <ul class="uc-menu">
+                        <li class="item">
+                            <a href="${setting}">帐号设置</a>
+                        </li>
+                        <li class="item">
+                            <a href="/apiconsole/fankui/list#/home" >工单反馈<span id="fanKuiNum" >（<strong></strong>）</span></a>
+                        </li>
+                        <li class="item">
+                            <a href="/apiconsole/mail" >站内信<span id="mailNum" >（<strong></strong>）</span></a>
+                        </li>
+                        <li class="item">
+                            <a href="${logout}">退出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </script>
+
+        <script>
+            // 解决内网跳转控制台登录域名受限问题
+            function toControlStation() {
+                var currentURL = window.location.host;
+                var a = document.getElementById('count-apiconsole');
+                if (currentURL.indexOf('baidu-int.com') !== -1) {
+                    var tmp = a.href;
+                    var urlArr = tmp.split('-int');
+                    a.href = urlArr.join('');
+                }
+            }
+
+        </script>
+
+        <script src="./js/msgcounting.js.下载" type="text/javascript"></script>
+        
+
+
+
+        <link rel="stylesheet" type="text/css" href="./styles/index-8ca1b89cca.css">
+
+
+        <div class="lm-containter">
+            <div class="hp-banner" id="box">
+                <div class="screen">
+                    <ul style="left: -1903px;">
+                        <li style="background: rgb(20, 19, 26); width: 1903px;">
+                            <a href="http://lbsyun.baidu.com/cashier/service" target="_blank">
+                                <img src="./images/location_banner.jpg">
+                            </a>
+                        </li>
+                        <li style="background: rgb(4, 4, 4); width: 1903px;">
+                            <a href="http://lbsyun.baidu.com/indoor/indoormap/introduct" target="_blank">
+                                <img src="./images/indoor-banner0603.jpg">
+                            </a>
+                        </li>
+                        <li style="background: rgb(20, 24, 45); width: 1903px;">
+                            <a href="http://lbsyun.baidu.com/#" target="_blank">
+                                <img src="./images/banner_erwm.png">
+                            </a>
+                        </li>
+                        <li style="background: rgb(21, 24, 47); width: 1903px;">
+                            <a href="http://lbsyun.baidu.com/index.php?title=yingyan/guide/geo-fence" target="_blank">
+                                <img src="./images/yy-banner0603.png">
+                            </a>
+                        </li>
+                    
+                        <li style="background: rgb(20, 19, 26); width: 1903px;">
+                            <a href="http://lbsyun.baidu.com/cashier/service" target="_blank">
+                                <img src="./images/banner-service.png">
+                            </a>
+                        </li>
+                    </ul>
+                    <ol>
+                        <li class=""></li>
+                        <li class="current"></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                    </ol>
+                </div>
+                <div id="arr" class="arr" style="display: none;"><span id="left"></span><span id="right" class="right"></span></div>
+                
+            </div>
+            <div class="hp-online">
+                    <div class="PAGE_WIDTH flex online-container">
+
+                        <div class="online-box">
+                            <a href="http://lbsyun.baidu.com/solutions/solutions/smartdress" target="_blank">
+                                <svg class="icon icon-baogao" style="width:45px;" viewBox="0 0 1024 1024" version="1.1">
+                                <path d="M882.849748 937.384293 210.290959 937.384293c-33.746592 0-61.200874-27.442002-61.200874-61.172221l0-6.005784c1.632173-45.091988 14.171768-53.360302 38.250162-53.360302l660.561547 0c6.461155 0 15.250332-2.183735 31.444153-18.375509 16.193821-16.193821 18.377556-24.985044 18.377556-31.449269L897.723503 106.460684c0-19.261693-15.093766-36.433794-21.582551-42.922578-6.489808-6.488785-23.660886-21.580504-42.918485-21.580504L436.283016 41.957601c-0.002047 0-0.004093 0-0.00614 0s-0.004093 0-0.00614 0L281.307386 41.957601c-0.042979 0-0.084934 0.00614-0.127913 0.00614l-5.635347 0c-0.042979 0-0.084934-0.00614-0.127913-0.00614s-0.084934 0.00614-0.127913 0.00614l-64.967664 0c-56.331983 0-102.160751 45.820582-102.160751 102.141308l0 707.850573 0 24.254404c0 56.301284 45.816488 102.104469 102.133122 102.104469l672.558789 0c11.30344 0 20.466124-9.162684 20.466124-20.466124S894.153188 937.384293 882.849748 937.384293zM295.882336 82.890872l119.93558 0 0 190.83535-35.176151-33.792641c-12.219299-11.725042-31.386848-11.737322-43.670615 0.007163l-41.088814 39.46278L295.882336 82.890872zM210.319611 82.897012l44.629453 0 0 214.393905c0 11.80793 7.330966 22.264073 19.131733 27.288506 5.009084 2.13257 10.369162 3.165086 15.639189 3.164063 9.269108 0 18.252713-3.194762 24.514323-9.214872l44.574195-42.810015 44.570101 42.818201c9.135054 8.765641 22.560832 11.221576 34.206056 6.255471 11.642155-4.964058 19.164478-16.350386 19.164478-29.007661L456.74914 82.890872l376.280946 0c6.928806 1.019213 22.744004 16.83441 23.76117 23.76117l0 655.79294c-3.090385 3.987824-9.479909 10.378371-13.468756 13.469779L187.341271 775.914762c-14.743796 0-27.508517 2.693342-38.250162 7.988951L149.091108 144.106072C149.091108 110.355387 176.558693 82.897012 210.319611 82.897012z"></path></svg>
+                                <div>
+                                    <p class="title1">智能穿戴行业解决方案</p>
+                                    <p class="title2">场景化服务全面升级</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="online-box">
+                            <a href="http://lbsyun.baidu.com/index.php?title=open/netcar" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon icon-web" style="width:45px;" viewBox="0 0 1024 1024" version="1.1">
+                                <path d="M607.3344 951.724218C687.113309 834.057309 736.420461 694.095127 743.681552 543.024097L960.769552 543.024097C947.007612 744.860703 800.218764 910.097067 607.3344 951.724218M511.993794 961.933188C508.239127 961.933188 504.531006 961.747006 500.80737 961.653915 408.585309 845.429915 350.667248 700.844218 342.459733 543.024097L681.54337 543.024097C673.335855 700.844218 615.402279 845.429915 523.195733 961.653915 519.472097 961.747006 515.763976 961.933188 511.993794 961.933188M63.218036 543.024097 280.321552 543.024097C287.582642 694.095127 336.889794 834.057309 416.668703 951.724218 223.784339 910.097067 76.995491 744.860703 63.218036 543.024097M404.458279 75.087127C329.209794 192.955733 283.983127 331.800824 279.700945 480.963491L63.388703 480.963491C76.886885 283.440097 217.624824 120.9344 404.458279 75.087127M511.993794 62.0544C519.875491 62.0544 527.695127 62.271612 535.468218 62.675006 623.454642 179.969552 677.307733 324.260461 682.179491 480.963491L341.808097 480.963491C346.69537 324.260461 400.548461 179.969552 488.534885 62.675006 496.307976 62.271612 504.127612 62.0544 511.993794 62.0544M960.598885 480.963491 744.302158 480.963491C740.019976 331.800824 694.793309 192.955733 619.544824 75.087127 806.362764 120.9344 947.116218 283.440097 960.598885 480.963491M511.993794-0.006206C229.230158-0.006206-0.006206 229.230158-0.006206 511.993794-0.006206 794.772945 229.230158 1023.993794 511.993794 1023.993794 794.772945 1023.993794 1023.993794 794.772945 1023.993794 511.993794 1023.993794 229.230158 794.772945-0.006206 511.993794-0.006206"></path></svg>
+                                <div>
+                                    <p class="title1">网约车行业解决方案</p>
+                                    <p class="title2">行业需求深度满足</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="online-box">
+                            <a href="http://lbsyun.baidu.com/solutions/solutions/scenicspot" target="_blank">
+                                <svg class="icon icon-web_fenbuhuancun" style="width:45px;" viewBox="0 0 1024 1024" version="1.1">
+                                <path d="M512.685 513.775c-12.33 0-24.174-2.283-33.35-6.459L103.15 315.605c-19.224-8.838-23.47-22.823-23.47-28.408 0-5.633 4.246-19.57 23.47-28.31L479.284 86.982c18.304-8.401 48.45-8.401 66.8 0l376.134 171.904c19.225 8.741 21.265 22.726 21.265 28.311 0 5.585-2.042 19.57-21.265 28.41L546.087 507.365c-9.225 4.077-21.12 6.41-33.4 6.41h-0.002zM136.13 287.051l358.252 169.042c8.79 3.982 27.723 3.933 36.606 0l358.25-168.8L530.94 137.156c-8.888-4.03-27.722-3.128-36.509 0.9L136.13 287.051z m376.555 655.258c-11.942 0-23.885-2.184-33.4-6.555L87.337 807.971c-9.127-4.177-10.455-23.11-6.327-32.238 4.128-9.132 14.197-23.067 23.227-18.89L494.385 887.33c9.42 4.276 27.137 4.276 36.555 0l382.723-131.385c9.078-4.273 23.554 11.462 27.73 20.686 4.175 9.132 1.046 32.566-8.082 36.74L546.087 935.755c-9.517 4.37-21.507 6.555-33.4 6.555h-0.002zM512.685 806.396c-11.942 0-23.885-2.187-33.4-6.555L93.902 647.793c-9.127-4.177-13.155-26.713-9.03-35.84 4.127-9.132 19.6-20.363 28.63-16.186l380.93 152.047c9.418 4.271 27.137 4.271 36.555 0L913.71 595.767c9.076-4.227 23.756 8.762 27.929 17.985 4.175 9.13 1.745 29.865-7.38 34.042L546.132 799.84c-9.56 4.37-21.553 6.556-33.447 6.556zM512.636 674.035c-11.942 0-23.837-2.138-33.352-6.46L90.253 478.53c-9.128-4.175-12.257-23.961-8.081-33.139 4.175-9.178 20.452-23.015 29.53-18.887L494.43 617.35c9.37 4.272 27.187 4.175 36.605-0.05l378.528-191.695c9.077-4.127 28.055 6.06 32.23 15.337 4.175 9.129 2.846 31.663-6.28 35.838l-389.38 190.793c-9.612 4.324-21.553 6.46-33.495 6.46l-0.002 0.002z"></path></svg>
+                                <div>
+                                    <p class="title1">智能景区解决方案</p>
+                                    <p class="title2">提供智能化、场景化的地图服务</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="online-box">
+                            <a href="http://lbsyun.baidu.com/index.php?title=open/law" target="_blank">
+                                <svg class="icon icon-fwhy" style="width:45px;" viewBox="0 0 1024 1024" version="1.1">
+                                <path d="M282.819048 95.085714c-109.714286 0-199.92381 90.209524-199.92381 199.92381 0 109.714286 90.209524 199.92381 199.92381 199.92381l199.92381 0 0-199.92381C480.304762 185.295238 392.533333 95.085714 282.819048 95.085714L282.819048 95.085714M419.352381 431.542857l-138.971429 0c-75.580952 0-138.971429-60.952381-138.971429-138.971429 0-75.580952 60.952381-138.971429 138.971429-138.971429 75.580952 0 138.971429 60.952381 138.971429 138.971429L419.352381 431.542857 419.352381 431.542857M941.104762 295.009524c0-109.714286-90.209524-199.92381-199.92381-199.92381s-199.92381 90.209524-199.92381 199.92381l0 199.92381 199.92381 0C853.333333 492.495238 941.104762 404.72381 941.104762 295.009524L941.104762 295.009524M604.647619 295.009524c0-75.580952 60.952381-138.971429 138.971429-138.971429 75.580952 0 138.971429 60.952381 138.971429 138.971429 0 75.580952-60.952381 138.971429-138.971429 138.971429l-138.971429 0L604.647619 295.009524 604.647619 295.009524M82.895238 753.371429c0 109.714286 90.209524 199.92381 199.92381 199.92381 109.714286 0 199.92381-90.209524 199.92381-199.92381l0-199.92381-199.92381 0C170.666667 555.885714 82.895238 643.657143 82.895238 753.371429L82.895238 753.371429M419.352381 753.371429c0 75.580952-60.952381 138.971429-138.971429 138.971429-75.580952 0-138.971429-60.952381-138.971429-138.971429 0-75.580952 60.952381-138.971429 138.971429-138.971429l138.971429 0L419.352381 753.371429 419.352381 753.371429M741.180952 555.885714l-199.92381 0 0 199.92381c0 109.714286 90.209524 199.92381 199.92381 199.92381s199.92381-90.209524 199.92381-199.92381S853.333333 555.885714 741.180952 555.885714L741.180952 555.885714M741.180952 892.342857c-75.580952 0-138.971429-60.952381-138.971429-138.971429l0-138.971429 138.971429 0c75.580952 0 138.971429 60.952381 138.971429 138.971429C880.152381 831.390476 819.2 892.342857 741.180952 892.342857L741.180952 892.342857M741.180952 892.342857"></path></svg>
+                                <div>
+                                    <p class="title1">开发者服务条款更新</p>
+                                    <p class="title2">请各位开发者关注</p>
+                                </div>
+                            </a>
+                        </div>
+                </div>
+            </div>
+            <div class="hp-service">
+                <div class="module-title PAGE_WIDTH">
+                    <p class="title-main title-main-service">
+                    <img src="./images/service_title.png">
+                    </p>
+                    <span class="video-bt" id="count-videobt"></span>
+                </div>
+                <div class="service-wrap">
+                    <div class="slideTxtBox">
+                        <div class="hd PAGE_WIDTH">
+                            <span class="line" style="left: 564px;"></span>
+                            <ul>
+                                <li>
+                                    <!--<svg class="icon icon-dingweiB" width="48px" height="48.00px" viewBox="0 0 1024 1024" version="1.1">
+                                    </svg>-->
+                                    <p class="icon-p icon-location">
+                                    </p><p>定位</p>
+                                </li>
+                                <li class="">
+                                <p class="icon-p icon-map">
+                                    </p><p>地图</p>
+                                </li>
+                                <li class="">
+                                    <p class="icon-p icon-yingyan">
+                                    </p><p>轨迹</p>
+                                </li>
+                                <li class="active">
+                                    <p class="icon-p icon-direction">
+                                    </p>
+                                    <p>路线规划</p>
+                                </li>
+                                <li class="">
+                                    <p class="icon-p icon-navigation">
+                                    </p><p>导航</p>
+                                </li>
+                                <li class="">
+                                    <p class="icon-p icon-traffic">
+                                    </p>
+                                    <p>路况</p>
+                                </li>
+                                <li class="li-ie9">
+                                    <p class="icon-p icon-search">
+                                    </p>
+                                    <p>搜索</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bd slideTxtBox-bd">
+                            <ul class="PAGE_WIDTH">
+                                <li class="service-box">
+                                    <div class="box-left">
+                                        <img src="./images/service-new-location.png">
+                                    </div>
+                                    <div class="box-right" id="count-locationCon">
+                                        <h2 class="dw"></h2>
+                                        <p><span></span>帮助广大开发者更好解决 “你在哪里” 这个难题</p>
+                                        <p><span></span>支持GPS、WiFi、基站融合定位</p>
+                                        <p><span></span>完美支持各类应用开发者对位置获取的诉求</p>
+                                        <a href="./products/products/location" target="_blank" id="count-location">查看详情</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="PAGE_WIDTH">
+                                <li class="service-box">
+                                    <div class="box-left">
+                                        <img src="./images/service-new-map.png">
+                                    </div>
+                                    <div class="box-right" id="count-mapCon">
+                                        <h2 class="dt"></h2>
+                                        <p><span></span>帮助用户轻松实现全平台地图展示</p>
+                                        <p><span></span>支持3D高清地图、全景图、实时路况图、静态图</p>
+                                        <p><span></span>自定义个性化地图样式，打造专属地图</p>
+                                        <a href="http://lbsyun.baidu.com/products/products/map" target="_blank" id="count-map">查看详情</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="PAGE_WIDTH">
+                                <li class="service-box">
+                                    <div class="box-left">
+                                        <img src="./images/service-new-yingyan.png">
+                                    </div>
+                                    <div class="box-right" id="count-yingyanCon">
+                                        <h2 class="gj"></h2>
+                                        <p><span></span>为每一位开发者提供1000万以上终端的全球轨迹追踪能力</p>
+                                        <p><span></span>专业轨迹纠偏绑路算法解决轨迹漂移、里程计算不准困扰</p>
+                                        <p><span></span>深度轨迹分析能力挖掘轨迹价值</p>
+                                        <a href="http://lbsyun.baidu.com/products/products/yingyan" target="_blank" id="count-yingyan">查看详情</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="PAGE_WIDTH selected">
+                                <li class="service-box">
+                                    <div class="box-left">
+                                        <img src="./images/service-new-direction.png">
+                                    </div>
+                                    <div class="box-right" id="count-cxCon">
+                                        <h2 class="direct"></h2>
+                                        <p><span></span>智能的实时和未来出行路线规划，更精准的路线选择和耗时预测</p>
+                                        <p><span></span>支持驾车、跨城公交、骑行（含电动车）、步行多种智能出行方式</p>
+                                        <p><span></span>满足用车、物流、外卖、旅游、交通等各行业个性化路线诉求</p><p>
+                                        <a href="http://lbsyun.baidu.com/products/products/direction" target="_blank" id="count-cx">查看详情</a>
+                                    </p></div>
+                                </li>
+                            </ul>
+
+                            <ul class="PAGE_WIDTH">
+                                <li class="service-box">
+                                    <div class="box-left">
+                                        <img src="./images/service-new-navigation.png">
+                                    </div>
+                                    <div class="box-right" id="count-cloudCon">
+                                        <h2 class="navigation"></h2>
+                                        <p><span></span>全面准确的路网信息、各类电子眼、超速动态提醒，避免违章</p>
+                                        <p><span></span>全新沉浸式悬浮界面设计，图区更大，导航信息更聚合</p>
+                                        <p><span></span>支持驾车、公交、骑行、步行(含AR)多种智能导航方式</p>
+                                        <a href="http://lbsyun.baidu.com/products/products/navigation" target="_blank" id="count-cloud">查看详情</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="PAGE_WIDTH">
+                                <li class="service-box">
+                                    <div class="box-left">
+                                        <img src="./images/service-new-traffic.png">
+                                    </div>
+                                    <div class="box-right" id="count-cxCon">
+                                        <h2 class="traffic"></h2>
+                                        <p><span></span>分钟级更新的全国实时路况展示，道路拥堵状况一目了然</p>
+                                        <p><span></span>精准的驾车规划路线实时和预测路况，帮助用户合理规划出行</p>
+                                        <p><span></span>智能播报指定道路和区域的实时路况，轻松获取道路拥堵信息</p><p>
+                                        <a href="http://lbsyun.baidu.com/products/products/traffic" target="_blank" id="count-dw">查看详情</a>
+                                    </p></div>
+                                </li>
+                            </ul>
+
+                            <ul class="PAGE_WIDTH">
+                                <li class="service-box">
+                                    <div class="box-left">
+                                        <img src="./images/service-new-search.png">
+                                    </div>
+                                    <div class="box-right" id="count-fxCon">
+                                        <h2 class="search"></h2>
+                                        <p><span></span>强大的地理数据引擎，海量地理数据按需搜索</p>
+                                        <p><span></span>快速更新的精准地理数据，包括POI、行政区划、门址、上车点以及时区</p>
+                                        <p><span></span>多种智能搜索方式，包括地点检索、正/逆地理编码、推荐上车点、时区等服务</p>
+                                        <a href="http://lbsyun.baidu.com/products/products/search" target="_blank" id="count-fx">查看详情</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hp-used">
+                <div class="module-title PAGE_WIDTH">
+                    <p class="title-main title-main-used">
+                    <img src="./images/use_title.png">
+                    </p>
+                    <!--<div class="service-line"></div>-->
+                </div>
+                <div class="used-wrap PAGE_WIDTH flex" style="width:900px">
+                    <div class="used-box" id="count-sharebikeCon">
+                        <a href="http://lbsyun.baidu.com/index.php?title=share_economy/sharebike" target="_blank" id="count-sharebike">
+                            <div class="used-box-pic">
+                                <img src="./images/hp-use11.png" class="img2">
+                                <img src="./images/hp-use11.png" class="img1">
+                            </div>
+                            <div class="used-box-text">
+                                <div class="title">
+                                    <h2>共享出行</h2>
+                                </div>
+                                <p>帮助共享出行用户快速集成地图能力，迅速拓展市场。</p>
+                                <div class="title-icon-wrap">
+                                    <div class="icon-wrap">
+                                        <div class="title-icon title-icon-mb"></div>
+                                        <div class="title-icon title-icon-bluebike"></div>
+                                        <div class="title-icon title-icon-7hdc"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="used-box" id="count-fwCon">
+                        <a href="http://lbsyun.baidu.com/index.php?title=open/o2o1" target="_blank" id="count-fw">
+                            <div class="used-box-pic">
+                                <img src="./images/hp-use22.png" class="img2">
+                                <img src="./images/hp-use22.png" class="img1">
+                            </div>
+                            <div class="used-box-text">
+                                <div class="title">
+                                    <h2>上门服务</h2>
+                                </div>
+                                <p>介绍上门服务通用LBS解决方案，帮助O2O开发者快速清晰地构建系统。</p>
+                                <div class="title-icon-wrap">
+                                    <div class="icon-wrap">
+                                        <div class="title-icon title-icon-mryx"></div>
+                                        <div class="title-icon title-icon-axf"></div>
+                                        <div class="title-icon title-icon-bdwm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="used-box" id="count-jiaotongCon">
+                        <a href="http://jiaotong.baidu.com/" target="_blank" id="count-jiaotong">
+                            <div class="used-box-pic">
+                                <img src="./images/hp-use33.png" class="img2">
+                                <img src="./images/hp-use33.png" class="img1">
+                            </div>
+                            <div class="used-box-text">
+                                <div class="title">
+                                    <h2>智慧交通</h2>
+                                </div>
+                                <p>互联网+智慧交通，共建交通大数据生态。 </p>
+                                <div class="title-icon-wrap">
+                                    <div class="icon-wrap">
+                                        <div class="title-icon title-icon-123"></div>
+                                        <div class="title-icon title-icon-bjjj"></div>
+                                        <div class="title-icon title-icon-ga"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="used-box" id="count-logisticsCon">
+                        <a href="http://lbsyun.baidu.com/solutions/solutions/logistics" target="_blank" id="count-logistics">
+                            <div class="used-box-pic">
+                                <img src="./images/hp-use55.png" class="img2">
+                                <img src="./images/hp-use55.png" class="img1">
+                            </div>
+                            <div class="used-box-text">
+                                <div class="title">
+                                    <h2>快递物流</h2>
+                                </div>
+                                <p>结合通用物流配送场景，介绍地图产品如何帮助开发者快速搭建物流系统。</p>
+                                <div class="title-icon-wrap">
+                                    <div class="icon-wrap">
+                                        <div class="title-icon title-icon-ss"></div>
+                                        <div class="title-icon title-icon-db"></div>
+                                        <div class="title-icon title-icon-yt"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="used-box" id="count-logisticsCon">
+                        <a href="http://lbsyun.baidu.com/index.php?title=open/case" target="_blank" id="count-logistics">
+                            <div class="used-box-pic">
+                                <img src="./images/hp-use66.png" class="img2">
+                                <img src="./images/hp-use66.png" class="img1">
+                            </div>
+                            <div class="used-box-text">
+                                <div class="title">
+                                    <h2>房产行业</h2>
+                                </div>
+                                <p>结合房产类用户使用场景，介绍地图服务在房产类产品中的应用。</p>
+                                <div class="title-icon-wrap">
+                                    <div class="icon-wrap">
+                                        <div class="title-icon title-icon-ftx"></div>
+                                        <div class="title-icon title-icon-lj"></div>
+                                        <div class="title-icon title-icon-wawj"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="used-box" id="count-syCon">
+                        <a href="http://huiyan.baidu.com/" target="_blank" id="count-sy">
+                            <div class="used-box-pic">
+                                <img src="./images/hp-use77.png" class="img2">
+                                <img src="./images/hp-use77.png" class="img1">
+                            </div>
+                            <div class="used-box-text">
+                                <div class="title">
+                                    <h2>商业地理</h2>
+                                </div>
+                                <p>勾勒顾客画像，展现顾客轨迹；竞品分析对比，客流来源去向。</p>
+                                <div class="title-icon-wrap">
+                                    <div class="icon-wrap">
+                                        <div class="title-icon title-icon-wdyx"></div>
+                                        <div class="title-icon title-icon-wk"></div>
+                                        <div class="title-icon title-icon-gzcm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="./js/manifest-01e3cd720d.js"></script>
+        <script type="text/javascript" src="./js/vendor-5be847409e.js"></script>
+        <script type="text/javascript" src="./js/index-ae28908f47.js"></script>
+        <script src="http://lbs.baidu-int.com/skins/MySkin/resources/js/innertunnel.js?d20190709" type="text/javascript"></script>
+
+        <footer class="lbsyun-g-footer">
+            <div class="main-footer PAGE_WIDTH" style="width:1000px">
+                <ul class="footer-box">
+                    <li><a href="http://lbsyun.baidu.com/index.php?title=open/question" target="_blank">使用须知
+                        </a></li>
+                </ul>
+                <ul class="footer-box">
+                    <li><a href="http://lbsyun.baidu.com/index.php?title=open/law" target="_blank">服务条款</a></li>
+                </ul>
+                <ul class="footer-box">
+                    <li><a href="http://lbsyun.baidu.com/solutions/solutions/privilege" target="_blank">开发者权益</a></li>
+                </ul>
+                <ul class="footer-box">
+                    <li><a href="http://lbsyun.baidu.com/index.php?title=FAQ/develop" target="_blank">开发问题</a></li>
+                </ul>
+                <ul class="footer-box">
+                    <li><a href="http://lbsyun.baidu.com/apiconsole/fankui#?typeOne=%e8%b4%ad%e4%b9%b0%e5%92%a8%e8%af%a2" target="_blank">购买咨询</a></li>
+                </ul>
+                <ul class="footer-box">
+                    <li class="end">
+                        <a href="http://widget.weibo.com/dialog/follow.php?fuid=2540964357&amp;refer=tc-pis-api-4.epc.baidu.com&amp;language=zh_cn&amp;type=widget_page&amp;vsrc=app_followbutton&amp;backurl=http%3A%2F%2Ftc-pis-api-4.epc.baidu.com%3A8866%2Findex.php%3Ftitle%3D%25E9%25A6%2596%25E9%25A1%25B5&amp;rnd=1508332094560" target="_blank">
+                            <svg class="icon icon-xinlang" width="48px" height="48.00px" viewBox="0 0 1024 1024" version="1.1">
+                                <path d="M738.4 501.6c-36.8-7.2-19.2-27.2-19.2-27.2s36-60-7.2-103.2c-53.6-53.6-184.8 7.2-184.8 7.2-50.4 15.2-36.8-7.2-29.6-45.6 0-45.6-15.2-122.4-148.8-76.8C216 300.8 101.6 460.8 101.6 460.8 21.6 566.4 32.8 648.8 32.8 648.8c20 180.8 212 230.4 361.6 242.4 157.6 12 369.6-54.4 433.6-191.2C892.8 563.2 775.2 508.8 738.4 501.6L738.4 501.6zM405.6 840c-156 7.2-282.4-71.2-282.4-175.2 0-104 126.4-188 282.4-195.2 156-7.2 282.4 56.8 282.4 161.6C688.8 735.2 562.4 832.8 405.6 840L405.6 840zM374.4 538.4C217.6 556.8 236 704 236 704s-1.6 46.4 42.4 70.4C369.6 824 464 793.6 512 732 560 670.4 532 520 374.4 538.4L374.4 538.4zM335.2 744.8c-29.6 3.2-52.8-13.6-52.8-37.6 0-24.8 20.8-50.4 50.4-52.8 33.6-3.2 56 16 56 40.8C388 718.4 364 741.6 335.2 744.8L335.2 744.8zM427.2 665.6c-9.6 7.2-22.4 6.4-27.2-2.4-5.6-8.8-3.2-22.4 6.4-29.6 12-8.8 24-6.4 28.8 2.4C440.8 644.8 437.6 658.4 427.2 665.6L427.2 665.6zM814.4 437.6c12.8 0 23.2-9.6 25.6-21.6 0-0.8 0-1.6 0-2.4 19.2-172.8-141.6-142.4-141.6-142.4-14.4 0-25.6 11.2-25.6 25.6 0 14.4 11.2 25.6 25.6 25.6 115.2-25.6 89.6 89.6 89.6 89.6C788.8 426.4 800.8 437.6 814.4 437.6L814.4 437.6zM796 136.8c-55.2-12.8-112.8-1.6-128.8 1.6-1.6 0-2.4 1.6-3.2 1.6-0.8 0-0.8 0.8-0.8 0.8-16 4.8-27.2 19.2-27.2 36 0 20.8 16.8 37.6 37.6 37.6 0 0 20-2.4 33.6-8 13.6-5.6 128.8-4 185.6 92 31.2 69.6 13.6 116.8 11.2 124 0 0-7.2 18.4-7.2 36 0 20.8 16.8 33.6 37.6 33.6 17.6 0 32-2.4 36-31.2l0 0C1032 256 895.2 160 796 136.8L796 136.8zM796 136.8"></path>
+                            </svg>
+                            <span>新浪微博</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="footer-box footer-box-ie9">
+                    <li class="end">
+                            <span><img src="./images/ewm.png" style="width:80px; position:relative; top:-21px;"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main-copyright">
+                <p>地图审图号：GS(2018)5572|测绘资质：甲测资字1100930</p>
+                <p>©2019 Baidu <a href="http://www.baidu.com/duty/">使用百度前必读 </a>京ICP证030173号</p>
+            </div>
+        </footer>
+        <!--<script src="/map/resource/global/js/fankui/fkNum.js?up4" type="text/javascript"></script>-->
+        <!--<script src="/map/resource/global/js/msgcounting/msgcounting.js?up4" type="text/javascript"></script>-->
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?81f6b965835b9737e999b473ad66ad23";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+
+    </body>
+</html>

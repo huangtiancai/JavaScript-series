@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<!--
+        	时间：2019-01-27
+        	描述：JS的实现:<body> 中的 JavaScript 函数
+        -->
+		<p id="demo">A Paragraph.</p>
+		<button type="button" onclick="myFunction()">点击这里！</button>
+		<!--
+        	在本例中，我们把一个 JavaScript 函数放置到 HTML 页面的 <body> 部分。
+        	我们把 JavaScript 放到了页面代码的底部，这样就可以确保在 <p> 元素创建之后再执行脚本。
+        -->
+        <script>
+        	function myFunction(){
+        		document.getElementById("demo").innerHTML="My First JavaScript Function";
+        	}
+        </script>
+		
+
+	</body>
+</html>

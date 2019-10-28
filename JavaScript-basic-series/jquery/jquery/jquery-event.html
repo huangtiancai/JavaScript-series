@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery事件</title>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+
+</head>
+<body>
+    <p id="p1">单击消失</p>
+    <p id="p2">双击消失</p>
+    <p id="p3">鼠标指针进入此处，会看到弹窗。</p>
+    <p id="p4">鼠标指针离开此处，会看到弹窗。</p>
+    <p id="p5">这是一个段落</p>
+    <p id="p6">这是一个段落</p>
+    <p id="p7">这是一个段落</p>
+    <p id="p8">这是一个段落</p>
+    <p id="p9">这是一个段落</p>
+    
+    Name: <input type="text" name="fullname"><br>
+    Email: <input type="text" name="email">
+
+    <p id="p10">这是一个段落</p>
+
+    <a href="https://www.baidu.com">点击</a>
+
+    <img src="imgs/pic.jpg" alt="" id="im" style="position: absolute;left: 0;top: 0">
+    <p>js实现实时横纵坐标显示</p>
+    <p id="img1"></p>
+    <p id="img2"></p>
+    <p>jQuery实现实时横纵坐标显示</p>
+    <p id="img3"></p>
+    <p id="img4"></p>
+
+
+    <script>
+        //1.什么是事件？
+        //在事件中经常使用术语"触发"（或"激发"）例如： "当您按下按键时触发 keypress 事件"
+
+        //2.常见 DOM 事件：
+        //鼠标事件：
+        // click():单击
+        // dblclick():双击
+        // mouseenter():鼠标指针穿过（进入）被选元素
+        // mouseleave():鼠标指针离开被选元素
+        // hover()
+
+        //键盘事件：
+        // keypress
+        // keydown
+        // keyup
+
+        //表单事件：
+        // submit
+        // change
+        // focus
+        // blur
+         
+        //文档窗口事件：
+        // load
+        // unload
+
+        //3.jQuery 事件方法语法
+        //页面中指定一个点击事件：
+        // $("p").click();
+        //事件函数:
+        // $("p").click(function(){
+        //     // 动作触发后执行的代码!
+        // });
+
+        //常用的 jQuery 事件方法:
+        // $(document).ready();//$(document).ready() 方法允许我们在文档完全加载完后执行函数
+        // click();         //click() 方法是当按钮点击事件被触发时会调用一个函数。
+        // dblclick();      //当双击元素时，会发生 dblclick 事件。
+        // mouseenter();    //当鼠标指针穿过元素时，会发生 mouseenter 事件
+        // mouseleave();    //当鼠标指针离开元素时，会发生 mouseleave 事件。
+        // mousedown();     //当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
+        // mouseup();       //当在元素上松开鼠标按钮时，会发生 mouseup 事件。
+        // hover();         //hover()方法用于模拟光标悬停事件。
+        // focus();         //当元素获得焦点时
+        // blur();          //当元素失去焦点时，发生 blur 事件
+
+        $(document).ready(function(){
+            $("p#p1").click(function(){
+                $(this).hide();
+            });
+            $("p#p2").dblclick(function(){
+                $(this).hide();
+            });
+            $("p#p3").mouseenter(function(){
+                alert("你的鼠标移到了id='p3'的元素上！");
+            });
+            $("p#p4").mouseleave(function(){
+                alert("你的鼠标离开了id='p4'的元素上！");
+            });
+            $("p#p5").mousedown(function(){
+                alert("鼠标在该段落上按下！");
+            });
+            $("p#p6").mouseup(function(){
+                alert("鼠标在段落上松开。");
+            });
+            //当鼠标移动到元素上时，会触发指定的第一个函数(mouseenter);当鼠标移出这个元素时，会触发指定的第二个函数(mouseleave)
+            $("p#p7").hover(
+                function(){
+                    alert("你进入了p7!");
+                },
+                function(){
+                    alert("拜拜!现在你离开了p7!");
+                }
+            );
+            
+            $("input").focus(function(){
+                $(this).css("background-color","#cccccc");
+            });
+            $("input").blur(function(){
+                $(this).css("background-color","#ffffff");
+            });
+
+
+        });
+
+
+        // $(document).ready(function(){
+        //     $(window).keypress(function(event){
+        //         alert(event);//[object Object]
+        //     });
+        // });
+
+        //其他鼠标事件
+        //1.event.type属性
+        $(document).ready(function(){
+            $("p#p10").click(function(event){
+                alert(event);   //[object Object]
+                alert(event.type);//click 获取事件类型
+                alert(this);    //[object HTMLParagraphElement]
+                alert($(this)); //[object Object]
+                alert(event==$(this)); //false???
+            });
+        });
+
+        //2.event.target属性
+        $(document).ready(function(){
+            $("a").click(function(event){
+                alert(event.target.href);//获取触发事件的<a>元素的href属性值:https://www.baidu.com/
+                alert(event.target.tagName);//获取触发事件的元素的标签名称:A
+                return false;   //阻止链接跳转
+            });
+        });
+
+        //3.event.pageX/event.pageY属性
+        $(document).ready(function(){
+            $("a").click(function(event){
+                alert("当前鼠标位置："+event.pageX+","+event.pageY);
+                return false;   //阻止链接跳转
+            });
+        });
+
+        //pageX和pageY获取横纵坐标-----案例图片随着鼠标移动
+        //javascript代码：
+        document.onmousemove=function(e){
+            //如果有滚动条的时候,拉动滚动条,会出现bug
+            //解决办法是用pageX和pageY代替
+            //但是这两个属性火狐和谷歌可以用,IE9中不支持
+            e = window.event||e;
+            document.getElementById("im").style.left=e.pageX+"px";
+            document.getElementById("im").style.top=e.pageY+"px";
+            //实时显示横纵坐标
+            document.getElementById("img1").innerHTML = e.pageX+"px";
+            document.getElementById("img2").innerHTML = e.pageY+"px";
+        }
+
+        //jQuery代码：
+        // $(document).ready(function(){
+        //     $(document).mousemove(function(e){
+        //         //设置css样式
+        //         $("#img1").css("width","400px");
+        //         // $("#im").css("left","e.pageX");
+        //         // $("#im").css("left","e.pageY");
+
+        //         $("#img3").text(e.pageX+"px");
+        //         $("#img4").text(e.pageY+"px");
+        //     });
+        // });
+
+
+        
+
+
+
+
+
+    </script>
+</body>
+
+</html>

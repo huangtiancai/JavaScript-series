@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery效果</title>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <style>
+        #div1,#div2{
+            width: 130px;
+            height: 50px;
+            padding: 15px;
+            margin: 15px;
+            background-color: green;
+        }
+
+        div.panel,p.flip{
+            margin:0px;
+            padding:5px;
+            text-align:center;
+            background:#e5eecc;
+            border:solid 1px #c3c3c3;
+        }
+        div.panel{
+            height:100px;
+            display:none;/*初始面板是隐藏的*/
+        }
+
+        div.pane2,p.flip2{
+            margin:0px;
+            padding:5px;
+            text-align:center;
+            background:#e5eecc;
+            border:solid 1px #c3c3c3;
+        }
+        div.pane2{
+            height:100px;
+            /*初始面板是显示的*/
+        }
+
+        div.pane3,p.flip3{
+            margin:0px;
+            padding:5px;
+            text-align:center;
+            background:#e5eecc;
+            border:solid 1px #c3c3c3;
+        }
+        div.pane3{
+             height:100px;
+             display:none;/*初始面板是隐藏的*/
+        }
+
+
+        div.pane4,p.flip4{
+            margin:0px;
+            padding:5px;
+            text-align:center;
+            background:#e5eecc;
+            border:solid 1px #c3c3c3;
+        }
+        div.pane4{
+            height:100px;
+            display:none;/*初始面板是隐藏的*/
+        }
+
+    </style>
+</head>
+<body>
+    <p id="p1">单击消失</p>
+    <p id="p2">双击消失</p>
+    <p id="p3">单击2s消失</p>
+    <div id="div1">隐藏及设置回调函数</div>
+    <button class="hidebtn">隐藏</button>
+<br>
+    <p id="p4">这是一个段落</p>
+    <button class="btn">显示/隐藏</button>
+<br>
+    <div id="div2">隐藏及设置回调函数-toggle()方法</div>
+    <button class="btn1">显示/隐藏</button>
+<br>
+    <button class="btn2">点击淡入 div 元素</button>
+    <button class="btn3">点击淡出 div 元素</button>
+    <button class="btn4">点击这里，使三个矩形淡入淡出</button>
+    
+    <!--初始div隐藏的-->
+    <div id="div3" style="width:80px;height:80px;display:none;background-color:red;"></div><br>
+    <div id="div4" style="width:80px;height:80px;display:none;background-color:green;"></div><br>
+    <div id="div5" style="width:80px;height:80px;display:none;background-color:blue;"></div>
+
+<br>
+    <button class="btn5">点击这里，使三个矩形淡出</button>
+    <div id="div6" style="width:80px;height:80px;background-color:red;"></div>
+    <br>
+    <div id="div7" style="width:80px;height:80px;background-color:green;"></div>
+    <br>
+    <div id="div8" style="width:80px;height:80px;background-color:blue;"></div>
+    
+    <div id="div10" style="background:#98bf21;height:100px;width:300px;position:absolute;">点我移动到右边，然后增加文本的字号</div>
+<br>
+    <p class="flip">请点击这里向下滑动</p>
+    <div class="panel">
+        <p>这是一个面板</p>
+        <p>这是一个面板</p>
+    </div>
+<br>
+    <p class="flip2">请点击这里向上滑动</p>
+    <div class="pane2">
+        <p>这是一个面板</p>
+        <p>这是一个面板</p>
+    </div> 
+<br>
+    <p class="flip3">请点击这里向上/向下滑动</p>
+    <div class="pane3">
+        <p>这是一个面板</p>
+        <p>这是一个面板</p>
+    </div>   
+<br>
+    <button id="btn6">开始动画</button>
+    <button id="btn7">开始动画(多个属性)</button>
+    <button id="btn8">开始动画(使用相对值)</button>
+    <button id="btn9">开始动画(使用预定义的值)</button>
+    <button id="btn10">开始动画(使用队列功能)</button>
+    <div id="div9" style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+
+    <button id="btn11">开始动画</button>
+    <button id="stop">停止滑动</button>
+<br>
+    <p class="flip4">请点击这里向下滑动</p>
+    <div class="pane4">
+        <p>这是一个面板</p>
+        <p>这是一个面板</p>
+    </div>
+    
+    <P id="p5">jQuery - Chaining</P>
+    <button id="btn12">点击这里</button>
+
+    <script>
+        //一、jQuery 效果- 隐藏和显示
+        //1.jQuery hide() 和 show()
+        //通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素：
+        $(document).ready(function(){
+            $("p#p1").click(function(){
+                $(this).hide();
+            });
+            $("p#p2").dblclick(function(){
+                $(this).hide();
+            });
+        });
+
+        //语法:
+        //$(selector).hide(speed,callback);
+        //$(selector).show(speed,callback);
+        //1)可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+        //2)可选的 callback 参数是隐藏或显示完成后所执行的函数名称
+
+        //下面的例子演示了带有 speed 参数的 hide() 方法：
+        $(document).ready(function(){
+            $("p#p3").click(function(){
+                $(this).hide(2000);
+            });
+        });
+
+        //下面的例子演示了带有 speed 参数的 hide() 方法，并使用回调函数：
+        //第二个参数是一个字符串，表示过渡使用哪种缓动函数。（译者注：jQuery自身提供"linear" 和 "swing"，其他可以使用相关的插件）
+        
+        $(document).ready(function(){
+            $(".hidebtn").click(function(){
+                $("#div1").hide(1000,"linear",function(){
+                    alert("Hide()方法已完成!");
+                });
+            });
+        });
+
+
+        //2.jQuery toggle()
+        //通过 jQuery，您可以使用 toggle() 方法来切换 hide() 和 show() 方法。
+        //显示被隐藏的元素，并隐藏已显示的元素：
+        $(document).ready(function(){
+            $(".btn").click(function(){
+                $("#p4").toggle();
+            });
+        });
+
+        //语法:
+        //$(selector).toggle(speed,callback);
+        //可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+        //可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+        $(document).ready(function(){
+            $(".btn1").click(function(){
+                $("#div2").toggle(1000,"linear",function(){
+                    alert("toggle()方法！");
+                });
+            });
+        });
+
+
+        //二、jQuery 效果- 淡入淡出
+        //通过 jQuery，您可以实现元素的淡入淡出效果
+        //jQuery 拥有下面四种 fade 方法：
+        // fadeIn()
+        // fadeOut()
+        // fadeToggle()
+        // fadeTo()
+
+        //1.fadeIn() fadeIn() 用于淡入已隐藏的元素。
+        //语法:
+        // $(selector).fadeIn(speed,callback);
+        // 可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。.
+        // 可选的 callback 参数是 fading 完成后所执行的函数名称。
+        
+        $(document).ready(function(){
+            $(".btn2").click(function(){
+                $("#div3").fadeIn();
+                $("#div4").fadeIn("slow");
+                $("#div5").fadeIn(3000);
+            });
+        });
+
+        //2.fadeOut() 方法
+        //语法:
+        //$(selector).fadeOut(speed,callback);
+        // 可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+        // 可选的 callback 参数是 fading 完成后所执行的函数名称。
+        $(document).ready(function(){
+            $(".btn3").click(function(){
+                $("#div3").fadeOut();
+                $("#div4").fadeOut("slow");
+                $("#div5").fadeOut(3000);
+            });
+        });
+
+        //3.fadeToggle() 方法
+        //fadeToggle() 方法可以在 fadeIn() 与 fadeOut() 方法之间进行切换。
+        // 如果元素已淡出，则 fadeToggle() 会向元素添加淡入效果。
+        // 如果元素已淡入，则 fadeToggle() 会向元素添加淡出效果。
+        //语法：
+        //$(selector).fadeToggle(speed,callback);
+        $(document).ready(function(){
+            $(".btn4").click(function(){
+                $("#div3").fadeToggle()
+                $("#div4").fadeToggle("slow");
+                $("#div5").fadeToggle(3000);
+            });
+        });
+
+        //4.fadeTo() 方法
+        // fadeTo() 方法允许渐变为给定的不透明度（值介于 0 与 1 之间）
+        //语法：
+        //$(selector).fadeTo(speed,opacity,callback);
+        //注意：fadeTo() 方法中必需的 opacity 参数将淡入淡出效果设置为给定的不透明度（值介于 0 与 1 之间）。
+        //speed,callback非必须
+        //opacity:必须
+        $(document).ready(function(){
+            $(".btn5").click(function(){
+                $("#div6").fadeTo(0.15);
+                $("#div7").fadeTo("slow",0.4);
+                $("#div8").fadeTo("slow",0.7);
+            });
+        });
+
+        //三、jQuery 滑动方法
+        // slideDown()
+        // slideUp()
+        // slideToggle()
+
+        //1.slideDown()
+        // 可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+        // 可选的 callback 参数是滑动完成后所执行的函数名称。
+        //panel-flip
+        $(document).ready(function(){
+            $(".flip").click(function(){
+                $(".panel").slideDown("slow");
+            });
+        });
+
+        //2.slideUp() 方法
+        //语法：
+        //$(selector).slideUp(speed,callback);
+        // 可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+        // 可选的 callback 参数是滑动完成后所执行的函数名称。
+        $(document).ready(function(){
+            $(".flip2").click(function(){
+                $(".pane2").slideUp("slow");
+            });
+        });
+
+
+
+        //3.slideToggle() 方法
+        // slideToggle() 方法可以在 slideDown() 与 slideUp() 方法之间进行切换。
+        // 如果元素向下滑动，则 slideToggle() 可向上滑动它们。
+        // 如果元素向上滑动，则 slideToggle() 可向下滑动它们。
+
+        //语法：
+        // $(selector).slideToggle(speed,callback);
+        // 可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+        // 可选的 callback 参数是滑动完成后所执行的函数名称。
+        $(document).ready(function(){
+            $(".flip3").click(function(){
+                $(".pane3").slideToggle("slow");
+            });
+        });
+
+        
+        //四、jQuery 效果 - 动画
+        
+        //1.jQuery 动画 - animate() 方法
+        //jQuery animate() 方法允许您创建自定义的动画
+        //语法：
+        //$(selector).animate({params},speed,callback);
+        // 必需的 params 参数定义形成动画的 CSS 属性。
+        // 可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+        // 可选的 callback 参数是动画完成后所执行的函数名称。
+
+        //下面的例子演示 animate() 方法的简单应用；它把 <div> 元素移动到右边，直到left属性等于 250 像素为止：
+        $(document).ready(function(){
+            $("#btn6").click(function(){
+                $("#div9").animate({left:'500px'});
+            });
+        });
+
+        //2.jQuery animate() - 操作多个属性
+        //生成动画的过程中可同时使用多个属性：
+        $(document).ready(function(){
+            $("#btn7").click(function(){
+                $("#div9").animate({
+                    left:'400px',
+                    opacity:'0.5',
+                    height:'150px',
+                    width:'300px'
+                });
+            });
+        });
+
+        //3.jQuery animate() - 使用相对值
+        $(document).ready(function(){
+            $("#btn8").click(function(){
+                $("#div9").animate({
+                    left:'400px',
+                    opacity:'0.5',
+                    height:'+=150px',
+                    width:'+=300px'
+                });
+            });
+        });
+
+        //4.jQuery animate() - 使用预定义的值
+        //您甚至可以把属性的动画值设置为 "show"、"hide" 或 "toggle"：
+        $(document).ready(function(){
+            $("#btn9").click(function(){
+                $("#div9").animate({
+                    height:'toggle'
+                });
+            });
+        });
+
+        //5.jQuery animate() - 使用队列功能
+        //默认地，jQuery 提供针对动画的队列功能。
+        //这意味着如果您在彼此之后编写多个 animate() 调用，jQuery 会创建包含这些方法调用的“内部”队列。然后逐一运行这些 animate 调用。
+        $(document).ready(function(){
+            $("#btn10").click(function(){
+                var div = $("#div6");
+                div.animate({height:'300px',opacity:'0.4'},"slow");
+                div.animate({width:'300px',opacity:'0.8'},"slow");
+                div.animate({height:'100px',opacity:'0.4'},"slow");
+                div.animate({width:'100px',opacity:'0.8'},"slow");
+            });
+        });
+
+        
+        //6.btn11
+        $(document).ready(function(){
+            $("#div10").click(function(){
+                $(this).animate({left:'800px'},"slow");//右移动
+                $(this).animate({top:'500px'},"slow");//上移
+                $(this).animate({fontSize:'2em',opacity:'0.6'},"slow");//增加文本的字号
+            });
+        });
+
+        //五、jQuery 停止动画
+        $(document).ready(function(){
+            $(".flip4").click(function(){
+                $(".pane4").slideToggle(5000);
+            });
+            $("#stop").click(function(){
+                $(".pane4").stop();
+            });
+        });
+
+        //六、jQuery Callback 函数
+        //当动画 100% 完成后，即调用 Callback 函数
+        //典型的语法：
+        //$(selector).hide(speed,callback);callback 参数是一个在 hide 操作完成后被执行的函数。
+
+        //七、jQuery - Chaining
+        //通过 jQuery，您可以把动作/方法链接起来。
+        //Chaining 允许我们在一条语句中允许多个 jQuery 方法（在相同的元素上）。
+
+        //jQuery 方法链接
+        //如需链接一个动作，您只需简单地把该动作追加到之前的动作上。
+        $(document).ready(function(){
+            $("#btn12").click(function(){
+                $("#p5").css("color","red").slideUp(1000).slideDown(1000);
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>

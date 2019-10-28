@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--
+			作者：黄天才
+        	时间：2019-01-27
+        	描述：JavaScript 代码块
+				JavaScript 语句通过代码块的形式进行组合。
+				块由左花括号开始，由右花括号结束。块的作用是使语句序列一起执行。
+				JavaScripts函数是将语句组合在块中的典型例子。
+				下面的例子将运行可操作两个 HTML 元素的函数：
+	   -->
+	   
+	   <!-- 
+			1.JavaScript 对大小写敏感:
+			-函数 getElementById 与 getElementbyID 是不同的
+			-同样，变量 myVariable 与 MyVariable 也是不同的
+			空格:
+			2.JavaScript 会忽略多余的空格。您可以向脚本添加空格，来提高其可读性。下面的两行代码是等效的：
+			var name="Hello";
+			var name = "Hello";
+			对代码行进行折行:
+			3.可以在文本字符串中使用反斜杠对代码行进行换行。下面的例子会正确地显示:
+			document.write("Hello \
+			World!");
+			但是不能像这样折行：
+			document.write \
+			("Hello World!");
+
+
+
+	    -->
+		
+	</head>
+	<body>
+		<p id="demo">A Paragraph.</p>
+		<div id="myDiv">A DIV</div>
+		<button onclick="myFunction()">点击这里!</button>
+		<script>
+			function myFunction(){//JavaScript 函数是将语句组合在块中的典型例子
+				document.getElementById("demo").innerHTML="Hello";
+				document.getElementById("myDiv").innerHTML="Hai";	
+			}
+			//2 单行注释
+			
+			/* 2222  多行注释
+			 * 2222
+			 */
+		</script>
+		
+	</body>
+</html>

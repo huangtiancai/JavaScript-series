@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/demo.css" rel="stylesheet" type="text/css">
+    <link href="css/easyui.css" rel="stylesheet" type="text/css">
+    <link href="css/icon.css" rel="stylesheet" type="text/css">
+
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.easyui.min.js" type="text/javascript"></script>
+
+    <script>
+        function  addTab(){
+            //判断选项卡是否存在
+            var result=$("#tt").tabs("exists","addTab");
+
+            if(result){
+                //存在了  选中该选项卡
+                $("#tt").tabs("select","addTab");
+            }else{
+                //不存在 添加新的选项卡
+                $("#tt").tabs("add",{
+                    title:'addTab',
+                    closable:true,
+                    content:'table4'
+                });
+            }
+        }
+    </script>
+
+</head>
+<body>
+
+    <input type="button" value="添加选项卡" onclick="addTab()">
+
+    <div id="tt" class="easyui-tabs" style="width:500px;height:250px;">
+        <div title="Tab1" data-options="closable:true" style="padding:20px;">
+            tab1
+        </div>
+        <div title="Tab2" data-options="closable:true" style="padding:20px;">
+            tab2
+        </div>
+        <div title="Tab3" data-options="closable:true" style="padding:20px;">
+
+         </div>
+    </div>
+
+
+</body>
+</html>
