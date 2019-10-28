@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6 的变量声明</title>
+    <script src="./dist/index.js"></script>
+</head>
+<body>
+    <script>
+        // var 全局声明 
+        var a = 1;
+        {
+        // 在区块里声明，但仍然在全局起作用
+        var a = 2;
+        }
+        console.log(a); //这里的 a，指的是 区块 里的 a => 用 var 定义的全部变量，有时候会污染整个 js 的作用域
+
+
+        var b = 3;
+        {
+            let b = 4;
+        }
+        console.log(b); //用 let 声明的变量，只在局部（块级作用域内）起作用
+
+        // 用 var 声明变量：
+        for(var i =0; i<3; i++){
+            console.log('循环体中：'+i);
+        }
+        console.log('循环体外：'+i);  //可以打印结果，说明循环体外的变量 i 被污染了
+
+        // 用let声明变量：
+        // for(let j =0; j<3; j++){
+        //     console.log('循环体中：'+j);
+        // }
+        // console.log('循环体外：'+j); //不能打印结果
+
+        // let t1 = 1;
+        // 在同一个作用域内继续定义t1会报错
+        // let t1 = 2; //Uncaught SyntaxError: Identifier 't1' has already been declared
+
+        let t2 = 3;
+        // 不在同一个作用域内继续定义t2，不会报错
+        {
+            let t2 = 4;
+        }
+
+        const s1 = 4;
+        //const s1 = 5;// ncaught SyntaxError: Identifier 's1' has already been declared
+
+    </script>
+</body>
+</html>

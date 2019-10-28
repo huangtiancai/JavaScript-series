@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>变量的解构赋值</title>
+    <script src="./dist/index.js"></script>
+</head>
+<body>
+    <script>
+        // ES6允许我们，通过数组或者对象的方式，对一组变量进行赋值，这被称为解构
+
+        // 数组的解构赋值
+        // 通过数组解构的方式进行赋值
+        let [a,b,c] = [5,2,3];
+        console.log(a);
+
+        let [d,e] = [2,3,4,5];
+        console.log(d);
+
+        // 解构的默认值
+        {
+            // 一个变量
+            let [foo = true] = [];
+            console.log(foo);//true
+        }
+
+        {
+            // 两个变量
+            let [a,b] = ['Hello'];
+            console.log(a+','+b); //Hello,undefined
+        }
+
+        {
+            // 两个变量
+            let [a,b = 'World'] = ['Hello'];
+            console.log(a+' '+b);
+        }
+
+
+        // 对象的解构赋值
+        {
+            let {foo,bar} = {
+                foo:'tom',
+                bar:'10'
+            }
+            console.log(foo+' '+bar);
+        }
+
+        // 数组的元素是按次序排列的，变量的取值由它的位置决定；
+        // 对象的属性没有次序，是根据键来取值的
+
+        let fo = {fo:'hello'};
+        console.log(fo); // {fo: "hello"}
+
+        let {fo1} = {fo1:'hello'};
+        console.log(fo1); // hello
+
+        //在解构之前就已经定义了,再去解构，就会出现问题
+        let fo2 = 'hello';
+        ({fo2} = {fo2:'hello'}); // 要解决报错，只要在解构的语句外边，加一个圆括号即可
+        console.log(fo2);
+
+
+        // 字符串解构
+        const [s1,s2,s3,s4] = 'syst';
+        console.log(s1); // s
+        console.log(s2); // y
+        console.log(s3); // s
+        console.log(s4); // t
+
+        console.log(typeof s1); // string
+
+
+        // 扩展运算符和 rest 运算符
+        
+        // 扩展运算符的格式为...
+        // rest运算符的格式为...变量名
+
+        // 在定义方法时，参数要确定个数，如下：（程序会报错）
+        // function fn(a1,a2,a3){
+        //     console.log(a1);
+        //     console.log(a2);
+        //     console.log(a3);
+        //     console.log(a4); //Uncaught ReferenceError: a4 is not defined
+        // }
+        
+        // fn(10,20,30)
+
+        // 不确定其参数的个数时，我们就可以用扩展运算符作为参数
+        function fn1(...arg){
+            console.log(arg[0]);
+            console.log(arg[1]);
+            console.log(arg[2]);
+            console.log(arg[3]); // undefined 并不会报错
+        }
+
+        fn1(10,20,30);  //方法中定义了四个参数，但只引用了三个参数，ES6 中并不会报错。
+
+        // 扩展数组举例：数组赋值
+        let arr1 = ['http','totiancai','com'];
+        let arr2 = arr1; // 将 arr1 赋值给 arr2，其实是让 arr2 指向 arr1 的内存地址
+        console.log(arr1);
+        console.log(arr2);
+        console.log("-------------");
+
+        arr2.push("haha");
+        console.log(arr1); // 二者指向的是同一个内存地址.arr2添加了，arr1也有这个内容
+        console.log(arr2);
+
+        // 不想让 arr1 和 arr2 指向同一个内存 => 使用扩展运算符
+        let arr3 = ['http','totiancai','com'];
+        let arr4 = [...arr3]; //arr3 会重新开辟内存地址
+        console.log(arr3);
+        console.log(arr4);
+        console.log("-------------");
+
+        arr4.push("haha");
+        console.log(arr3); 
+        console.log(arr4);
+
+
+        // rest 运算符
+        function fun(first,second,...arg){
+            console.log(arg.length);
+        }        
+        fun(1,2,3,4,5,66,67); // 调用fun函数：七个参数，arg：剩下的参数（除去first,second => 7-2=5）
+        
+        // 从上方例子中可以看出，rest运算符适用于：知道前面的一部分参数的数量，但对于后面剩余的参数数量未知的情况
+
+
+        // for ... of循环
+
+        var ar1 = [1,2,3,4];
+        for(x in ar1){
+            // for in 获取的是index索引值
+            console.log("数组遍历-for in："+x);
+        }
+
+        // ES6遍历数组=>
+        let ar2 = [10,20,30];
+        // let value of ar1 => let value
+        for(let value of ar2){
+            // 获取的是数组里的值
+            console.log('数组遍历-for of：'+value);
+        }
+
+        // for…of 的循环可以避免我们开拓内存空间，增加代码运行效率，所以建议大家在以后的工作中使用for…of循环。
+        // 注意，上面的数组中，for ... of获取的是数组里的值；for ... in获取的是index索引值。
+        // for ... of既可以遍历数组，也可以遍历Map对象。
+
+
+        // 模版字符串
+        var name = 'tom';
+        var age  = 10;
+        //传统字符串拼接:
+        console.log('name:'+name+';'+'age:'+age); // 单引号.双引号
+        //ES6字符串拼接:    
+        console.log(`name:${name},age:${age}`);   // 反引号
+
+
+        // 箭头函数
+        // 传统函数调用
+        function add(a,fnn){
+            return a+b;
+        }
+
+        add();
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+    </script>
+</body>
+</html>
