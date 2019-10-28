@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<<device-width>>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function Person(){
+
+        // }
+        // var person = new Person();
+        // person.name = 'tom';
+        // console.log(person.name);
+        
+
+        //1.prototype：构造函数的protottype属性->原型
+        // function Person(){
+
+        // }
+        // Person.prototype.name = 'tom';
+        // var person1 = new Person();
+        // var person2 = new Person();
+        // console.log(person1.name);
+        // console.log(person2.name);
+
+        //关键词：
+        //构造函数:Person
+        //实例对象:person1、person2
+        //构造函数的protottype属性：prototype   指向了一个对象->这个对象正是调用该构造函数而创建的实例(person1 和 person2)的原型
+        //原型(实例的原型):Person.prototype     每一个JavaScript对象(null除外)在创建的时候就会与之关联的另一个对象
+        
+        //2.__proto__:JavaScript对象(实例对象)的__proto__  -->原型
+        //实例person和实例原型的Person.prototype之间的联系？引出第二个属性 __proto__
+        //JavaScript对象(除了 null )的一个属性：__proto__  指向该对象的原型
+        
+        // function Person(){
+
+        // }
+        // var person = new Person();
+        // console.log(person.__proto__);//Object
+        // console.log(Person.prototype);//Object
+        // console.log(person.__proto__ == Person.prototype);//true
+
+        //3.constructor:
+        //实例对象和构造函数都可以指向原型，那么原型是否有属性指向构造函数或者实例呢？
+        //指向实例倒是没有,原型指向构造函数倒是有的--->引出第三个属性:constructor
+        //第三个属性：constructor，每个原型都有一个 constructor 属性指向关联的构造函数
+        
+        //验证
+        function Person(){       
+        }
+        console.log(Person);//f Person(){}
+        console.log(Person.prototype.constructor);//f Person(){}
+        console.log(Person==Person.prototype.constructor);//true
+
+        //2019-5-18测试提交
+        
+        
+
+        
+
+        
+
+    </script>
+</body>
+</html>
