@@ -162,11 +162,14 @@
 
         // 箭头函数
         // 传统函数调用
-        function add(a,fnn){
-            return a+b;
+        function update(a){
+            return a;
+        }
+        function add(update,a){
+            update(a);
         }
 
-        add();
+        add(update,1);
 
         
 
