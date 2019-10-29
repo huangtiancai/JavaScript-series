@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ES6 的变量声明</title>
-    <script src="./dist/index.js"></script>
 </head>
 <body>
     <script>
+        // 1.代码块内有效: let 是在代码块内有效，var 是在全局范围内有效:
         // var 全局声明 
         var a = 1;
         {
@@ -36,6 +36,9 @@
         // }
         // console.log('循环体外：'+j); //不能打印结果
 
+
+
+        // 2.不能重复声明
         // let t1 = 1;
         // 在同一个作用域内继续定义t1会报错
         // let t1 = 2; //Uncaught SyntaxError: Identifier 't1' has already been declared
@@ -48,6 +51,14 @@
 
         const s1 = 4;
         //const s1 = 5;// ncaught SyntaxError: Identifier 's1' has already been declared
+
+        // for 循环计数器很适合用 let
+        for(var i =0; i<10; i++ ){
+            setTimeout(function(){
+                console.log(i);
+            },1000)
+        }
+
 
     </script>
 </body>
