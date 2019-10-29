@@ -8,25 +8,24 @@
 </head>
 <body>
     <script>    
-        // Promise对象简单例子 -ES6写法
-        // function timeout(ms){
-        //     return new Promise((resolve,reject) => {
-        //         setTimeout(resolve,ms,'done');
-        //     })
-        // }
-        // // 调用timeout函数返回的就是Promise实例 =>  表示一段时间以后才会发生的结果
-        // // => 过了指定的时间（ms参数）以后，Promise实例的状态变为resolved，就会触发then方法绑定的回调函数
-        // timeout(100).then((value) => {
-        //     console.log(value);
-        // })
+        // Promise对象简单例子2 -ES6写法
 
-        // 补充：setTimeout(function, milliseconds, param1, param2, ...)
-        setTimeout(
-            function(){
-                alert('Promise');
-            },
-            2000
-        )
+        // Promise新建后立刻执行
+        let promise = new Promise((resolve,reject) => {
+            console.log('Promise');
+            resolve();
+        });
+        // then方法指定回调函数，将在当前脚本所有同步任务执行完才会执行，所以resolved最后输出。
+        promise.then(() => {
+            console.log('resolved');
+        });
+
+        console.log('末尾');
+
+        // Promise
+        // 末尾
+        // resolved
+
 
     </script>
 </body>
