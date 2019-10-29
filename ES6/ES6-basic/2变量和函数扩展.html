@@ -9,6 +9,27 @@
 </head>
 <body>
     <script>
+        // 变量的解构赋值
+        //      数组的解构赋值
+        //      对象的解构赋值
+        //      字符串解构
+
+        // 扩展运算符和 rest
+        //      扩展运算符(fn(...arg) )
+        //      rest 运算符
+        //      for of循环
+
+        // 模板字符串
+        // 箭头函数
+        // 参数默认值
+        // this绑定
+        // 尾调用
+        // 模块化 => 模块化历程：commonJS、AMD规范（RequireJS）、CMD规范（SeaJS）；import & export
+
+
+
+
+
         // ES6允许我们，通过数组或者对象的方式，对一组变量进行赋值，这被称为解构
 
         // 数组的解构赋值
@@ -94,7 +115,7 @@
             console.log(arg[1]);
             console.log(arg[2]);
             console.log(arg[3]); // undefined 并不会报错
-        }
+        };
 
         fn1(10,20,30);  //方法中定义了四个参数，但只引用了三个参数，ES6 中并不会报错。
 
@@ -133,10 +154,10 @@
         // for ... of循环
 
         var ar1 = [1,2,3,4];
-        for(x in ar1){
+        for(xx in ar1){
             // for in 获取的是index索引值
-            console.log("数组遍历-for in："+x);
-        }
+            console.log("数组遍历-for in："+xx);
+        };
 
         // ES6遍历数组=>
         let ar2 = [10,20,30];
@@ -144,7 +165,7 @@
         for(let value of ar2){
             // 获取的是数组里的值
             console.log('数组遍历-for of：'+value);
-        }
+        };
 
         // for…of 的循环可以避免我们开拓内存空间，增加代码运行效率，所以建议大家在以后的工作中使用for…of循环。
         // 注意，上面的数组中，for ... of获取的是数组里的值；for ... in获取的是index索引值。
@@ -161,34 +182,55 @@
 
 
         // 箭头函数
-        // 传统函数调用
-        function update(a){
-            return a;
+        // 传统函数定义和调用
+        function funct(a,b){
+            return a+b;
+        };
+        console.log(funct(1,3));
+
+        // ES6函数定义和调用 箭头后内容相当于return的内容（返回值）
+        var funct1 = (a,b) => a+b;
+        console.log(funct1(5,8));
+
+        //  函数名    参数     方法体
+        var funct2 = (a,b) => {
+            console.log('箭头函数方法体内有多句语句，需要在方法体外加上{}括号');
+            return a+b;
+        };
+        console.log(funct2(3,4));
+
+
+        // 参数默认值：ES6定义的方法的参数可以添加一个默认值（缺省值）
+        // 方法被调用时，如果没有给参数赋值，那就是用默认值；
+        // 方法被调用时，如果给参数赋值了新的值，那就用新的值
+        var funct3 = (a,b = 3) => {
+            console.log(`参数a:${a};参数b:${b}`);
+            return a+b;
+        };
+        console.log(funct3(9)); //第二个参数未传入的时候使用默认参数
+        console.log(funct3(9,2));
+
+        console.log('------------------');
+
+        // 默认值的后面，不能再有没有默认值的变量
+        var funct4 = (a,b = 1,c = 2) => {
+            console.log(`参数a:${a};参数b:${b};参数c:${c}`);
+            return a+b+c;
         }
-        function add(update,a){
-            update(a);
+        console.log(funct4(1));
+
+
+        let x = 'github';
+        // 给y赋值为x，这里的x是第一个参数
+        function funct5(x,y = x){
+            console.log(`参数x:${x};参数y:${y}`); // 参数x:gitee;参数y:gitee
         }
-
-        add(update,1);
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
+        funct5('gitee');
+        // 给y赋值为x，这里的x是第一个上面定义的x
+        function funct6(z,y = x){
+            console.log(`参数x:${z};参数y:${y}`); // 参数x:gitee;参数y:github
+        }
+        funct6('gitee');
     </script>
 </body>
 </html>
