@@ -52,13 +52,39 @@
         const s1 = 4;
         //const s1 = 5;// ncaught SyntaxError: Identifier 's1' has already been declared
 
-        // for 循环计数器很适合用 let
+        // 3.不存在变量提升
+        // console.log(aaa); //ncaught ReferenceError: Cannot access 'aaa' before initialization
+        let aaa = 'apple';
+
+        console.log(bbb);
+        var bbb = 'banana';
+
+        // 4.for 循环计数器示例
+        // for 循环计数器 - var
         for(var i =0; i<10; i++ ){
+            console.log(i); // 0,1,2,3....9
             setTimeout(function(){
-                console.log(i);
-            },1000)
+                console.log(i); //10个10
+            },2000)
         }
+        // for循环：主线程，同步任务
         // settimeout是异步执行
+
+        // 每一次for循环的时候，settimeout函数都执行一次，但是里面的函数function（闭包函数）没有被执行，而是被放到了任务队列里面，等待执行，for循环了10次，就放了10次，
+        // 当主线程(for循环)执行完成后，i=10，才进入任务队列里面执行，注意：for循环从开始到结束的过程，需要维持几微秒或几毫秒
+        // 任务队列中有10个任务 => 10个异步任务的回调函数执行,输出10次i(i=10)
+
+         // for 循环计数器 - let
+        for(let j =0; j<10; j++){
+            console.log(j);     // 0,1,2,3....9
+            setTimeout(function(){
+               console.log(j); // 0,1,2,3....9
+            },3000)
+        }
+        // setTimeout里面的function()属于一个新的域，通过 var 定义的变量是无法传入到这个函数执行域中的
+        // 通过使用 let 来声明块变量，这时候变量就能作用于这个块，所以 function就能使用 j 这个变量了
+
+        
         
 
     </script>

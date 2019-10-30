@@ -118,6 +118,7 @@ setImmediate                - 次轮循环
     
 参考：
 https://www.cnblogs.com/ceceliahappycoding/p/10772351.html
+https://www.cnblogs.com/wangwenhui/p/7657654.html
 https://www.imooc.com/article/71081
 http://javascript.ruanyifeng.com/advanced/promise.html
 http://www.ruanyifeng.com/blog/2018/02/node-event-loop.htm
