@@ -54,7 +54,7 @@ setTimeout、setInterval 运行机制（重要）
     异步任务
     ```
 3. setTimeout(f,0)将第二个参数设为0，作用是让f在现有的任务（脚本的同步任务和“任务队列”中已有的事件）一结束就立刻执行。也就是说，setTimeout(f,0)的作用是，尽可能早地执行指定的任务；
-执行的顺序仍然是：start=> end 异步任务
+执行的顺序仍然是：start => end => 异步任务
 
 4. setTimeout在 *timers* 阶段执行，而setImmediate在 *check* 阶段执行。所以，setTimeout会早于setImmediate完成。
 

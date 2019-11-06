@@ -9,10 +9,13 @@
 <body>
     <script>
         console.log('start');
-    
-    
+        
         setTimeout(function(){
-            console.log('异步任务');
+            console.log("异步任务-0s");
+        },0)
+
+        setTimeout(function(){
+            console.log('异步任务-2s');
         },2000)
     
         console.log('end');
