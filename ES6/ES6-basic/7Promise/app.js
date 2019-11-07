@@ -61,8 +61,6 @@ let promise = new Promise((resolve,reject) => {
 		// 在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去
 		reject('失败');
 	}
-	
-	
 });
 
 // 调用promise的then()
