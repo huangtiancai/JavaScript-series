@@ -50,7 +50,7 @@ promise.then(() => {
 
 // ----------------------------------------代码格式2--------------------------------------------------------------------------------
 
-resolve()和 reject()两个方法可以给promise传递参数
+// resolve()和 reject()两个方法可以给promise传递参数
 let promise = new Promise((resolve,reject) => {
 	// 同步代码
 	console.log('promise');	
