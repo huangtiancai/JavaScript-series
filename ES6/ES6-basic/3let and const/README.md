@@ -1,5 +1,9 @@
-   
-参考：
-https://www.cnblogs.com/wangwenhui/p/7657654.html
-https://www.runoob.com/w3cnote/es6-let-const.html
-http://es6.ruanyifeng.com/?search=nextTick&x=4&y=12#docs/let
+1.重复声明
+var a = 10;
+var a = 12;
+
+2.常量/变量
+let 防止重复声明； 变量
+var 防止重复声明； 常量
+
+3.块级作用域
