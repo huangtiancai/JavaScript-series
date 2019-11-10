@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map</title>
+</head>
+<body>
+    <script>
+        let arr = [12,65,8,70,35];
+
+        let arr2 = arr.map(function(item){
+            if(item>=60){
+                return '及格';
+            }else{
+                return '不及格'
+            }
+        });
+
+        let arr3 = arr.map(function(item){
+            // 三目运算
+            return item>=60?'及格':'不及格';
+        });
+
+        let arr4 = arr.map(item => item>=60?'及格':'不及格');
+
+
+        console.log(arr);
+        console.log(arr2);
+        console.log(arr3);
+        console.log(arr4);
+        
+    </script>
+</body>
+</html>
