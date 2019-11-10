@@ -7,8 +7,34 @@
   <title>Document</title>
 </head>
 <body>
+  <input type="button" value="a">
+  <input type="button" value="b">
+  <input type="button" value="c">
+  
   <script>
-    
+    // window.onload = function(){
+    //   var btn = document.getElementsByTagName('input');
+
+    //   for(var i=0;i<btn.length;i++){
+    //     // 闭包实现
+    //     (function(i){
+    //       btn[i].onclick = function(){
+    //         alert(i); // 3
+    //       }
+    //     })(i);
+    //   }
+    // }
+
+    window.onload = function(){
+      let btn = document.getElementsByTagName('input');
+      // 块级创造一个个不同的i
+      for(let i=0;i<btn.length;i++){
+        btn[i].onclick = function(){
+            alert(i); // 0,1,2
+          }
+      }
+    }
+
   </script>
 </body>
 </html>

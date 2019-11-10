@@ -8,21 +8,13 @@
 </head>
 <body>
   <script>
-    var a = 5;
-
-    var a = 7;
-
+    {
+      var a = 12;
+      let b = 10; 
+    }
     alert(a);
+    alert(b); // 4.块级作用域.html:16 Uncaught ReferenceError: b is not defined
 
-    let b = 6;
-
-    // let b = 9; // let禁止重复声明
-
-    alert(b);
-
-    const c = 10; 
-
-    // const c = 9; // const同样禁止重复声明
 
   </script>
 </body>

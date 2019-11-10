@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+    <script>
+        class Json{
+            constructor(){
+                this.a = 12;
+                console.log(this);  // 当前环境
+                this.fn = ()=>{
+                    console.log(this); // 将this固定到当前环境
+                    alert(this.a);
+                }
+            }
+        }
+
+        let json = new Json();
+        
+        json.fn();
+
+            
+    </script>
+</body>
+</html>
