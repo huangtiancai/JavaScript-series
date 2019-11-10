@@ -13,14 +13,18 @@
         // item:
         // indx:
         let result = arr.reduce(function(temp,item,index){
-            // alert(index+':'+temp+','+item);
-            return temp + item; // 需要返回临时的加值
+            if(index==arr.length-1){
+                return (temp + item)/arr.length;
+            }else{
+                return temp + item;
+            }
+            
         });
 
-        // 求和
-        console.log(result);
         // 求平均值
-        console.log(result/arr.length);
+        console.log(result);
+        
+ 
         
     </script>
 </body>
