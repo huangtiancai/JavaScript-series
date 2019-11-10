@@ -82,12 +82,14 @@ JSON.parse('{"a":12,"b"：10}')       => {a:12,b:10}          将字符串转换
 
 
 --------------------------------------------
-babel-编译js文件：
+babel-编译js文件-独立
 1.安装node
 2.创建package.json
 npm init -y
 3.安装babe
 npm install @babel/core @babel/cli @babel/preset-env -D
+npm install @babel/polyfill
+
 4.添加一个脚本-在package.json添加
                源文件夹          目标文件夹 
 "build":"babel src        -d    dest
@@ -106,6 +108,8 @@ Successfully compiled 1 file with Babel.
 
 运行自动生成dest文件夹,生成1.js文件
 
+
+babel-编译js文件-和webpack配合 => babel-loader
 
 
 
