@@ -30,7 +30,7 @@ Vue2.0之后，尤雨溪推荐大家用axios替换JQuery ajax;
 
 
 关键字：
-ajax、fetch、axios、vue-resource、jsonp、XSRF、Promise、async/awit
+Callback(回调)、ajax、fetch、axios、vue-resource、jsonp、XSRF、Promise、async/awit、CORS
 注意：
 fetch：基于Promise设计 => Promise => ES6
 axios:Promise based HTTP client for the browser and node.js
