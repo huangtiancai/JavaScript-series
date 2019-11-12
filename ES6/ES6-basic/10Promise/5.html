@@ -13,8 +13,10 @@
             $.ajax({url:'data/2.txt',dataType:'json'}),
             $.ajax({url:'data/3.txt',dataType:'json'}),
         ]).then(arr=>{
-            // 得到三个数组
-            console.log(arr);
+            // 结构赋值处理数据
+            let [data1,data2,data3] = arr;
+            console.log(data2);
+            console.log(typeof data2);
         },res=>{
             alert('失败');
         });

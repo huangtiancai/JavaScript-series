@@ -120,7 +120,7 @@ babel-编译js文件-和webpack配合 => babel-loader
 
 融合异步、同步？
 Promise
-async/awit 异步操作同步化核心
+async/await 异步操作同步化核心
 
 异步操作种类：
 1.等服务器把数据传过来
@@ -133,8 +133,88 @@ async/awit 异步操作同步化核心
 举例:最常见的异步操作：ajax
 Promise本身不能算对异步操作的处理，只是一个封装 => Promsie给了统一格式
 
-Promise-封装
+Promise-统一封装
 Promsie.all(); - 数组
+
+promise.all();会一股脑读数据，不能解决所有问题
+例子：
+$.ajax({url:'data/1.txt',dataType:'json'
+}).then(arr=>{
+    if(true){
+      $.ajax({url:'data/1.txt',dataType:'json'})
+        .then(arr={
+          alert('成功');
+        },res={
+          alert('失败了');
+        })
+    }
+},res=>{
+    alert('失败了');
+});
+
+上面并没有太多的简化
+
+-----------------------------------------------------------------------------
+使用async/await配合promise简化
+
+async/await：以同步的方式（本质还是异步）写异步代码
+generator/yield 已经被async/awit代替
+
+// 声明函数中有异步操作
+async function show(){
+  xxx,
+  xxx,
+  // 指明哪些是异步操作，哪些是同步操作=> 主动去给异步操作加上await,用来表明这个操作不能直接就往下运行，需要等待（等待操作结束再往下继续走）
+  // awit也会收集数据
+  let data = await $.ajax();
+
+}
+
+show();
+
+---------------------------------------------------
+普通函数-一直执行到结束才会停止
+async函数-能够暂停
+
+使用try{}catch{} 简单捕获异常
+
+
+
+-----------------------------------------------------
+机器语言 => 汇编语言 => 低级语言(面向过程)=> 高级语言(面向对象) => 模块系统 => 框架 => 系统接口（API）
+
+ES6面向对象
+
+模块系统:
+JS模块系统演化历史：
+没有模块 => CMD(同步) => AMD(异步) => ES6发布,语言提供模块支持（注意：ES6的模块系统语言支持，但是浏览器不支持=需要编译）
+编译：webpack
+node - CMD
+
+ES6模块
+1.定义？
+2.使用
+  - 导出（各种格式的数据）
+  - 导入
+  - webpack编译
+安装webpack:
+npm install -g webpack
+npm install -g webpack-cli
+参考：https://www.cnblogs.com/steamed-twisted-roll/p/11299429.html
+
+export 变量、一堆变量、函数、类...
+
+默认成员：
+export default
+
+
+
+
+
+
+
+
+
 
 
 
