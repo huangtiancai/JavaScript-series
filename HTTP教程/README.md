@@ -16,7 +16,6 @@ HTTP协议工作于客户端-服务端架构上。
 ### 服务器响应消息
 HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文
 
-
 ## HTTP 请求方法
 HTTP1.0 定义了三种请求方法： GET, POST 和 HEAD方法。
 HTTP1.1 新增了六种请求方法：OPTIONS、PUT、PATCH、DELETE、TRACE 和 CONNECT 方法
