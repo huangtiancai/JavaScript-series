@@ -48,6 +48,11 @@
 	});
 	
 
+	// tom
+	// this is a new property
+	// Sun Nov 17 2019 00:25:38 GMT+0800 (GMT+08:00)
+	// Promise { <rejected> 'm<=0.5' }
+	// reject m<=0.5
 
 
 

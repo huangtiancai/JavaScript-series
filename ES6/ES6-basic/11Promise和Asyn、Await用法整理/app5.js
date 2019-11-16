@@ -2,8 +2,8 @@
 
 // 3.链式调用
 
-Promise.reject('1')
-.then(null,res => {
+Promise.resolve('1')
+.then(res => {
 	console.log('res:'+res);   // res:1
 	return 2; 
 })

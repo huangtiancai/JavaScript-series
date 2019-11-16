@@ -18,6 +18,10 @@ $.ajax({
 		console.log(err);
 	}
 })
+.then(res => {
+	console.log(res);
+	return $.ajax(url2);
+})
 
 
 

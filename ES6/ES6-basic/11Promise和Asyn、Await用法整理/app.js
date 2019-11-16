@@ -35,3 +35,9 @@ promise.then(success => {
 
 // 同步代码
 console.log('同步代码-end');
+
+
+// 同步代码-start
+// Promise { 'success' }
+// 同步代码-end
+// success

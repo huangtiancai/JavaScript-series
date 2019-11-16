@@ -1,8 +1,8 @@
+// Promise 第一个例子详解
+
 // 补充：setTimeout(function, milliseconds, param1, param2, ...)
 // setTimeout、setInterval被遗忘的第三个参数:https://www.cnblogs.com/leaf930814/p/6828588.html
 
-
-// Promise对象简单例子1 -ES6写法
 function timeout(ms){
 	// Promise构造函数接受一个函数作为参数 new Promise(函数)
 	// new Promise(这个函数是ES6写法)， 该函数的两个参数分别是resolve和reject两个函数
