@@ -8,9 +8,11 @@
 
 <body>
 
+
     <div id="myDiv">Let AJAX change this text</div>
     <div id="myDiv1">Let AJAX change this text</div>
-    <button type="button" onclick="loadXMLDoc()">Get请求数据</button>
+    <button type="button" onclick="loadXMLDoc()">Get请求xml</button>
+    
 
     <script>
         //onreadystatechange 事件
@@ -28,17 +30,15 @@
         // 4: 请求已完成，且响应已就绪
         //3.status 					200: "OK"  404: 未找到页面
 
-        //xmlhttp.onreadystatechange
-        //xmlhttp.readyState
-        //xmlhttp.status
+        // xmlhttp.onreadystatechange
+        // xmlhttp.readyState
+        // xmlhttp.status
 
         // onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。
         // 当 readyState 等于 4 且状态为 200 时，表示响应已就绪：
 
-
-
         function loadXMLDoc() {
-            alert('Get请求');
+            alert('请求XML数据');
             var xmlhttp;
             if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
@@ -47,7 +47,7 @@
             }
 
             //请求可能得到的是缓存的结果,为了避免这种情况，向 URL 添加一个唯一的 ID
-            xmlhttp.open('GET', '/ajax/books.xml', true);
+            xmlhttp.open('GET', './data/books.xml', true);
             xmlhttp.send();
 
             xmlhttp.onreadystatechange = function () {

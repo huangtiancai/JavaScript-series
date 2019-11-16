@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>AJAX - onreadystatechange 事件</title>
+</head>
+
+<body>
+    <!-- <button type="button" onclick="loadJSON()">Get请求JSON</button> -->
+
+    <script>
+        function loadJSON(){
+            // 构造函数
+            // XMLHttpRequest()
+            // 该构造函数用于初始化一个 XMLHttpRequest 对象。在调用下列任何其他方法之前，必须先调用该构造函数，或通过其他方式间接得到一个 XMLHttpRequest 对
+            
+        
+            // 方法
+
+            // XMLHttpRequest.open() 初始化一个请求。该方法只能在 JavaScript 代码中使用，若要在 native code 中初始化请求，请使用 openRequest()
+            // 语法：
+            // xhrReq.open(method, url);
+            // xhrReq.open(method, url, async);
+            // xhrReq.open(method, url, async, user);
+            // xhrReq.open(method, url, async, user, password);
+            // 参数:
+            // method:要使用的HTTP方法，比如「GET」、「POST」、「PUT」、「DELETE」、等。对于非HTTP(S) URL被忽略
+            // url:一个DOMString表示要向其发送请求的URL。
+            // async |可选:一个可选的布尔参数，默认为true，表示要不要异步执行操作。如果值为false，send()方法直到收到答复前不会返回。如果true，已完成事务的通知可供事件监听器使用。如果multipart属性为true则这个必须为true，否则将引发异常。
+            // user |可选:可选的用户名用于认证用途；默认为null。
+            // password |可选:可选的密码用于认证用途，默认为null。
+
+            // XMLHttpRequest.send() 发送请求。如果请求是异步的（默认），那么该方法将在请求发送后立即返回
+
+
+            // 属性
+            // XMLHttpRequest 实例的属性:
+            // XMLHttpRequest.onreadystatechange
+            // XMLHttpRequest.readyState 
+            // XMLHttpRequest.response
+            // XMLHttpRequest.responseText
+            // XMLHttpRequest.responseXML
+            // XMLHttpRequest.responseType
+            // XMLHttpRequest.responseURL
+            // XMLHttpRequest.status
+            // XMLHttpRequest.statusText
+
+            // 详解释属性
+            // 1.XMLHttpRequest.onreadystatechange
+            // XMLHttpRequest.onreadystatechange 会在 XMLHttpRequest 的readyState 属性发生改变时触发 readystatechange 事件的时候被调用
+            // 语法：XMLHttpRequest.onreadystatechange = callback;
+            // 取值：当readyState的值改变时，callback函数会被调用
+
+            // 事件处理器
+            // 作为 XMLHttpRequest 实例的属性，所有浏览器都支持 onreadystatechange
+            // 其他事件：onload、onerror、onprogress 等（XMLHttpRequest的对象xhr可以调用的事件）
+
+
+            // 2.XMLHttpRequest.readyState           
+            // 0 - UNSENT - 代理被创建，但尚未调用 open() 方法
+            // 1 - OPENED - open() 方法已经被调用。
+            // 2 - HEADERS_RECEIVED	- send() 方法已经被调用，并且头部和状态已经可获得。
+            // 3 - LOADING	- 下载中； responseText 属性已经包含部分数据
+            // 4 - DONE	- 下载操作已完成。
+
+            // 3.XMLHttpRequest.response
+            // The XMLHttpRequest response 属性返回响应的正文,返回的类型决于 responseType 属性
+            // 语法：var body = XMLHttpRequest.response;
+            // 响应类型(对应responseType)：
+            // 值	            描述
+            // ""	            将 responseType 设为空字符串与设置为"text"相同， 是默认类型 （实际上是 DOMString）。
+            // "document"	    response 是一个 HTML Document 或 XML XMLDocument ，这取决于接收到的数据的 MIME 类型。请参阅 HTML in XMLHttpRequest 以了解使用 XHR 获取 HTML 内容的更多信息。
+            // "json"	        response 是一个 JavaScript 对象。这个对象是通过将接收到的数据类型视为 JSON 解析得到的。
+            // "text"	        response 是包含在 DOMString 对象中的文本。
+            // ...
+
+            // 4.XMLHttpRequest.responseText
+            // XMLHttpRequest.responseText 在一个请求被发送后，从服务器端返回文本。
+
+            // 5.XMLHttpRequest.responseXML
+
+            // 6.XMLHttpRequest.responseType
+            // 手动的设置返回数据的类型
+            // 1)如果我们将它设置为一个空字符串，它将使用默认的"text"类型;
+            // 2)当将responseType设置为一个特定的类型时，你需要确保服务器所返回的类型和你所设置的返回值类型是兼容的。那么如果两者类型不兼容,服务器返回的数据变成了null，即使服务器返回了数据
+            // 3)还有一个要注意的是，给一个同步请求设置responseType会抛出一个InvalidAccessError 的异常
+            // responseType支持以下几种值：        
+            // 值	            描述
+            // ""	            将 responseType 设为空字符串与设置为"text"相同， 是默认类型 （实际上是 DOMString）
+            // "document"	    response 是一个 HTML Document 或 XML XMLDocument ，这取决于接收到的数据的 MIME 类型。请参阅 HTML in XMLHttpRequest 以了解使用 XHR 获取 HTML 内容的更多信息。
+            // "json"	        response 是一个 JavaScript 对象。这个对象是通过将接收到的数据类型视为 JSON 解析得到的。
+            // "text"	        response 是包含在 DOMString 对象中的文本。
+            // ....
+
+            // 7.XMLHttpRequest.responseURL
+            // 只读属性XMLHttpRequest.responseURL返回响应的序列化URL，如果URL为空则返回空字符串
+            // 如果URL有锚点，则位于URL # 后面的内容会被删除;
+            // 如果URL有重定向， responseURL 的值会是经过多次重定向后的最终 URL 。
+
+            
+            // 8.XMLHttpRequest.status
+            // 只读属性 XMLHttpRequest.status 返回了XMLHttpRequest 响应中的数字状态码。status 的值是一个无符号短整型;
+            // 在请求完成前，status的值为0。值得注意的是，如果 XMLHttpRequest 出错，浏览器返回的 status 也为0
+            // status码是标准的HTTP status codes。举个例子，status 200 代表一个成功的请求;
+            // 如果服务器响应中没有明确指定status码，XMLHttpRequest.status 将会默认为200
+            
+            // 9.XMLHttpRequest.statusText
+            // 只读属性 XMLHttpRequest.statusText 返回了XMLHttpRequest 请求中由服务器返回的一个DOMString 类型的文本信息，这则信息中也包含了响应的数字状态码。
+            // 不同于使用一个数字来指示的状态码XMLHTTPRequest.status，这个属性包含了返回状态对应的文本信息，例如"OK"或是"Not Found"
+            
+            // 注意：readyState 与 status、statusText的对应关系
+
+        
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            method = 'GET';
+            url = 'data/1.txt';
+
+            xhr.open(method,url);
+            xhr.responseType = 'json';
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4 && xhr.status==200){
+                    console.log(typeof xhr); // object
+                    console.log(xhr);   // XMLHttpRequest{}
+                    
+                    // xhr => XMLHttpRequest{多个参数.....} 
+                    // xhr => XMLHttpRequest{onreadystatechange: ƒ, readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, …}
+                    console.log(typeof xhr.readyState);     // number
+                    console.log(xhr.readyState);            // 4
+
+                    console.log(typeof xhr.response);       // string
+                    console.log(xhr.response);              // hello
+
+                    // 注意：如果 设置的不是xhr.responseType = ''; or xhr.responseType = 'text'; 下面会报错
+                    // console.log(xhr.responseText);          // {"name":"tom","age":10}
+                    // console.log(xhr.responseXML); 
+
+                    // 未指定responseType(未指定responseType为空即 "") 
+                    // 如设置xhr.responseType = 'text'; =>text;
+                    // 若设置xhr.responseType = 'json'; =>json  
+                    console.log(xhr.responseType);        
+                     
+                    console.log(xhr.responseURL);         // http://127.0.0.1:8088/ES6-basic/11Promise%E7%9A%84Ajax%E7%94%A8%E6%B3%95%E6%95%B4%E7%90%86/data/1.txt
+
+                    console.log(xhr.status);              // 200
+                    console.log(xhr.statusText);          // OK
+                    
+                }
+            }
+
+            xhr.send();
+        }
+
+        // 调用函数
+        loadJSON();
+
+
+    </script>
+</body>
+
+</html>

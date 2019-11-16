@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>response</title>
+</head>
+
+<body>
+
+
+    <script>
+        var url = '../data/somePage.html';
+
+        function show(res){
+            console.log(res);
+        }
+    
+        function load(url,callback){
+            var xhr = new XMLHttpRequest();
+            method = 'GET';
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4){
+                     // 当 readyState 变成 DONE (4) 时就会获取 response 并将其传递给 load() 中提供的回调函数
+                    // 返回的内容会被作为原始文本数据处理 （因为这里没有覆盖  responseType 的默认值）
+                    callback(xhr.response);
+                }   
+            }
+            
+            xhr.open(method,url,true);
+            xhr.send();
+        }
+        
+        load(url,show);
+
+    </script>
+</body>
+
+</html>

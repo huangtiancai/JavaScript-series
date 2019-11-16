@@ -40,7 +40,7 @@
 				}
 				
 				//请求可能得到的是缓存的结果,为了避免这种情况，向 URL 添加一个唯一的 ID
-				xmlhttp.open('GET','/ajax/books.xml',true);
+				xmlhttp.open('GET','./data/books.xml',true);
 				xmlhttp.send();
 
 				xmlhttp.onreadystatechange = function(){
