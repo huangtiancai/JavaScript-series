@@ -16,6 +16,7 @@ let p1 = p.then(res => {
 console.log(p1); // Promise { <pending> }
 
 p1.then(res1 => {
+	// 必须在then里面给一个返回值，才能继续调用，否则undefined
 	console.log('res1:'+res1); // unddefined
 });
 	

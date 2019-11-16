@@ -17,14 +17,14 @@ let p1 = p.then(res => {
 console.log(p1); // Promise { <pending> }
 
 let p2 = p1.then(res1 => {
-	console.log('res1:'+res1); // 2
+	console.log('res1:'+res1); // res1:2s
 	return 3; // 包装成 Promise.resolve(3) => 传递给下一个then方法
 });
 
 console.log(p2); // Promise { <pending> }
 
 p2.then(res2 => {
-	console.log('res2:'+res2); // 
+	console.log('res2:'+res2); // res2:3s
 });
 
 
