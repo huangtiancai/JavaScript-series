@@ -2,9 +2,9 @@
 
 // 4.catch
 // Promise实例具有then方法 Promise.prototype.catch
-// 
+// 用于指定
 
-https://www.jianshu.com/p/fe0159f8beb4
+
 
 
 
