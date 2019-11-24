@@ -11,10 +11,10 @@
             let b = 3;
 
             try{
-                let data = await $.ajax({url:'dat/1.txt',dataType:'json'}); // 写起来和同步一样的方便，内部仍然是异步的    
+                let data = await $.ajax({url:'data/1.txt',dataType:'json'}); // 写起来和同步一样的方便，内部仍然是异步的    
                 alert(a+b+data[0]);
             }catch(e){
-                alert('出错了');
+                alert("出错了！");
             }
         }
         // 调用

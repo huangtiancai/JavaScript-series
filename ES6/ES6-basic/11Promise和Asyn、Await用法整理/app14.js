@@ -9,9 +9,6 @@
 // async用于申明一个function是异步的
 // await指明哪些是异步操作，哪些是同步操作=> 主动去给异步操作加上await,用来表明这个操作不能直接就往下运行，需要等待（等待操作结束再往下继续走）
 
-
-// 使用async/await配合promise简化
-
 // async/await：以同步的方式（本质还是异步）写异步代码
 // generator/yield 已经被async/awit代替
 
