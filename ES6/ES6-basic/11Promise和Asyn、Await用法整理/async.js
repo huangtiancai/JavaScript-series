@@ -21,3 +21,4 @@ async function show(){
 }
 // 调用
 show(); // 6
+
