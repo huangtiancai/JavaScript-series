@@ -3,7 +3,6 @@
 // 9.Async-Await
 
 // Promise 并不能消灭回调地狱，也并没有太多的简化,但是它可以使回调变得可控
-
 // 使用async/await配合promise简化
 
 async function show(){
