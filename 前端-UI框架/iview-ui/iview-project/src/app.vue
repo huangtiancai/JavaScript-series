@@ -3,6 +3,8 @@
 </style>
 <template>
     <div>
+        <router-link to="/grid">栅格</router-link>
+
         <router-view></router-view>
     </div>
 </template>
