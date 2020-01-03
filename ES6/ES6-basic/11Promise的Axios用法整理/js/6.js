@@ -12,4 +12,5 @@ axios.all([getUser(), getCompanies()])
 		//当这两个请求都完成的时候会触发这个函数，两个参数分别代表返回的结果
 		console.log(user);
 		console.log(company);
+
 	}));
