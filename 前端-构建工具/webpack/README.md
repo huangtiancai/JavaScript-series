@@ -102,8 +102,96 @@ You can also set it to 'none' to disable any default behavior. Learn more: https
 ```
 
 ### 基础打包语法
-> src:存储项目开发的原文件
+1.不打包的情况下，必须在index.html中引入所有所有js文件
+```javascript
+<script src="common.js"></script>
+<script src="common2.js"></script>
+<script src="index.js"></script>
+```
+在common.js和common2.js中分别定义函数，index.js中调用定义的函数，index.html中引入js文件的顺序要注意：common.js和common2.js必须在index.js之前引入，否则会报错
+
+2.将common.js和common2.js的函数分别用CommonJS/ES6Module模块导出,在index.js中（调用）使用CommonJS/ES6Module模块导入，在index.html中引入index.js后，浏览器也会报错：
+浏览器不支持commonjs规范（nodes是基于commonjs规范）
+
+3.打包编译
+
+> src:存储项目开发的原文件目录（html、js、css、图片等）
 > dist:打包后的文件目录
+上述npm run build打包编译是默认的：
+- 默认入口文件为src下的index.js
+- 默认的打包后的文件目录为dist,文件为main.js
+index.html中引入打包后生成的js文件浏览器就可以生效了
+```
+<script src="../dist/main.js"></script>
+```
+
+### webpack自定义规则配置
+webpack4.0可以采用0配置打包，但是打包时一般不会采用0配置，webpack在打包时默认会查找当前目录下的 webpack.config.js or webpackfile.js 文件
+
+1.通过配置文件webpack.config.js打包进行自定义规则配置：
+```javascript
+// 使用node.js的path模块
+let path = require('path');
+
+// export一个对象
+module.exports = {
+  // 模式
+  mode: 'development',
+  // 入口
+  entry: './src/index-my.js',
+  // 出口
+  output: {
+    // 输出的文件名
+    filename: 'boundle.min.js',
+    // 输出的目录（必须是绝对路径）
+    path: path.resolve(__dirname, 'build')
+}
+```
+注意上述的打包如果不设置打包的模式会有警告：WARNING in configuration
+- 不指定模式，默认打包成生产环境下的代码，代码会被压缩
+- 指定模式，如开发模式,打包后的代码不会被压缩，且编译过打包编译打印的日志不会有警告
+mode: 'development' - 开发环境
+mode: 'production'  - 生产
+2.webpack.config.js/webpackfile.js => webpack在打包时默认会查找这两个文件
+通过打包测试，配置文件命名为webpack.config.js 或 webpackfile.js 均可以打包成功
+
+2.webpack.config.js => webpack.config.development.js
+配置文件改名后使用`npm run build`或` npx webpack`均打包失败，使用如下命令打包：
+```
+npx webpack --config webpack.config.development.js
+```
+上述命令太长不方便=>在package.json配置可执行的脚本
+package.json
+```json
+"scripts": {
+  "build": "webpack --config webpack.config.development.js"
+}
+```
+使用命令打包：
+```
+npm run build
+```
+
+### webpack-dev-server
+参考：https://webpack.js.org/configuration/dev-server
+配置开发服务器，可以在实现在内存中打包,并且自动启动服务
+安装webpack-dev-server
+```
+npm install webpack-dev-server --save-dev
+```
+
+
+
+基础配置：
+
+### 基于webpack实现HTML的输出编译
+
+### 基于webpack实现CSS的抽离和压缩
+
+### 在webpack中基于babel和对应的插件实现JS的编译
+
+### 基于webpack图片处理
+
 
 ### 在webpack中所有文件都是模块
 - js模块 模块化（AMD CMD es6Module commonjs）
