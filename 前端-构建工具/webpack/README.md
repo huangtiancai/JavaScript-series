@@ -156,15 +156,22 @@ mode: 'production'  - 生产
 通过打包测试，配置文件命名为webpack.config.js 或 webpackfile.js 均可以打包成功
 
 2.webpack.config.js => webpack.config.development.js
-配置文件改名后使用`npm run build`或` npx webpack`均打包失败，使用如下命令打包：
+配置文件改名后:
+- 配置文件名：webpack.config.development.js
+- package.json的"build": "webpack"
+
+使用`npm run build`或`npx webpack`均打包失败，下面有两种方式打包：
+1. 长命令：
 ```
-npx webpack --config webpack.config.development.js
+npx webpack --config webpack.config.development.js 
+或
+webpack --config webpack.config.development.js
 ```
-上述命令太长不方便=>在package.json配置可执行的脚本
+2. 上述命令太长不方便=>在package.json配置可执行的脚本=>将长命令配置进去
 package.json
 ```json
 "scripts": {
-  "build": "webpack --config webpack.config.development.js"
+  "build": "webpack --config webpack.config.development.js" // npx有无均可
 }
 ```
 使用命令打包：
@@ -179,6 +186,8 @@ npm run build
 ```
 npm install webpack-dev-server --save-dev
 ```
+上面的打包命令不管是什么形式-本质都是执行webpack命令=>仅能实现编译，不能做到边编译边创建服务边打开,需要使用webpack-dev-server的相关命令
+
 这样启动编译会报错：
 ```
 npx webpack-dev-server
@@ -187,10 +196,27 @@ npx webpack-dev-server
 ```
 npx webpack-dev-server --config webpack.config.development.js
 ```
+配置package.json脚本：
+```
+"scripts": {
+  "serve": "webpack-dev-server --config webpack.config.development.js",
+  "build": "webpack --config webpack.config.development.js"
+}
+```
+直接使用命令：
+```
+npm run serve
+```
+注意：上述命令创建服务器后是在内存中打包,未生成build文件夹
+http://localhost:8080/
+http://localhost:8080/boundle.js => 能访问
+
+以build目录启动了一个服务
+在build下创建一个index.json文件 http://localhost:8080/index.json 正常访问
 
 
 
-基础配置：
+
 
 ### 基于webpack实现HTML的输出编译
 
