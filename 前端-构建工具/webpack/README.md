@@ -179,6 +179,14 @@ npm run build
 ```
 npm install webpack-dev-server --save-dev
 ```
+这样启动编译会报错：
+```
+npx webpack-dev-server
+```
+这样启动正常
+```
+npx webpack-dev-server --config webpack.config.development.js
+```
 
 
 

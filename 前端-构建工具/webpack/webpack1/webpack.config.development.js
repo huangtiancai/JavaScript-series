@@ -16,11 +16,11 @@ module.exports = {
   },
   devServer: {
     // 指定当前服务处理资源目录
-    contentBase: path.join('./dist'),
+    contentBase: './build',
     // 显示打包编译进度
     progress: true,
     // 创建服务指定的端口
-    port: 9000,
+    port: 3000,
     // 编译完自动打开浏览器
     open: true
   }
