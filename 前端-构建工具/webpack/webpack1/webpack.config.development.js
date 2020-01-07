@@ -28,8 +28,8 @@ module.exports = {
     progress: true
 
   },
-  module: {},  // 模块配置
+  module: {}, // 模块配置
   plugins: [], // 插件配置
-  resolve: {}  // 配置解析
+  resolve: {} // 配置解析
 
 }
