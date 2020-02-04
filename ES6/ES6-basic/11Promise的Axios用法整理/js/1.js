@@ -6,7 +6,7 @@ axios.get('http://localhost:3000/users?id=2')
         console.log(response);
 
     })
-	.catch(error => {
-		console.log('捕捉错误信息：' + error);
-	});
-	
+    .catch(error => {
+        console.log('捕捉错误信息：' + error);
+    });
+
