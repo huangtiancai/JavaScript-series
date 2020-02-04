@@ -3,13 +3,13 @@
 
 // Want to use async/await? Add the `async` keyword to your outer function/method.
 
-async function getUser(){
-	try{
-		const response = axios.get('http://localhost:3000/users?id=2');
-		console.log(response); // Promise
-	}catch(e){
+async function getUser() {
+	try {
+		const response = axios.get('http://jsonplaceholder.typicode.com/todos?id=2');
+		console.log(response); // Promise { <state>: "pending" }
+	} catch (e) {
 		alert('出错了');
 	}
 }
 getUser();
-	
+

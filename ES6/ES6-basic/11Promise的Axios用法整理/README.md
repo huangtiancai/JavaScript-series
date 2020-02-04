@@ -48,12 +48,16 @@ axios(config)
 
 
 
-axios- github:https://github.com/axios/axios
+axios- github:
+https://github.com/axios/axios
+参考：
 https://segmentfault.com/a/1190000018206604
 https://www.jianshu.com/p/13cf01cdb81f
 https://www.jianshu.com/p/fe0159f8beb4
-vue学习：https://www.cnblogs.com/bydzhangxiaowei/p/8723747.html
-vue全家桶：http://doc.liangxinghua.com/vue-family/1.html#
+vue学习：
+https://www.cnblogs.com/bydzhangxiaowei/p/8723747.html
+vue全家桶：
+http://doc.liangxinghua.com/vue-family/1.html#
 axios支持:post get  不支持jsonp
 jsonp - https://www.sojson.com/json/json_jsonp.html
      

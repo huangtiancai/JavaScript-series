@@ -79,7 +79,7 @@ try {
 ```
 
 
-MDN Promise 教程:https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise
+MDN Promise 教程:
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise
 jQuery ajax,Axios,Fetch区别：https://segmentfault.com/a/1190000012836882
-Fetch API:https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
 https://github.com/camsong/blog/issues/2

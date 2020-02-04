@@ -1,22 +1,21 @@
 // Performing a GET request - 执行GET请求
-// Make a request for a user with a given ID
+// Optionally the request above could also be done as
 
-// 这里不使用catch捕捉错误，使用promise实例的then方法指定resolved状态和rejected状态的回调函数
-axios.get('http://localhost:3000/users?id=2')
-    .then(response => {
-        alert('success');
-        console.log(response); // 
-    },error => {
-		console.log('错误信息：' + error);
-	});
+// 1.根据id获取接口数据
+axios.get('http://jsonplaceholder.typicode.com/todos', {
+	params: {
+		id: 2
+	}
+})
+	.then(res => console.log(res.data)) // Array 数组长度为1 => 一个对象
+	.catch(err => console.log(err));
 
-// ajax 方式
-$.ajax({
-	url:'http://localhost:3000/users?id=2',
-	dataType:'json'
-}).then(response => {
-	alert('成功了');
-	console.log(response); // 
-},error => {
-	alert('失败了');
-});
+
+// 2.根据id获取接口数据,参数id为数组
+axios.get('http://jsonplaceholder.typicode.com/todos', {
+	params: {
+		id: [1, 2, 3, 4]
+	}
+})
+	.then(res => console.log(res.data)) // Array(4) 数组长度为4 => 四个对象
+	.catch(err => console.log(err));
