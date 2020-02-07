@@ -43,11 +43,6 @@ axios可以通过配置（config）来发送请求
 axios(config)
 
 
-
-
-
-
-
 axios- github:
 https://github.com/axios/axios
 参考：
