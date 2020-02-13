@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>创建对象的其他方式</title>
-  </head>
 
-  <body>
-    <p>1.声明一个对象的语法</p>
-    <P>2.使用构造函数</P>
-    <p>3.Object()构造函数</p>
-    <p>4.使用create()方法</p>
+<head>
+  <meta charset="utf-8">
+  <title>创建对象的其他方式</title>
+</head>
 
-  </body>
+<body>
+  <p>1.声明一个对象的语法</p>
+  <P>2.使用构造函数</P>
+  <p>3.Object()构造函数</p>
+  <p>4.使用create()方法</p>
 
-    <script>
-        //1.使用Object()构造函数来创建一个新对象
-        var person1 = new Object();//这样就在person1变量中存储了一个空对象
+</body>
 
-        //2.根据需要, 使用点或括号表示法向此对象添加属性和方法
-        person1.name = 'Cherry';
-        person1['age'] = 18;
-        person1.greeting = function(){
-            alert('Hi! I\'m ' + this.name + '.');
-        }
+<script>
+  //1.使用Object()构造函数来创建一个新对象
+  var person1 = new Object();//这样就在person1变量中存储了一个空对象
 
-        //3.使用create()方法
-        //JavaScript有个内嵌的方法create(), 它允许您基于现有对象创建新的对象。
-        var person2 = Object.create(person1);
-        //测试
-        person2.name;
-        person2.greeting();
+  //2.根据需要, 使用点或括号表示法向此对象添加属性和方法
+  person1.name = 'Cherry';
+  person1['age'] = 18;
+  person1.greeting = function () {
+    alert('Hi! I\'m ' + this.name + '.');
+  }
+
+  //3.使用create()方法
+  //JavaScript有个内嵌的方法create(), 它允许您基于现有对象创建新的对象。
+  var person2 = Object.create(person1);
+  //测试
+  person2.name;
+  person2.greeting();
         //person2是基于person1创建的， 它们具有相同的属性和方法。
 
-        
 
 
-    </script>
+
+</script>
+
 </html>
