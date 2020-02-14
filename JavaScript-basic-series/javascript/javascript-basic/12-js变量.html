@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-		<!-- JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象 -->
-		<!-- 
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<!-- JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象 -->
+	<!-- 
 
         	时间：2019-01-27
         	描述：JavaScript 的基本语法，变量声明，数据类型 和 字面量。
@@ -59,99 +60,101 @@
 					
 
        -->
-		
-	</head>
-	<body>
-		<!-- <p>点击这里来创建变量，并显示结果。</p>
+
+</head>
+
+<body>
+	<!-- <p>点击这里来创建变量，并显示结果。</p>
 		<p id="demo"></p>
 		<button onclick="myFunction()">点击这里!</button> -->
 
 
-		<button>Press me</button>
-		
+	<button>Press me</button>
 
 
-		<script>
-			//点击这里来创建变量，并显示结果
-			// function myFunction(){
-			// 	var carname = 'Volvo';
-			// 	document.getElementById("demo").innerHTML=carname;
-			// 	//document.getElementById("myDiv").innerHTML="Hai";	
-			// }
-			var button = document.querySelector("button");
-			button.onclick = function(){
-				var name = prompt("请输入你的名字：");
-				alert("Hello "+name+",nice to see you");
-			}
 
-			//声明变量
-			var myName;
-			var myAge;
+	<script>
+		//点击这里来创建变量，并显示结果
+		// function myFunction(){
+		// 	var carname = 'Volvo';
+		// 	document.getElementById("demo").innerHTML=carname;
+		// 	//document.getElementById("myDiv").innerHTML="Hai";	
+		// }
+		var button = document.querySelector("button");
+		button.onclick = function () {
+			var name = prompt("请输入你的名字：");
+			alert("Hello " + name + ",nice to see you");
+		}
+
+		//声明变量
+		var myName;
+		var myAge;
 
 
-			//变量类型
-			
-			//声明变量类型
-			var catname = new String;
-			var t = new Number;
-			var s = new Boolean;
-			var u = new Array;
-			var w = new Object;
+		//变量类型
 
-			//Number
-			//你可以在变量中存储数字，不论这些数字是像30（也叫整数）这样，或者像2.456这样的小数（也叫做浮点数）
-			//1.与其他编程语言不同，在 JavaScript 中你不需要声明一个变量的类型
-			//2.当你给一个变量数字赋值时，不需要用引号括起来
-			var myAge = 18;
+		//声明变量类型
+		var catname = new String;
+		var t = new Number;
+		var s = new Boolean;
+		var u = new Array;
+		var w = new Object;
 
-			//String
-			//字符串是文本的一部分。当你给一个变量赋值为字符串时，你需要用单引号或者双引号把值给包起来
-			var dolphinGoodbye = 'So long and thanks for all the fish';
+		//Number
+		//你可以在变量中存储数字，不论这些数字是像30（也叫整数）这样，或者像2.456这样的小数（也叫做浮点数）
+		//1.与其他编程语言不同，在 JavaScript 中你不需要声明一个变量的类型
+		//2.当你给一个变量数字赋值时，不需要用引号括起来
+		var myAge = 18;
 
-			//Boolean
-			//Boolean 的值有2种：true或false。它们通常被用于在适当的代码之后，测试条件是否成立
-			var iAmAlive = true;
-			//实际上通常被用于在适当的代码之后，测试条件是否成立
-			var test = 6 < 3; 	
-			//alert("test:"+test);
+		//String
+		//字符串是文本的一部分。当你给一个变量赋值为字符串时，你需要用单引号或者双引号把值给包起来
+		var dolphinGoodbye = 'So long and thanks for all the fish';
 
-			//Array
-			//数组是一个单个对象，其中包含很多值，方括号括起来，并用逗号分隔。
-			var myNameArray = ['tom','chris','bob'];
-			var myNumber = [3,4,2,5];
-			//myNameArray[0]  return 'tom'
-			//myNumber[1]  	  return 4
+		//Boolean
+		//Boolean 的值有2种：true或false。它们通常被用于在适当的代码之后，测试条件是否成立
+		var iAmAlive = true;
+		//实际上通常被用于在适当的代码之后，测试条件是否成立
+		var test = 6 < 3;
+		//alert("test:"+test);
 
-			//Object
-			//对象是现实生活中的模型的一种代码结构
-			var dog = {name:'john',age:'18'}
-			//检索存储在对象中的信息
-			dog.name;
-			dog.age;
+		//Array
+		//数组是一个单个对象，其中包含很多值，方括号括起来，并用逗号分隔。
+		var myNameArray = ['tom', 'chris', 'bob'];
+		var myNumber = [3, 4, 2, 5];
+		//myNameArray[0]  return 'tom'
+		//myNumber[1]  	  return 4
 
-			//动态类型
-			//如果你声明一个变量并给它一个带引号的值，浏览器就会知道它是一个字符串
-			var myString = 'Hello';
-			//即使它包含数字，但它仍然是一个字符串
-			var myNumber = '30';//this is still a string
-			myNumber = 50;	    //this is a number
+		//Object
+		//对象是现实生活中的模型的一种代码结构
+		var dog = { name: 'john', age: '18' }
+		//检索存储在对象中的信息
+		dog.name;
+		dog.age;
 
-			var a;
-			console.log("the value of a is "+a);
-			console.log("the value of b is "+b);
-			var b;
+		//动态类型
+		//如果你声明一个变量并给它一个带引号的值，浏览器就会知道它是一个字符串
+		var myString = 'Hello';
+		//即使它包含数字，但它仍然是一个字符串
+		var myNumber = '30';//this is still a string
+		myNumber = 50;	    //this is a number
+
+		var a;
+		console.log("the value of a is " + a);
+		console.log("the value of b is " + b);
+		var b;
 
 			//抛出一个引用错误（ReferenceError）异常；Uncaught ReferenceError: c is not defined
 			//console.log("the value of c is "+c);
-			
-			
-		</script>
 
 
-		<!-- 
+	</script>
+
+
+	<!-- 
 			参考链接：https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web/JavaScript_basics 
 		
 		-->
-		
-	</body>
+
+</body>
+
 </html>
