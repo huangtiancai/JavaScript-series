@@ -79,7 +79,6 @@ i     ignoreCase  忽略字母大小写
 m     multiline   可以进行多行匹配
 g     global      全局匹配
 
-
 /A/.test('laa')  => false
 /A/i.test('laa') => true
 
