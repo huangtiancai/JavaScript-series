@@ -4,8 +4,6 @@
 3. 通过 npm 获取 echarts，npm install echarts --save，详见“在 webpack 中使用 echarts”
 4. 通过 jsDelivr 等 CDN 引入
 
-## CDN引入/JS文件直接引入
-
 ## 自定义构建 ECharts
 一般来说可以直接从 CDN 中获取构建后的 echarts
 也可以从 GitHub 中的 echarts/dist 文件夹中获取构建好的 echarts，这都可以直接在浏览器端项目中使用
@@ -94,3 +92,113 @@ npm install rollup-plugin-uglify --save-dev
 5. 创建配置文件myProject/rollup.config.js
 
 rollup => 参考:https://blog.suisuijiang.com/use-rollup.js-compile-javascript-code
+
+
+## 在 webpack 中使用 ECharts
+
+
+## ECharts 基础概念概览
+### echarts 实例
+一个网页 => 多个echart实例 => 一个实例创建多个图表和坐标系等等（用 option 来描述）
+一个DOM节点（作为 echarts 的渲染容器） => 一个 echarts 实例(每个 echarts 实例独占一个 DOM 节点)
+### 系列（series）
+1. 系列（series）- 一组数值以及他们映射成的图
+   => 一个 系列 包含的要素至少有：一组数值、图表类型（series.type）、以及其他的关于这些数据如何映射成图的参数
+2. series.type => echart系列类型/图表类型
+   line     折线图
+   bar      柱状图（条形图）
+   pie      饼图
+   scatter  散点图
+   graph    关系图
+   tree     树图
+   ...
+
+  series.data => 每个系列需要的数据
+
+### 组件（component）
+在系列之上，echarts 中各种内容，被抽象为“组件”
+echarts 中至少有这些组件:
+xAxis（直角坐标系 X 轴）
+yAxis（直角坐标系 Y 轴）
+grid（直角坐标系底板）
+angleAxis（极坐标系角度轴）
+radiusAxis（极坐标系半径轴）
+polar（极坐标系底板）
+geo（地理坐标系）
+dataZoom（数据区缩放组件）
+visualMap（视觉映射组件）
+tooltip（提示框组件）
+toolbox（工具栏组件）
+series（系列）、...
+
+其实系列（series）也是一种组件，可以理解为：系列是专门绘制“图”的组件。
+
+### 用 option 描述图表
+option 表述了：数据、数据如何映射成图形、交互行为
+
+
+```javascript
+// 创建 echarts 实例。
+var dom = document.getElementById('dom-id');
+var chart = echarts.init(dom);
+
+// 用 option 描述 `数据`、`数据如何映射成图形`、`交互行为` 等。
+// option 是个大的 JavaScript 对象。
+var option = {
+    // option 每个属性是一类组件。
+    legend: {...},
+    grid: {...},
+    tooltip: {...},
+    toolbox: {...},
+    dataZoom: {...},
+    visualMap: {...},
+    // 如果有多个同类组件，那么就是个数组。例如这里有三个 X 轴。
+    xAxis: [
+        // 数组每项表示一个组件实例，用 type 描述“子类型”。
+        {type: 'category', ...},
+        {type: 'category', ...},
+        {type: 'value', ...}
+    ],
+    yAxis: [{...}, {...}],
+    // 这里有多个系列，也是构成一个数组。
+    series: [
+        // 每个系列，也有 type 描述“子类型”，即“图表类型”。
+        {type: 'line', data: [['AA', 332], ['CC', 124], ['FF', 412], ... ]},
+        {type: 'line', data: [2231, 1234, 552, ... ]},
+        {type: 'line', data: [[4, 51], [8, 12], ... ]}
+    }]
+};
+
+// 调用 setOption 将 option 输入 echarts，然后 echarts 渲染图表。
+chart.setOption(option);
+```
+系列里的 series.data 是本系列的数据。而另一种描述方式，系列数据从 dataset 中取：
+```javascript
+var option = {
+    dataset: {
+        source: [
+            [121, 'XX', 442, 43.11],
+            [663, 'ZZ', 311, 91.14],
+            [913, 'ZZ', 312, 92.12],
+            ...
+        ]
+    },
+    xAxis: {},
+    yAxis: {},
+    series: [
+        // 数据从 dataset 中取，encode 中的数值是 dataset.source 的维度 index （即第几列）
+        {type: 'bar', encode: {x: 1, y: 0}},
+        {type: 'bar', encode: {x: 1, y: 2}},
+        {type: 'scatter', encode: {x: 1, y: 3}},
+        ...
+    ]
+};
+```
+
+### 组件的定位
+
+### 坐标系
+
+
+## 个性化图表的样式
+
