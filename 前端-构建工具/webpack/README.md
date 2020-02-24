@@ -18,6 +18,8 @@ webpack版本的使用：
 以webpack4.0为准，主要是因为快速构建工程化项目的脚手架：
 [Vue的脚手架-Vue-CLI和React的脚手架-create-react-app]基于webpack4.0
 
+参考：https://www.webpackjs.com
+
 ### webpack的使用
 初始化package.json
 ```
@@ -231,8 +233,8 @@ mode: 'production'  - 生产
 2. webpack.config.js | webpackfile.js => webpack在打包时默认会查找这两个文件
   通过打包测试，配置文件命名为webpack.config.js 或 webpackfile.js 均可以打包成功
 
-3. webpack.config.js 配置文件改名后如何配置？
-  webpack.config.js  => webpack.config.development.js
+3. webpack.config.js 配置文件改名后如何配置？；
+   webpack.config.js  => webpack.config.development.js
   这里使用`npx webpack`、`npm run build` OR `yarn build`均打包失败，下面有两种方式打包：
 #### 长命令：
 $ npx webpack --config webpack.config.development.js 
@@ -247,7 +249,13 @@ package.json
 }
 ```
 使用命令打包：
-$ npm run build   $ yarn build
+$ yarn build  OR  $ npm run build   
+
+创建其它文件名的作用：配置多个文件名是为了适应开发和生产环境的需
+如：
+$ yarn dev   -  "build": "webpack --config webpack.config.production.js"
+$ yarn build -  "build": "webpack --config webpack.config.development.js"
+
 
 ### webpack-dev-server
 参考：https://webpack.js.org/configuration/dev-server
