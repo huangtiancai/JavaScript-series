@@ -93,8 +93,13 @@ npm install rollup-plugin-uglify --save-dev
 
 rollup => 参考:https://blog.suisuijiang.com/use-rollup.js-compile-javascript-code
 
+目前rollup失败
 
 ## 在 webpack 中使用 ECharts
+webpack.config.js
+
+$ yarn build OR $ npm run build 打包编译成浏览器可以使用的js => html引用
+
 
 
 ## ECharts 基础概念概览
