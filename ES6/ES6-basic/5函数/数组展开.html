@@ -1,37 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>数组展开</title>
 </head>
+
 <body>
     <script>
-        let arr1 = [12,5,8];
-        
+        let arr1 = [12, 5, 8];
+
         // ...arr1 等同于 [12,5,8]
-        
+
         console.log(...arr1); // 12  5  8
-        
-        function show(a,b,c){
-            console.log(a+b+c);
+
+        function show(a, b, c) {
+            console.log(a + b + c);
         }
 
 
-        show(12,5,8);
+        show(12, 5, 8);
         show(...arr1);
 
 
-        let arr2 = [10,8,6];
-        let arr3 = [14,7];
+        let arr2 = [10, 8, 6];
+        let arr3 = [14, 7];
         // 连接数组
         console.log(arr2.concat(arr3)); // [10, 8, 6, 14, 7]
-        
-        let arr = [...arr2,...arr3]; 
+
+        let arr = [...arr2, ...arr3];
         console.log(arr); // [10, 8, 6, 14, 7]
 
-        
-        
+
+
     </script>
 </body>
+
 </html>
