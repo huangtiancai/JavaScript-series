@@ -180,7 +180,7 @@ index.html中引入打包后生成的js文件浏览器就可以生效了
 
 
 ### webpack自定义规则配置
-从webpack4.0可以采用0配置打包，但是实际打包时一般不会采用0配置
+从webpack4.0可以采用0配置打包（太弱），但是实际打包时一般不会采用0配置
 
 webpack在打包时默认会查找当前目录下的
 - webpack.config.js
@@ -213,6 +213,7 @@ module.exports = {
 总结：
 mode: 'development' - 开发环境
 mode: 'production'  - 生产
+区别：开发环境打包的代码不会被压缩，生产环境下会被压缩，默认：生产环境-压缩
 
 - 指定模式：三种
   + 直接命令:`npx webpack --mode development` OR `npx webpack --mode production`
@@ -237,8 +238,7 @@ mode: 'production'  - 生产
    webpack.config.js  => webpack.config.development.js
   这里使用`npx webpack`、`npm run build` OR `yarn build`均打包失败，下面有两种方式打包：
 #### 长命令：
-$ npx webpack --config webpack.config.development.js 
-或
+$ npx webpack --config webpack.config.development.js 或
 $ webpack --config webpack.config.development.js
 
 #### 上述命令太长不方便=>在package.json配置可执行的脚本=>将长命令配置进去
@@ -257,55 +257,119 @@ $ yarn dev   -  "build": "webpack --config webpack.config.production.js"
 $ yarn build -  "build": "webpack --config webpack.config.development.js"
 
 
-### webpack-dev-server
+### webpack-dev-server - 以指定目录启动服务
 参考：https://webpack.js.org/configuration/dev-server
 配置开发服务器，可以在实现在内存中打包,并且自动启动服务
-安装webpack-dev-server
-```
-npm install webpack-dev-server --save-dev
-```
+安装webpack-dev-server：
+$ yarn add webpack-dev-server -D
+OR
+$ npm install webpack-dev-server --save-dev
+
 上面的打包命令不管是什么形式-本质都是执行webpack命令=>仅能实现编译，不能做到边编译边创建服务边打开,需要使用webpack-dev-server的相关命令
 
 这样启动编译会报错：
-```
-npx webpack-dev-server
-```
-这样启动正常
-```
-npx webpack-dev-server --config webpack.config.development.js
-```
+$ webpack-dev-server  => 'webpack-dev-server' 不是内部或外部命令，也不是可运行的程序或批处理文件。
+$ npx webpack-dev-server => 未指定入口文件
+$ npx webpack-dev-server --config webpack.config.development.js => 配置文件中指定了入口文件
+$ npx webpack-dev-server --open firefox --config webpack.config.development.js => 指定打开的额浏览器
+
 配置package.json脚本：
-```
+区分开分环境：serve 和生产环境:build
+webpack-dev-server在内存中打包 => serve => development    开发
+webpack能打包出实体文件        => build => production     上线
+```json 
 "scripts": {
-  "serve": "webpack-dev-server --config webpack.config.development.js",
-  "build": "webpack --config webpack.config.development.js"
+  //        开发服务器                 设置打开的浏览器  指定的配置文件
+  "serve": "webpack-dev-server --open firefox --config webpack.config.development.js", // npx有无均可
+  "build": "webpack --config webpack.config.production.js"
 }
 ```
-直接使用命令：
+启动服务：
+开发：$ yarn serve  OR  $ npm run serve
+生产：$ yarn build  OR  $ npm run build
+以开发 或 生产 环境 模式编译打包， 均可以打开浏览器显示
+
+注意：
+1. webpack 命令直接编译 或者 配置脚本（也是webpack） 执行后均可以编译打包 => 能生成打包后的文件
+2. webpack-dev-server创建服务器 - 边编译边创建服务 => 不会打包出实体文件，只是在内存中打包，但是仍然能显示
+http://localhost:3000/boundle.min.js => 能访问
+
+以build目录启动了一个服务，如下build下：
+index.html
+boundle.min.js  - 非实体文件，在内存中
+test.json
+
+http://localhost:3000 = http://localhost:3000/index.html
+http://localhost:3000/boundle.min.js 内存中
+http://localhost:3000/test.json
+
+以上均可以正常访问
+
+现在的脚手架中都有webpack-dev-server,实现的功能还有很多，如跨域代理
+
+
+
+### 基于webpack实现HTML的输出编译 - html-webpack-plugin
+上述实现的只是src下js文件的合并压缩
+其它文件html、css、图片等还未实现合并压缩，如index.html - 手动编写 
+
+webpack默认打包JS
+
+1.删除build文件夹
+2.src下新建index.html
+  src
+    common.js
+    common2.js
+    index-entry.js
+    index.html
+  将src下html、js文件全部打包到build下
+
+3. html-webpack-plugin
+安装：yarn add html-webpack-plugin -D
+
+packahe.json调整：
+```json
+"scripts": {
+    "serve": "webpack-dev-server --open firefox --config webpack.config.development.js",
+    "build": "webpack --config webpack.config.development.js"
+  },
 ```
-npm run serve
+webpack.config.development.js插件配置：
+```javascript
+// 使用插件 => 很多插件 => 数组形式
+  plugins: [
+    // 传入对象进行配置
+    new HtmlWebpackPlugin({
+      // 指定html模板（一般真实项目把自己写好的html进行编译），不指定模板会按照默认模板创建一个html页面
+      template:'./indx.html',
+      filename: 'index.html', // 指定输出文件名
+    })
+  ]
 ```
-注意：上述命令创建服务器后是在内存中打包,未生成build文件夹
-http://localhost:8080/
-http://localhost:8080/boundle.js => 能访问
+打包编译：
+yarn build  OR  npm run build  => 生成build目录：index.html、boundle.min.js
 
-以build目录启动了一个服务
-在build下创建一个index.json文件 http://localhost:8080/index.json 正常访问
+注意：
+```javascript
+<script type="text/javascript" src="boundle.min.js"></script>
+```
+script标签 - 从服务器上请求js文件 - get请求 - 每次请求资源文件相同会产生缓存
+
+如果请求的js已经修改，但是刷新时还是以缓存的js文件为主 => 解决 
+1. 以前：src="boundlbinayie.min.js?时间戳" 请求地址后+?+时间戳
+2. 现在：现在让每次编译后的js名字都不一样
 
 
 
 
 
-### 基于webpack实现HTML的输出编译
+
+
 
 ### 基于webpack实现CSS的抽离和压缩
 
 ### 在webpack中基于babel和对应的插件实现JS的编译
 
 ### 基于webpack图片处理
-
-
-### 在webpack中所有文件都是模块
-- js模块 模块化（AMD CMD es6Module commonjs）
 
 

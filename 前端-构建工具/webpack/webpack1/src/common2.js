@@ -1,5 +1,5 @@
 function fun2() {
-  console.log('fun2');
+  console.log('fun2函数');
 }
 
 // export default {

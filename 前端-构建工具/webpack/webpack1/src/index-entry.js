@@ -12,3 +12,4 @@ let {
 
 fun1();
 fun2();
+console.log('hello');
