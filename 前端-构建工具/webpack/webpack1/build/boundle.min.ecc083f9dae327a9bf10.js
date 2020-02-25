@@ -117,7 +117,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common2 */ \"./src/common2.js\");\n// 浏览器不能识别ES6Module/CommonJS模块导入导出规范的代码 => 必须编译\r\n\r\n// ES6Module规范（必须在最开始引入）引入\r\n\r\n\r\n// CommonJS规范（NODE）引入\r\nlet {\r\n  fun1\r\n} = __webpack_require__(/*! ./common */ \"./src/common.js\");\r\n\r\nfun1();\r\nObject(_common2__WEBPACK_IMPORTED_MODULE_0__[\"fun2\"])();\r\nconsole.log('hello');\n\n//# sourceURL=webpack:///./src/index-entry.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common2 */ \"./src/common2.js\");\n// 浏览器不能识别ES6Module/CommonJS模块导入导出规范的代码 => 必须编译\r\n\r\n// ES6Module规范（必须在最开始引入）引入\r\n\r\n\r\n// CommonJS规范（NODE）引入\r\nlet {\r\n  fun1\r\n} = __webpack_require__(/*! ./common */ \"./src/common.js\");\r\n\r\nfun1();\r\nObject(_common2__WEBPACK_IMPORTED_MODULE_0__[\"fun2\"])();\r\nconsole.log('1');\n\n//# sourceURL=webpack:///./src/index-entry.js?");
 
 /***/ })
 

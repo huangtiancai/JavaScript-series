@@ -17,8 +17,8 @@ module.exports = {
   entry: './src/index-entry.js',
   // 出口
   output: {
-    // 输出的文件名
-    filename: 'boundle.min.js',
+    // 输出的文件名  boundle.min.[hash].js => 让每一生成的文件名都带着hash值，而不是在？后添加hash值
+    filename: `boundle.min.[hash].js`,
     // 输出的目录（必须是绝对路径）, __dirname:当前目录
     path: path.resolve(__dirname, 'build')
   },
@@ -39,7 +39,8 @@ module.exports = {
       // 指定模板（真实项目中一般把自己写好的html进行编译），不指定模板会按照默认模板创建一个html页面
       template: './src/index.html',
       filename: 'index.html', // 指定输出文件名
-      hash: true              // 解决缓存问题
+      //  让引入的js后面引入hash戳（清除缓存）  真实项目中都是每一次编译生成不同JS文件引入
+      // hash: true
     })
   ]
   // module: {},   // 模块配置（html模块、js模块、css模块、图片模块）

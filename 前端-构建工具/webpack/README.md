@@ -354,13 +354,28 @@ yarn build  OR  npm run build  => 生成build目录：index.html、boundle.min.j
 <script type="text/javascript" src="boundle.min.js"></script>
 ```
 script标签 - 从服务器上请求js文件 - get请求 - 每次请求资源文件相同会产生缓存
+如果请求的js已经修改，但是刷新时有时浏览器还是引入的时缓存的js文件，为了保证每次请求访问的都是修改后的js
 
-如果请求的js已经修改，但是刷新时还是以缓存的js文件为主 => 解决 
-1. 以前：src="boundlbinayie.min.js?时间戳" 请求地址后+?+时间戳
+=>
+
+解决:
+1. 以前：src="boundlbinayie.min.js?时间戳" 请求地址后+?+时间戳/hash戳
+如配置hash戳： hash: true
+- src="boundle.min.js?ecc083f9dae327a9bf10"  修改js后hash戳变化，js不修改hash戳不变化
+- src="boundle.min.js?c9cedaf9e95dbc542073"
+
 2. 现在：现在让每次编译后的js名字都不一样
-
-
-
+js出口处filename配置：boundle.min.[hash].js
+```javascript
+output: {
+    // 输出的文件名  boundle.min.[hash].js => 让每一生成的文件名都带着hash值，而不是在？后添加hash值
+    filename: 'boundle.min.[hsah].js',
+    // 输出的目录（必须是绝对路径）, __dirname:当前目录
+    path: path.resolve(__dirname, 'build')
+  }
+```
+- src="boundle.min.c9cedaf9e95dbc542073.js"   修改js后引入的js文件名变化，否则不变化
+- src="boundle.min.ecc083f9dae327a9bf10.js"
 
 
 
