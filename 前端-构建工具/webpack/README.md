@@ -481,6 +481,7 @@ module.exports = {
   ]
 }
 ```
+
 $ yarn serve 
 编译打包后
 
