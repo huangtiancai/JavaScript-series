@@ -1,0 +1,8 @@
+/*css也是压缩合并成一个css,在build下自动引入*/
+/*@import是css语法*/
+@import './common.less';  /*让css入口也是只有有一个，其它css按照依赖引入*/
+
+#app{
+  .center;
+  font-size: 20px;
+}

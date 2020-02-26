@@ -10,6 +10,11 @@ let {
   fun1
 } = require('./common');
 
+
+// CSS需要在我们的入口JS导入后才可以使用
+require('./index.less');
+
+
 fun1();
 fun2();
-console.log('1');
+console.log('1234');

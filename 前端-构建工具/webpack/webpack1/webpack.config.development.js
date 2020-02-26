@@ -12,7 +12,7 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   // 入口
   entry: './src/index-entry.js',
   // 出口
@@ -41,9 +41,36 @@ module.exports = {
       filename: 'index.html', // 指定输出文件名
       //  让引入的js后面引入hash戳（清除缓存）  真实项目中都是每一次编译生成不同JS文件引入
       // hash: true
+      // 控制html压缩
+      minify: {
+        collapseWhitespace: true,     // 去除空格
+        removeComments: true,         // Strip HTML comments 删除注释
+        removeAttributeQuotes: true,  // 尽可能删除属性周围的引号
+        removeEmptyAttributes: true   // 删除所有含空白值的属性
+      }
     })
-  ]
-  // module: {},   // 模块配置（html模块、js模块、css模块、图片模块）
+  ],
+  // 使用加载器loader处理规则
+  module: {
+    // 规则有很多 => 数组
+    rules: [{
+      test: /\.(css|less)$/,   // 基于正则匹配处理哪些文件
+      // 控制使用的loader（有顺序：从右到左执行）
+      use: [
+        "style-loader",     // 把编译号的css插入到页面的head中
+        "css-loader",       // 编译@import()/url()这种语法的
+        "postcss-loader",   // 设置前缀
+        // 编译less
+        // "less-loader",   // less加载器
+        {
+          // less的配置也可以不用上面的字符串，使用对象 => 添加更多额外的配置
+          loader: "less-loader",
+          options: {
+            // 加载器额外的配置
+          }
+        }
+      ],
+    }]
+  }
 
-  // resolve: []  // 配置解析
 }

@@ -310,13 +310,17 @@ http://localhost:3000/test.json
 
 
 ### 基于webpack实现HTML的输出编译 - html-webpack-plugin
+参考：
+https://webpack.js.org/plugins/html-webpack-plugin
+https://github.com/jantimon/html-webpack-plugin
+
 上述实现的只是src下js文件的合并压缩
 其它文件html、css、图片等还未实现合并压缩，如index.html - 手动编写 
 
 webpack默认打包JS
 
-1.删除build文件夹
-2.src下新建index.html
+1. 删除build文件夹
+2. src下新建index.html
   src
     common.js
     common2.js
@@ -375,8 +379,108 @@ output: {
   }
 ```
 - src="boundle.min.c9cedaf9e95dbc542073.js"   修改js后引入的js文件名变化，否则不变化
-- src="boundle.min.ecc083f9dae327a9bf10.js"
+- src="bounzdle.min.ecc083f9dae327a9bf10.js"
 
+
+注意：
+- 一般只对js和css做hash,index.html不做hash
+- 上述实现了build文件夹下的html、js文件自动生成，
+但是只有js（生产环境）会被压缩，自动生成的html未被压缩 => minify
+
+
+参考：
+minify
+https://github.com/jantimon/html-webpack-plugin#minification
+
+另外一个插件：
+https://github.com/kangax/html-minifier
+https://github.com/DanielRuf/html-minifier-terser
+
+配置mifify
+```javascript
+minify: {
+  collapseWhitespace: true,     // 去除空格
+  removeComments: true,         // Strip HTML comments 删除注释
+  removeAttributeQuotes: true,  // 尽可能删除属性周围的引号
+  removeEmptyAttributes: true   // 删除所有含空白值的属性
+}
+```
+
+
+
+### 基于webpack实现CSS样式的处理 -webpack中的加载器loader
+1. css-loader:编译@import()/url()这种语法
+$ yarn add css-loader -D  OR  npm run css-loader --save-dev
+2. style-loader:css编译后 放到 html
+$ yarn add style-loader -D  OR  npm run style-loader --save-dev
+
+加载器loader配置：
+```javascript
+// 使用加载器loader处理规则
+module: {
+  // 规则有很多 => 数组
+  rules: [{
+    test: /\.css$/,   // 基于正则匹配处理哪些文件
+    // 控制使用的loader（有顺序：从右到左执行）
+    use: [
+      "style-loader", // 把编译号的css插入到页面的head中
+      "css-loader",   // 编译@import()/url()这种语法的
+    ],
+  }]
+}
+```
+3. CSS需要在我们的入口JS导入后才可以使用
+```javascript
+require('./index.css');
+```
+编译打包:$ yarn serve
+
+
+5. less 处理
+步骤:less 编译成css => 编译css中@import()/url()这些特殊语法 => 插入到head
+$ yarn add less less-loader -D
+
+```javascript
+module: {
+  // 规则有很多 => 数组
+  rules: [{
+    test: /\.(css|less)$/,   // 基于正则匹配处理哪些文件
+    // 控制使用的loader（有顺序：从右到左执行）
+    use: [
+      "style-loader", // 把编译号的css插入到页面的head中
+      "css-loader",   // 编译@import()/url()这种语法的
+      // "less-loader",  // less加载器(编译less)
+      {
+        // less的配置也可以不用上面的字符串，使用对象 => 添加更多额外的配置
+        loader: "less-loader",
+        options: {
+          // 加载器额外的配置
+        }
+      }
+    ],
+  }]
+}
+```
+6. 入口JS导入调整
+require('./index.less');
+
+编译打包:$ yarn serve
+
+7. postcss-loader 处理前缀 同时需要配置一个autoprefixer
+安装:$ yarn add autoprefixer postcss-loader -D
+
+webpack.config.development.js
+`"postcss-loader",   // 设置前缀`
+
+创建 postcss.config.js
+```javascript
+postcss.config.js
+module.exports = {
+  plugins: [
+    require('autoprefixer')
+  ]
+}
+```
 
 
 
