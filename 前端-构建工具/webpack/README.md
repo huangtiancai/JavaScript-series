@@ -464,11 +464,17 @@ module: {
 6. 入口JS导入调整
 require('./index.less');
 
-编译打包:$ yarn serve
+编译打包:$ yarn serve  => 编译成功
 
-7. postcss-loader 处理前缀 同时需要配置一个autoprefixer
+7. postcss-loader（处理前缀，浏览器兼容问题） 
+由于postcss-loader需要autoprefixer插件，因此我们还需要安装autoprefixer插件
 安装:$ yarn add autoprefixer postcss-loader -D
 
+postcss-loader 配合 autoprefixer 使用两种方法：
+- postcss-loader 使用字符串配置，创建postcss.config.js引入autoprefixer插件并导出
+- postcss-loader 使用对象形式配置，无需创建postcss.config.js，autoprefixer直接在option中配置
+
+#### 第一种方式：
 webpack.config.development.js
 `"postcss-loader",   // 设置前缀`
 
@@ -483,14 +489,199 @@ module.exports = {
 ```
 
 $ yarn serve 
-编译打包后
+按照以上配置，编译打包后查看css文件还是未自动添加浏览器前缀
 
+解决：
+1. postcss.config.js 如果没有配置在哪些浏览器上自动添加前缀，会无法添加成功
+```javascript
+module.exports = {
+  plugins: [
+    require("autoprefixer")({
+      // 必须设置支持的浏览器才会自动添加添加浏览器兼容
+      "browsers": [
+        "defaults",
+        "not ie < 11",
+        "last 2 versions",
+        "> 1%",
+        "iOS 7",
+        "last 3 iOS versions"
+      ]
+    })
+  ]
+}
+```
 
+2. 上述可以完成添加浏览器前缀，但是会报个警告
+```bash
+Replace Autoprefixer browsers option to Browserslist config.
+Use browserslist key in package.json or .browserslistrc file.
+
+Using browsers option can cause errors. Browserslist config
+can be used for Babel, Autoprefixer, postcss-normalize and other tools.
+
+If you really need to use option, rename it to overrideBrowserslist.
+
+Learn more at:
+https://github.com/browserslist/browserslist#readme
+https://twitter.com/browserslist
+```
+
+错误原因：Autoprefixer版本的问题，太高？browsers配置取消了？
+按照错误提示：1）overrideBrowserslist 2）在 package.json 添加 Browserslist config
+
+3. postcss.config.js 修改,去掉browsers设置，然后在package.json中添加配置项
+postcss.config.js
+```javascript
+module.exports = {
+  plugins: [
+    require("autoprefixer")
+  ]
+}
+```
+package.json
+```json
+{
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ]
+}
+```
+
+#### 第二种方式：
+直接在postcss-loader加载器的options中引入插件
+```javascript
+module: {
+  rules: [{
+    test: /\.(css|less)$/,
+    use: [
+      "style-loader",
+      "css-loader",
+      {
+        loader: "postcss-loader",
+        options: {
+          ident: "postcss",
+          plugins: [
+            require('autoprefixer')  // 引入autoprefixer插件
+          ]
+        }
+      },
+      {
+        loader: "less-loader",
+        options: {
+          // ...
+        }
+      }
+    ],
+  }]
+}
+```
+$ yarn serve   编译后正常
 
 
 ### 基于webpack实现CSS的抽离和压缩
+上述是使用 style-loader 加载器把编译好的css以内嵌的方式插入到页面的head中 =>实际上应该将css单独分离打包
+
+1. mini-css-extract-plugin 抽离css内容
+不使用style-loader了，使用mini-css-extract-plugin插件中的loader将编译好的css以外链(link)的方式导入 html
+
+```javascript
+plugins: [
+...
+  new MiniCssExtractPlugin({
+    // css不用匹配入口
+    // 指定输出的文件名
+    filename: "main.min.[hash].css"
+  })
+],
+```
+$ yarn serve  编译打包后，css文件可以以外链的方式引入html了，但是css未实现压缩
+
+2. optimize-css-assets-webpack-plugin
+```javascript
+// 设置webpack优化规则
+optimization: {
+  // 压缩优化 => 优化有很多项 => 数组形式
+  minimizer: [
+    // 压缩css
+    new OptimizeCssAssetsPlugin()
+  ]
+}
+```
+
+$ yarn serve  编译打包后，css已经实现压缩了
+产生的问题:js压缩不再执行自己默认的压缩的方式了,走的也是压缩css这个插件，自然导致无法压缩
+
+3. uglifyjs-webpack-plugin 混淆js
+```javascript
+// 设置webpack优化规则
+optimization: {
+  // 压缩优化 => 优化有很多项 => 数组形式
+  minimizer: [
+    // 压缩css 产生的问题:js压缩不再执行自己默认的压缩的方式了,走的也是压缩css这个插件，自然导致无法压缩
+    new OptimizeCssAssetsPlugin(),
+    // 压缩js
+    new UglifyJsPlugin({
+      cache: true,      // 是否使用缓存
+      parallel: true,   // 是否使用并发编译
+      sourceMap: true   // 启动源码映射（方便调试）
+    })
+  ]
+}
+```
+
+$ yarn serve   编译打包：报错
+未设置压缩js的规则时，走的是webpack默认的优化规则，能压缩和编译；
+设置压缩js的规则后，仅仅能压缩，不能实现对js中的某些语法编译
+
 
 ### 在webpack中基于babel和对应的插件实现JS的编译
+1. 安装：
+           babel加载器    核心        语法转换模块
+$ yarn add babel-loader @babel/core @babel/preset-env -D
+
+```javascript
+{
+  test: /\.js$/,
+  use: [
+    {
+      loader: "babel-loader", // 编译js的loader
+      options: {
+        // 基于BABEL的语法解析包（ES6->ES5）
+        presets: [
+          "@babel/preset-env"
+        ]
+      }
+    }
+  ]
+}
+```
+
+$ yarn serve    编译成功
+
+2. 处理特殊js语法
+$ yarn add @babel/plugin-proposal-class-properties -D  处理类属性
+$ yarn add @babel/plugin-proposal-decorators -D        处理装饰器
+
+$ yarn serve 报错？
+原因：每次编译都会编译node_modules下的js,安装的插件不能解析，故科设置忽略编译的js
+
+```javascript
+// 指定JS编译的目录
+exclude: /node_modules/,
+// 指定忽略JS编译的目录
+include: path.resolve(__dirname, 'src')
+```
+
+3. 使用 @babel/plugin-transform-runtime  => 必须安装 @babel/runtime、@babel/polyfill 且需要安装生产环境
+$ yarn add @babel/plugin-transform-runtime -D   => 开发环境
+$ yarn add @babel/runtime @babel/polyfill       => 生产环境
+
+
 
 ### 基于webpack图片处理
 

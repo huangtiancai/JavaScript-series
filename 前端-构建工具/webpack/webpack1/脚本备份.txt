@@ -19,3 +19,14 @@
     "echarts": "^4.6.0"
   }
 }
+
+
+postcss-loader（处理前缀）同时配置 autoprefixer 插件
+
+新建postcss.config.js文件
+
+module.exports = {
+  plugins: [
+    require('autoprefixer')
+  ]
+}
