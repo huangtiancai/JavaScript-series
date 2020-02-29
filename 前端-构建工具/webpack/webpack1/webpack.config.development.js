@@ -33,8 +33,8 @@ module.exports = {
     ]
   },
   mode: 'production',
-  // 入口
-  entry: './src/index.js',
+  // 入口,
+  entry: ['@babel/polyfill', './src/index.js'],
   // 出口
   output: {
     // 输出的文件名  boundle.min.[hash].js => 让每一生成的文件名都带着hash值，而不是在？后添加hash值
@@ -47,7 +47,7 @@ module.exports = {
   // 特点：服务器启动后，默认时不关闭的，当我们修改SRC中文件中，它会自动进行编译，然后自动刷新浏览器
   devServer: {
     port: 3000,               // 创建服务指定的端口
-    progress: false,          // 显示打包编译进度
+    progress: true,          // 显示打包编译进度
     // compress: true,           // 服务器压缩
     contentBase: './dist',   // 指定当前服务处理资源目录 => 以这个目录起的服务
     // open: true,               // 编译完自动打开浏览器
@@ -123,7 +123,8 @@ module.exports = {
             // 使用插件处理>=ES6语法 => 特殊语法
             plugins: [
               ["@babel/plugin-proposal-decorators", { "legacy": true }],
-              ["@babel/plugin-proposal-class-properties", { "loose": true }]
+              ["@babel/plugin-proposal-class-properties", { "loose": true }],
+              "@babel/plugin-transform-runtime"
             ]
           }
         }

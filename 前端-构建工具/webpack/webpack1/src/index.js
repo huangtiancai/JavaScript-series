@@ -10,6 +10,9 @@ let {
   fun1
 } = require('./common');
 
+// 导入@babel/polyfill => asynsc await
+// require('@babel/polyfill');
+
 
 // CSS需要在我们的入口JS导入后才可以使用
 require('./index.less');
@@ -40,17 +43,31 @@ function log(target) {
   target.decorator = true;
 }
 
-// 
-
-
 
 // fun1();
 // fun2();
 // console.log('1');
 
 
-A.fun();  // fun
-new A().sum();  // sum
-console.log(new A().n); // 10
-console.log(A.m); // 20
-console.log(A.decorator); // true
+// A.fun();  // fun
+// new A().sum();  // sum
+// console.log(new A().n); // 10
+// console.log(A.m); // 20
+// console.log(A.decorator); // true
+
+
+// polyfill 处理async、await语法
+function sum() {
+  return new Promise((resolve, reject) => {
+    setTimeout(_ => {
+      resolve(100);
+    }, 1000);
+  });
+}
+
+async function fn() {
+  let n = await sum();
+  console.log(n);
+}
+
+fn();

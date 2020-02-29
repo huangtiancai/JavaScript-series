@@ -681,8 +681,16 @@ include: path.resolve(__dirname, 'src')
 $ yarn add @babel/plugin-transform-runtime -D   => 开发环境
 $ yarn add @babel/runtime @babel/polyfill       => 生产环境
 
+ polyfill 处理async、await语法
 
 
 ### 基于webpack图片处理
+
+
+
+
+
+
+
 
 
