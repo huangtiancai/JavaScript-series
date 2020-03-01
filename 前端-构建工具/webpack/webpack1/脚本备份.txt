@@ -30,3 +30,11 @@ module.exports = {
     require('autoprefixer')
   ]
 }
+
+
+{
+  loader: "file-loader",
+  options: {
+    esModule: false
+  }
+}

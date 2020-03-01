@@ -351,7 +351,7 @@ webpack.config.development.js插件配置：
   ]
 ```
 打包编译：
-yarn build  OR  npm run build  => 生成build目录：index.html、boundle.min.js
+yarn build  OR  npm run build  => 生成build目录：index.html、boundle.min.js => index.html自动引入boundle.min.js
 
 注意：
 ```javascript
@@ -405,7 +405,6 @@ minify: {
   removeEmptyAttributes: true   // 删除所有含空白值的属性
 }
 ```
-
 
 
 ### 基于webpack实现CSS样式的处理 -webpack中的加载器loader
@@ -678,19 +677,206 @@ include: path.resolve(__dirname, 'src')
 ```
 
 3. 使用 @babel/plugin-transform-runtime  => 必须安装 @babel/runtime、@babel/polyfill 且需要安装生产环境
-$ yarn add @babel/plugin-transform-runtime -D   => 开发环境
-$ yarn add @babel/runtime @babel/polyfill       => 生产环境
+$ yarn add @babel/plugin-transform-runtime -D   => 开发环境   => includes
+$ yarn add @babel/runtime @babel/polyfill       => 生产环境   => ES7中新的语法：aynsc、await...
 
  polyfill 处理async、await语法
 
+ @babel/polyfill 使用：
+ 1) 生产环境下安装好后，在js中 require 导入：require('@babel/polyfill');
+ 2) 配置在webpack入口 => entry: ['@babel/polyfill', './src/index.js'] 
+
+ 4. 使用jquery
+ 安装： $ yarn add jquery
+ 导入：import jquery from 'jquery';
+
+暴露全局loader
+$ yarn add expose-loader -D
+```javascript
+// 向每个模块中注入全局变量
+new Webpack.ProvidePlugin({
+  $: "jquery"
+})
+```
+
+### ESlint语法检测
+安装：
+           语法检测
+$ yarn add eslint eslint-loader -D
+
+
+在vscode中开启ES7中类的装饰器，项目根目录设置jsconfig.json，这样装饰器语法就不会报错了
+```json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true
+  }
+}
+```
+
 
 ### 基于webpack图片处理
+在html中导入
+在js中创建图片
+在css中设置背景图
+...
+
+1. css - background:url引入背景图   仅需要file-loader
+安装：
+$ yarn add file-loader html-withimg-loader -D
+```javascript
+ {
+  // 处理图片
+  test: /\.(png|jpg|jpeg|gif)$/,
+  use: [
+    {
+      loader: "file-loader",
+      options: {
+        esModule: false
+      }
+    }
+  ]
+}
+```
+
+2. html - img标签引入图片   需要file-loader 和 html-withimg-loader 两个loader处理
+```javascript
+{ 
+  // 处理图片
+  test: /\.(png|jpg|jpeg|gif)$/,
+  use: [
+    {
+      loader: "file-loader",
+      options: {
+        esModule: false
+      }
+    }
+  ]
+},{
+  // 处理html导入的img图片
+  test: /\.(html|htm|xml)$/,
+  use: ["html-withimg-loader"]
+}
+```
+
+webpack打包html引入图片问题: 
+参考：
+https://www.cnblogs.com/webSong/p/12118595.html
+https://segmentfault.com/q/1010000021251426?utm_source=tag-newest
+
+
+"file-loader": "^5.1.0" 
+
+file-loader升级了，以前4.2的时候是没事的，现在file-loader升级到5.0了，所以需要在file-loader的options里使用一个配置：esModule:false
+
+3. js引入图片 - 仅需要file-loader
+```javascript
+{ 
+  // 处理图片
+  test: /\.(png|jpg|jpeg|gif)$/,
+  use: [
+    {
+      loader: "file-loader",
+      options: {
+        esModule: false
+      }
+    }
+  ]
+}
+```
+
+index.js
+```javascript
+// js 插入图片 webpack:需要把图片导入进来再使用
+// 相对地址需要require处理，绝对地址不需要,如：https://cn.vuejs.org/images/logo.png
+let imgSrc = require('./assets/htpp.png');
+
+let img = new Image();
+img.src = imgSrc;
+// 通过js将图片追加到id为app的div内
+document.getElementById('app').appendChild(img);
+```
+
+4. url-loader  实际开发一般不使用file-loader
+安装：$ yarn add url-loader -D
+```javascript
+{
+  loader: "url-loader",
+  options: {
+    esModule: false,
+    // 只要图片小于200kb,在处理的时候直接给BASE64
+    limit: 1 * 1024,
+  }
+}
+```
+
+base64的使用？图片处理？
+
+
+### 最后实现分目录打包
+一般对js和css不做处理，一般只有一个js一个css,只给图片做处理
+1. 加前缀
+```javascript
+// 给编译后引用资源地址前面设置的前缀 => 同时给js、css、img输出前加上目录
+publicPath: './'
+```
+2. 定义目录
+```javascript
+{
+  loader: "url-loader",
+  options: {
+    esModule: false,
+    // 只要图片小于200kb,在处理的时候直接给BASE64
+    limit: 1 * 1024,
+    // 控制打包后图片所在的目录
+    outputPath: 'images'
+  }
+}
+```
+
+
+### 多目录打包（多入口、多出口）
 
 
 
+-----------------------------------------------------------------------------------------------
+总结：
+基本webpack配置:
+
+- 1.mode
+- 2.entry
+- 3.output
+- 4.devServer
+- plugins 插件
+  + 5.html-webpack-plugin 打包html
+
+- module 加载器loader处理规则
+  + css
+    + 6.less-loader                   编译css中@import()/url()这些特殊语法
+    + 7.postcss-loader(autoprefixer)  处理前缀，浏览器兼容问题
+    + 8.css-loader                    编译像 @import()、background的url() 这些导入外部资源的css语法
+    + 9.style-loader                  用内嵌的方式把编译好的css插入到页面的head中
+    + 10.mini-css-extract-plugin      css抽离
+  + js
+    + 13.babel-loader                 ES6语法编译
+      + presets: 
+        + 14.@babel/preset-env
+      + plugins:                      特殊语法
+        + 15.@babel/plugin-proposal-decorators
+        + 16.@babel/plugin-proposal-class-propertie
+        + 17.@babel/plugin-transform-runtime
+        + 18.@babel/runtime、@babel/polyfill       polyfill 处理async、await语法
+        + 19.expose-loader            暴露全局loader => 向每个模块中注入全局变量...
+      + 20.eslint-loader                语法检测
+  + 处理图片
+    + 21.file-loader
+    + 22.url-loader
+  + 处理html导入的img图片
+    + 23.html-withimg-loader
 
 
-
-
-
-
+- optimization 优化规则
+  + 11.optimize-css-assets-webpack-plugin  压缩css
+  + 12.uglifyjs-webpack-plugin             压缩js
+  
+--------------------------------------------------------------------------------------------

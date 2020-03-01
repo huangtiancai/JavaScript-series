@@ -2,18 +2,20 @@
 
 // webpack 基于node.js开发 => 所有规则必须以CommonJS规范导出，且规则写在 module.exports = {} 中 
 
-// 使用node.js的path模块
+// 使用node.js的path模块 => 指定输出的目录
 const path = require('path');
 
 // 每一个导入进来的插件都是一个类 => new HtmlWebpackPlugin({})
-// 引入html-webpack-plugin插件
+// 打包html
 let HtmlWebpackPlugin = require('html-webpack-plugin');
-// 引入mini-css-extract-plugin插件
+// 抽离css
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// 引入optimize-css-assets-webpack-plugin插件   optimize:优化
+// 压缩css   optimize:优化
 let OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-//
+// 压缩js
 let UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+let Webpack = require('webpack');
 
 
 
@@ -38,9 +40,11 @@ module.exports = {
   // 出口
   output: {
     // 输出的文件名  boundle.min.[hash].js => 让每一生成的文件名都带着hash值，而不是在？后添加hash值
-    filename: `boundle.min.[hash].js`,
+    filename: 'boundle.min.[hash].js',
     // 输出的目录（必须是绝对路径）, __dirname:当前目录
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    // 给编译后引用资源地址前面设置的前缀 => 同时给js、css、img输出前加上目录
+    publicPath: './'
   },
 
   // webpack-dev-server配置  执行命令：webpack-dev-server xxx.js
@@ -48,9 +52,9 @@ module.exports = {
   devServer: {
     port: 3000,               // 创建服务指定的端口
     progress: true,          // 显示打包编译进度
-    // compress: true,           // 服务器压缩
+    compress: true,           // 服务器压缩
     contentBase: './dist',   // 指定当前服务处理资源目录 => 以这个目录起的服务
-    // open: true,               // 编译完自动打开浏览器
+    open: true,               // 编译完自动打开浏览器
     hot: true
   },
 
@@ -60,6 +64,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       // 指定模板（真实项目中一般把自己写好的html进行编译），不指定模板会按照默认模板创建一个html页面
       template: './src/index.html',
+      title: 'Webpack App',
       filename: 'index.html', // 指定输出文件名
       //  让引入的js后面引入hash戳（清除缓存）  真实项目中都是每一次编译生成不同JS文件引入
       // hash: true
@@ -76,6 +81,10 @@ module.exports = {
       // css不用匹配入口
       // 指定输出的文件名
       filename: "main.min.[hash].css"
+    }),
+    // 向每个模块中注入全局变量
+    new Webpack.ProvidePlugin({
+      $: "jquery"
     })
   ],
 
@@ -127,12 +136,33 @@ module.exports = {
               "@babel/plugin-transform-runtime"
             ]
           }
-        }
+        },
+        // 先检测语法是否符合规范再转换
+        "eslint-loader"
       ],
       // 指定JS编译的目录
       exclude: /node_modules/,
       // 指定忽略JS编译的目录
       include: path.resolve(__dirname, 'src')
+    }, {
+      // 处理图片
+      test: /\.(png|jpg|jpeg|gif|ico)$/,
+      use: [
+        {
+          loader: "url-loader",
+          options: {
+            esModule: false,
+            // 只要图片小于200kb,在处理的时候直接给BASE64
+            limit: 1 * 1024,
+            // 控制打包后图片所在的目录
+            outputPath: 'images'
+          }
+        }
+      ]
+    }, {
+      // 处理html导入的img图片
+      test: /\.(html|htm|xml)$/,
+      use: ["html-withimg-loader"]
     }]
   }
 
