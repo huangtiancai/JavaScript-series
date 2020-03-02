@@ -35,16 +35,16 @@ module.exports = {
     ]
   },
   mode: 'production',
-  // 入口,
-  entry: ['@babel/polyfill', './src/index.js'],
+  // 入口 entry 可以是一个数组/对象
+  entry: ['@babel/polyfill', './src/index.js', './src/a.js'],
   // 出口
   output: {
     // 输出的文件名  boundle.min.[hash].js => 让每一生成的文件名都带着hash值，而不是在？后添加hash值
-    filename: 'boundle.min.[hash].js',
+    filename: 'boundle.min.[hash:8].js',
     // 输出的目录（必须是绝对路径）, __dirname:当前目录
     path: path.resolve(__dirname, 'dist'),
     // 给编译后引用资源地址前面设置的前缀 => 同时给js、css、img输出前加上目录
-    publicPath: './'
+    // publicPath: './'
   },
 
   // webpack-dev-server配置  执行命令：webpack-dev-server xxx.js
@@ -71,16 +71,16 @@ module.exports = {
       // 控制html压缩
       minify: {
         collapseWhitespace: true,     // 去除空格
-        removeComments: true,         // Strip HTML comments 删除注释
+        // removeComments: true,         // Strip HTML comments 删除注释
         removeAttributeQuotes: true,  // 尽可能删除属性周围的引号
-        removeEmptyAttributes: true   // 删除所有含空白值的属性
+        // removeEmptyAttributes: true   // 删除所有含空白值的属性
       }
     }),
 
     new MiniCssExtractPlugin({
       // css不用匹配入口
       // 指定输出的文件名
-      filename: "main.min.[hash].css"
+      filename: "main.min.[hash:8].css"
     }),
     // 向每个模块中注入全局变量
     new Webpack.ProvidePlugin({

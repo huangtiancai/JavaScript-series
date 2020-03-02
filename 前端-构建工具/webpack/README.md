@@ -178,7 +178,6 @@ index.html中引入打包后生成的js文件浏览器就可以生效了
 <script src="../dist/main.js"></script>
 ```
 
-
 ### webpack自定义规则配置
 从webpack4.0可以采用0配置打包（太弱），但是实际打包时一般不会采用0配置
 
@@ -362,7 +361,7 @@ script标签 - 从服务器上请求js文件 - get请求 - 每次请求资源文
 
 =>
 
-解决:
+解决缓存问题:
 1. 以前：src="boundlbinayie.min.js?时间戳" 请求地址后+?+时间戳/hash戳
 如配置hash戳： hash: true
 - src="boundle.min.js?ecc083f9dae327a9bf10"  修改js后hash戳变化，js不修改hash戳不变化
@@ -381,6 +380,12 @@ output: {
 - src="boundle.min.c9cedaf9e95dbc542073.js"   修改js后引入的js文件名变化，否则不变化
 - src="bounzdle.min.ecc083f9dae327a9bf10.js"
 
+3. hash
+```javascript
+filename: 'boundle.min.[hsah].js'     hash 默认值20位
+filename: 'boundle.min.[hsah:8].js'   设置hash位数为8 
+filename: "main.min.[hash:8].css"
+```
 
 注意：
 - 一般只对js和css做hash,index.html不做hash
@@ -405,6 +410,7 @@ minify: {
   removeEmptyAttributes: true   // 删除所有含空白值的属性
 }
 ```
+
 
 
 ### 基于webpack实现CSS样式的处理 -webpack中的加载器loader
@@ -834,8 +840,28 @@ publicPath: './'
 }
 ```
 
+问题：
+定义 publicPath: './' 后，开发环境：yarn serve 打开的页面报错？故先注释掉  // publicPath: './'
 
 ### 多目录打包（多入口、多出口）
+1. js文件间无依赖关系
+index.js引入了有依赖关系的js,然后一起打包，如果有一js文件:a.js和index.js没有依赖关系，怎么处理？
+```javascript
+// 入口 entry 可以写一个数组
+entry: ['@babel/polyfill', './src/index.js', './src/a.js'],
+```
+
+2. 打包多页：多入口、多出口
+单页  index.html 引用多个js
+多页  a.html index.js /  b.html a.js
+```
+
+```
+
+
+
+
+
 
 
 
