@@ -14,20 +14,31 @@ let {
   fun1
 } = require('./common');
 
+
+// 热更新
+var str = 'Webpack App'
+document.getElementById('app').innerHTML = str;
+
+// 引用webpack中的 HotModuleReplacementPlugin 
+// 如下做判断，可以实现浏览器无刷新
+if (module.hot) {
+  module.hot.accept();
+}
+
+
 // 导入@babel/polyfill => asynsc await
 // require('@babel/polyfill');
 
-// js 插入图片 webpack:需要把图片导入进来再使用
-// let imgSrc = require('./assets/htpp.png');
-
 // CSS需要在我们的入口JS导入后才可以使用
 require('./index.less');
+
+// js 插入图片 webpack:需要把图片导入进来再使用
+// let imgSrc = require('./assets/htpp.png');
 
 // let img = new Image();
 // img.src = imgSrc;
 // // 通过js将图片追加到id为app的div内
 // document.getElementById('app').appendChild(img);
-
 
 
 // // 特殊语法：
@@ -58,6 +69,7 @@ require('./index.less');
 fun1();
 fun2();
 console.log('1');
+
 
 
 // // A.fun();  // fun

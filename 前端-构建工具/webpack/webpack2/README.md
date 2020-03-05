@@ -1,39 +1,11 @@
-### 前端自动化部署工具
-- grunt
-- glup
-- fis - 百度
-以上基本不用
-- webpack:1.0-4.0
-
-### webpack作用
-base64
-sass、less => css
-ES6 => 兼容
-...
-
-webpack 基于node.js <= node.js中的fs模块（IO操作）
-
-### webpack版本
-webpack版本的使用：
-以webpack4.0为准，主要是因为快速构建工程化项目的脚手架：
-[Vue的脚手架-Vue-CLI和React的脚手架-create-react-app]基于webpack4.0
-
-参考：https://www.webpackjs.com
-
-### webpack的使用
+## webpack安装
 初始化package.json
-```
-npm init -y
-```
-- 全局安装(不i推荐)
-```
-npm i webpack webpack-cli -g
-```
-本地安装（为了防止全局安装出现的版本冲突，一般把webpack安装在本地项目中）
+$ npm init -y OR  $ yarn init -y
 
-webpack安装:
+webpack（本地）安装:
 1. npm命令安装
-```webpack以前版本只需要安装webpack,webpack4.0必须多安装一个webpack-cli
+webpack以前版本只需要安装webpack,webpack4.0必须多安装一个webpack-cli
+```
 npm i webpack webpack-cli --save-dev
 ```
 2. yarn命令安装：
@@ -41,56 +13,24 @@ npm i webpack webpack-cli --save-dev
 yarn add webpack webpack-cli -D
 ```
 
-### 运行webpack
-webpack如果全局安装 => 直接执行打包命令webpack => 全局安装不推荐 => 本地安装
-全局安装:webpack
-本地安装:npx webpack
+## webpack可以进行0配置
+1. npm5.2后提供了一个命令：npx
+$ npx webpack => 基于npx执行了webpack命令实现了打包部署
 
-前提：未添加入口文件：index.js
-1. npm5.2后提供了一个命令：npx,基于这个命令可以执行本地安装的模块,同时解决全局安装冲突的问题
-`$ npx webpack`  基于npx执行了webpack命令，而这个命令就是实现打包部署的
-
-npx webpack执行的过程：
-1）找到node-modules/.bin
-2）会执行node_modules对应的bin下的webpack.cmd (根据webpack.cmd寻找..\webpack\bin\webpack.js)
-3) npx webpack = node "%dp0%\..\webpack\bin\webpack.js" => node webpack.js
-
-2. 在package.json配置可执行的脚本（真实项目中使用）
-```
-"scripts": {
-    "build": "webpack"
-  }
-```
-`$ npm run build OR $ yarn build`
-
-$ npx webpack OR $ npm run build OR $ yarn build 执行后有两个错误：
+以下有两个常见错误：
 >1. ERROR in Entry module not found: Error: Can't resolve './src' in '...'
 原因：上述两种方式都能运行webpack(没有提示不是系统命令),只是没有指定入口模块，故报错
 >2. The 'mode' option has not been set => 没有设置mode
 
-解决：故添加默认的入口文件index.js,并设置模式(development/production)
+解决：
+1. 故添加默认的入口文件index.js
+2. 设置模式(development/production)
 
-#### npx webpack
-npx webpack 命令后指定mode
 
-`$ npx webpack --mode development`
-
-```bash
+npx webpack 命令后指定mode:developemnt OR production
 $ npx webpack --mode development
-Hash: 4cd5e7a11cb7c3bf2508
-Version: webpack 4.41.6
-Time: 287ms
-Built at: 2020-02-24 17:41:59
-  Asset     Size  Chunks             Chunk Names
-main.js  5.2 KiB    main  [emitted]  main
-Entrypoint main = main.js
-[./src/common.js] 77 bytes {main} [built]
-[./src/common2.js] 107 bytes {main} [built]
-[./src/index.js] 286 bytes {main} [built]
-```
-可以发现已经产生了dist目录，此目录为最终打包出的结果，main.js可以在html中直接引用
 
-#### npm run build：
+
 在package.json中配置脚本(脚本中配置模式)：
 ```json
 "scripts": {
@@ -98,76 +38,9 @@ Entrypoint main = main.js
     "build": "webpack --mode development"
   },
 ```
+$ npm run build   OR   $ yarn build
 
-$ npm run build
-
-```bash
-$ npm run build
-
-> webpack1@1.0.0 build C:\GitHub\LocalGithub\JavaScript-series\前端-构建工具\webpack\webpack1
-> webpack --mode development
-
-Hash: 4cd5e7a11cb7c3bf2508
-Version: webpack 4.41.6
-Time: 97ms
-Built at: 2020-02-24 17:49:15
-  Asset     Size  Chunks             Chunk Names
-main.js  5.2 KiB    main  [emitted]  main
-Entrypoint main = main.js
-[./src/common.js] 77 bytes {main} [built]
-[./src/common2.js] 107 bytes {main} [built]
-[./src/index.js] 286 bytes {main} [built]
-```
-
-#### yarn build
-在package.json中配置脚本(脚本中配置模式)：
-```json
-"scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode development"
-  },
-```
-$ yarn build
-
-```bash
-$ yarn build
-yarn run v1.21.1
-$ webpack --mode development
-Hash: 4cd5e7a11cb7c3bf2508
-Version: webpack 4.41.6
-Time: 98ms
-Built at: 2020-02-24 17:50:23
-  Asset     Size  Chunks             Chunk Names
-main.js  5.2 KiB    main  [emitted]  main
-Entrypoint main = main.js
-[./src/common.js] 77 bytes {main} [built]
-[./src/common2.js] 107 bytes {main} [built]
-[./src/index.js] 286 bytes {main} [built]
-Done in 1.39s.
-```
-总结：开发中一般使用脚本命令方式：npm run build OR yarn build 且yarn命令下载安装包速度更快，推荐使用yarn命令
-
-详细分析打包目录
-### 基础打包语法
-1. 传统不打包的情况下，必须在index.html中引入所有所有js文件
-```javascript
-<script src="common.js"></script>
-<script src="common2.js"></script>
-<script src="index.js"></script>
-```
-在common.js和common2.js中分别定义函数，index.js中调用定义的函数
-然后在index.html中引入js文件的顺序要注意：common.js和common2.js必须在index.js之前引入，否则会报错
-
-2. 打包
-将common.js和common2.js的函数分别用CommonJS/ES6Module模块导出,
-在index.js中（调用）使用CommonJS/ES6Module模块导入，
-在index.html中引入index.js后，浏览器也会报错：
-浏览器不支持CommonJS规范和ES6Module规范：
-    （1）CommonJS规范属于nodes模块的规范，node中可以执行
-    （2）ES6Module
-  故用webpack按照js的依赖关系进行打包成一个js文件，再引入就可以了
-
-3. 打包编译
+目录分析：
 > src:存储项目开发的源文件目录（html、js、css、图片等）
 > dist:打包后的文件目录
 上述npm run build打包编译是默认的：
@@ -178,13 +51,8 @@ index.html中引入打包后生成的js文件浏览器就可以生效了
 <script src="../dist/main.js"></script>
 ```
 
-### webpack自定义规则配置
-从webpack4.0可以采用0配置打包（太弱），但是实际打包时一般不会采用0配置
-
-webpack在打包时默认会查找当前目录下的
-- webpack.config.js
-- webpackfile.js
-如果没有上述两配置文件，或者有这两个文件，但是未设置自定义的打包规则 => 采用默认打包
+## 手动配置webpack
+webpack默认配置文件： webpack.config.js/- webpackfile.js
 
 1. 通过默认配置文件webpack.config.js打包进行自定义规则配置
 ```javascript
@@ -298,7 +166,7 @@ index.html
 boundle.min.js  - 非实体文件，在内存中
 test.json
 
-http://localhost:3000 = http://localhost:3000/index.html
+http://localhost:3000 = http://localhost:3000/index.html  一般默认找的index.html
 http://localhost:3000/boundle.min.js 内存中
 http://localhost:3000/test.json
 
@@ -344,7 +212,7 @@ webpack.config.development.js插件配置：
     // 传入对象进行配置
     new HtmlWebpackPlugin({
       // 指定html模板（一般真实项目把自己写好的html进行编译），不指定模板会按照默认模板创建一个html页面
-      template:'./indx.html',
+      template:'./index.html',
       filename: 'index.html', // 指定输出文件名
     })
   ]
@@ -853,19 +721,46 @@ entry: ['@babel/polyfill', './src/index.js', './src/a.js'],
 
 2. 打包多页：多入口、多出口
 单页  index.html 引用多个js
-多页  a.html index.js /  b.html a.js
+多页  index.html index.js /  a.html a.js
+```javascript
+entry: {
+  index: './src/index.js',
+  a: './src/a.js'
+},
+output: {
+  filename: '[name].min.[hash:8].js',
+  path: path.resolve(__dirname, 'dist'),
+}
+
+plugins: [
+  new HtmlWebpackPlugin({
+    template: './src/index.html',
+    filename: 'index.html',
+    chunks: ['index'],
+  }),
+  new HtmlWebpackPlugin({
+    template: './src/index.html',
+    filename: 'a.html',
+    chunks: ['a']
+  })
+]
 ```
 
+### 补充
+1. 热更新，不刷新浏览器
+不需要HotModuleReplacementPlugin加载器？？
+仅需要在js中配置：
+```javascript
+if (module.hot) {
+  module.hot.accept();
+}
 ```
+2. 抽离
+- style-loader 加载器把编译好的css以内嵌的方式插入到页面的head中 =>实际上应该将css单独分离打包
+- mini-css-extract-plugin 抽离css内容，不使用style-loader了，使用mini-css-extract-plugin插件中的loader将编译好的css以外链(link)的方式导入 html => 抽离后的是一个css文件
+- css/less  分别抽离
 
 
-
-
-
-
-
-
------------------------------------------------------------------------------------------------
 总结：
 基本webpack配置:
 
@@ -904,5 +799,3 @@ entry: ['@babel/polyfill', './src/index.js', './src/a.js'],
 - optimization 优化规则
   + 11.optimize-css-assets-webpack-plugin  压缩css
   + 12.uglifyjs-webpack-plugin             压缩js
-  
---------------------------------------------------------------------------------------------
