@@ -36,5 +36,3 @@ console.log(isNaN(false));      // false
 
 console.log(Number(null));      // 0
 console.log(Number(undefined)); // NaN
-
-
