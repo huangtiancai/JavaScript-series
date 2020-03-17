@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myProject</title>
+</head>
+<script src="lib/echarts.custom.min.js"></script>
+
+<body>
+  <div id="main" style="width: 600px;height: 400px;"></div>
+  <script>
+    // 绘制饼图
+    echarts.init(document.getElementById('main')).setOption({
+      series: {
+        type: 'pie',
+        data: [
+          { name: 'A', value: 250 },
+          { name: 'B', value: 250 },
+          { name: 'C', value: 500 },
+        ]
+      }
+    });
+
+  </script>
+</body>
+
+</html>

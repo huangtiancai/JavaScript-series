@@ -15,20 +15,20 @@ p.then(res => {
 // axios(config)
 // Send a GET request
 axios({
-  method:'get',
-  url:'http://localhost:3000/companies',
-  responseType:'stream'
+  method: 'get',
+  url: 'http://localhost:3000/companies',
+  responseType: 'stream'
 })
-.then(response => {
-  console.log("使用 then 时，你将接收下面这样的响应：");
-  console.log(response.data); // Array(3) [ {…}, {…}, {…} ]
-  console.log(response.status); // 200
-  console.log(response.statusText); //OK
-  console.log(response.headers); 
-  console.log(response.config); 
-}).catch(error => {
-	console.log(error);
-});
+  .then(response => {
+    console.log("使用 then 时，你将接收下面这样的响应：");
+    console.log(response.data); // Array(3) [ {…}, {…}, {…} ]
+    console.log(response.status); // 200
+    console.log(response.statusText); //OK
+    console.log(response.headers);
+    console.log(response.config);
+  }).catch(error => {
+    console.log(error);
+  });
 
 
 
