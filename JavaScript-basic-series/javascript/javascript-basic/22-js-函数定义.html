@@ -113,7 +113,7 @@
 		//但是如果把函数表达式赋给一个变量则不需要添加括号也可以直接调用
 		var a = function () {
 			document.write("Hello! 我是自己调用的");
-			return "Hello World!";
+			return "函数自调-变量指向返回的值-Hello World!";
 		}();// 因为函数自调了，变量a不再指向一个函数，指向返回的值 => 而是“Hello World!”这个字符串
 		console.log(a); //在控制台输出字符串
 
@@ -138,10 +138,13 @@
 		console.log(Function1);				//返回function
 		console.log(typeof Function1);//返回function这个字符串
 
+		// 输出函数Function2
+		// console.log(Function2);
 		function Function2(a, b, c) {
 			return arguments.length;
 		}
 		var f3 = Function2(1, 2, 3);
+
 		console.log("函数被调用时收到的参数数目：" + f3);
 
 		function Function3(a, b, c) {
