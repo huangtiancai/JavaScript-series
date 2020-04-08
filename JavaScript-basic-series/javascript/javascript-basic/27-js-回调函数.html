@@ -11,19 +11,19 @@
 		// 1：函数也是对象
 		//函数是用Function()构造函数创建的Function对象
 		function say(value) {
-			alert(value);
+			console.log(value);
 		}
 
-		alert(say);		//只写变量名 say 返回的将会是 say方法本身，以字符串的形式表现出来。
-		alert(say());	//在变量名后加()如say()返回的就会是say方法调用后的结果，这里是弹出value的值
+		console.log(say);		//只写变量名 say 返回的将会是 say方法本身，以字符串的形式表现出来。
+		console.log(say());	//在变量名后加()如say()返回的就会是say方法调用后的结果，这里是弹出value的值
 
-		alert("say类型：" + typeof say);//function
-		alert("say()类型：" + typeof say()); //undefined
+		console.log("say类型：" + typeof say);//function
+		console.log("say()类型：" + typeof say()); //undefined
 
 		// 2.js中函数可以作为参数传递
 		//实例1：
 		function say1(value) {
-			alert(value);
+			console.log(value);
 		}
 		// 将函数和参数 作为另外一个函数的参数传入
 		function execute1(someFunction, value) {
