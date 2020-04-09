@@ -75,6 +75,26 @@
 		var y = mes1.toUpperCase();
 		console.log(y);
 
+		//一直在使用浏览器内建的API和JavaScript的一些对象（内建属性和方法）
+		var myString = 'Hello,I am Bob!';
+		myString.split(",");//使用了一个字符串实例上可用的方法
+		//随时可以在代码里使用字面量创建一个字符串，字符串会自动的被创建为字符串(String)的实例，因此会有一些常见的方法和属性可用。
+
+		//当你这样访问document对象时,正在使用Document实例上可用的方法
+		var myDiv = document.createElement('div');
+		var myVideo = document.querySelector('video');
+
+		//其他内建的对象或API:Array，Math，等,内建的对象或API不会总是自动地创建对象的实例
+		var myNotification = new Notification('Hello!');
+
+		// 总结
+		// 内建属性
+		// 内建方法
+		// 内建对象
+		// 内建API
+		// ......
+
+
 	</script>
 
 

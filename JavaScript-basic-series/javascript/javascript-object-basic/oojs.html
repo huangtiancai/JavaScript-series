@@ -27,7 +27,7 @@
   // };
 
   //更新下我们的对象:
-  person = {
+  pers = {
     name: ['Bob', 'Tom'],
     age: 20,
     gender: 'male',
@@ -36,15 +36,16 @@
       alert("Hi!" + this.name[0]);
     },
     bio: function () {
+      console.log(this);  //  Object 
       alert(this.name[0] + '' + this.name[1] + ' is ' + this.age + ' years old. He likes '
         + this.interests[0] + ' and ' + this.interests[1]);
     }
   };
 
   //点表示法
-  person.name
-  person.name[0]
-  //person.bio()
+  pers.name
+  pers.name[0]
+  //pers.bio()
 
 
 
@@ -130,20 +131,6 @@
       alert(this.name);
     }
   }
-
-  //一直在使用对象
-  //一直在使用浏览器内建的API和JavaScript的一些对象
-  var myString = 'Hello,I am Bob!';
-  myString.split(",");//使用了一个字符串实例上可用的方法
-  //随时可以在代码里使用字面量创建一个字符串，字符串会自动的被创建为字符串(String)的实例，因此会有一些常见的方法和属性可用。
-
-  //当你这样访问document对象时,正在使用Document实例上可用的方法
-  var myDiv = document.createElement('div');
-  var myVideo = document.querySelector('video');
-
-  //其他内建的对象或API:Array，Math， 等,内建的对象或API不会总是自动地创建对象的实例
-  var myNotification = new Notification('Hello!');
-
 </script>
 
 </html>
