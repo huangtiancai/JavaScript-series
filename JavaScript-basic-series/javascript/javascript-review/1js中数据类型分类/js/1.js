@@ -37,4 +37,15 @@ console.log(isNaN(false));      // false
 console.log(Number(null));      // 0
 console.log(Number(undefined)); // NaN
 
+console.log(parseInt('10.5', 10));
+console.log(parseInt('10.5', 10));
 
+// ES5下字符串拼接
+let str = '一个拼接的';
+let jieStr = '这是' + str + '字符串';
+document.write(jieStr);
+
+// ES6字符串模版
+// let str1 = '一个拼接的';
+// let jieStr1 = `这是' + ${str} + '字符串`;
+// document.write(jieStr1);
