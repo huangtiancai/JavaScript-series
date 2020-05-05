@@ -180,6 +180,7 @@ console.log(result);
 // 8.使用 reduce实现map
 console.log([2, 3, 1, 4].reverse()); //  [ 4, 1, 3, 2 ]
 
+// shift
 const shiftArr = [5, 3, 4];
 const firstElement = shiftArr.shift();
 console.log(firstElement); // 5
@@ -198,3 +199,9 @@ const shiftArr1 = [1, 2, 3];
 
 console.log(shiftArr1.unshift(4, 5)); // 5
 console.log(shiftArr1); // [ 4, 5, 1, 2, 3 ]
+
+
+// sort()
+const sortArray = [4, 10, 23, 6, 28, 45];
+sortArray.sort();
+console.log(sortArray);
