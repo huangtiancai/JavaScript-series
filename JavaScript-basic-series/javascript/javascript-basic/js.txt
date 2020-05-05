@@ -1,103 +1,100 @@
-javascript���
-ECM:��javaScript�ĺ���,�����˻����﷨�����㣩
-DOM:�ĵ�����ģ��
-BOM:���������ģ��
+javascript组成
+ECM:是javaScript的核心,包含了基本语法（运算）
+DOM:文档对象模型
+BOM:浏览器对象模型
 
-һ
-ʵ��
-���
-���
-����
-��������   �ص㣺JavaScript�е��ַ���
-����
+一
+实现
+输出
+语句
+变量
+数据类型   重点：JavaScript中的字符串
+数组
 
-��
-�������
-���������
-�����͵ݼ������
-�������������ֵ���㣩
-�Ƚ������
-�߼������
-111
-�������
-ѭ�����
-����
-�¼�
+二
+运算符：
+算术运算符
+递增和递减运算符
+操作运算符（赋值运算）
+比较运算符
+逻辑运算符
 
-js�������
-�������ʽ
+条件语句
+循环语句
+函数
+事件
 
-��
-�����ص㣩
-��������Ժͷ���
-	�ڽ�������
-	�ڽ��ķ���
-�������
-JavaScript�������
-����ԭ�ͣ�X��
-JavaScript�̳У�X��
-json(�ص�)
+三
+对象（重点）
+对象的属性和方法
+	内建的属性
+	内建的方法
+对象基础
+JavaScript面向对象
+对象原型（X）
+JavaScript继承（X）
+json(重点)
 
 
-��
-JavaScript�еļ������:
-1.JavaScript ���ض�������ö���
-Array��Boolean��Date��Math��Number��String��RegExp��Global
-ע�⣺�����ö����롰���ض��󡱵�����
-���ض���Object��Function��Array��String��Boolean��Number��Date��RegExp��
-���ö���Math��Global
-ECMA-262 ֻ�������������ö��󣬼� Global �� Math ������Ҳ�Ǳ��ض��󣬸��ݶ��壬ÿ�����ö����Ǳ��ض���
-���ö����Ǳ��ض����һ�֡�������������ֶ����У�Math�������Ǿ����õ��������Global������ɶ�����أ�
+四
+JavaScript中的几类对象:
+1.JavaScript 本地对象和内置对象
+Array、Boolean、Date、Math、Number、String、RegExp、Global
+注意：“内置对象”与“本地对象”的区别
+本地对象：Object、Function、Array、String、Boolean、Number、Date、RegExp等
+内置对象：Math、Global
+ECMA-262 只定义了两个内置对象，即 Global 和 Math （它们也是本地对象，根据定义，每个内置对象都是本地对象）
+内置对象是本地对象的一种。而其包含的两种对象中，Math对象我们经常用到，可这个Global对象是啥东西呢？
 
-Global����JavaScript ȫ�ֶ�����ECMAScript�����ر�Ķ�����Ϊʵ���������������ڣ������Ҫ�������ECMAScript�У������ڶ����ĺ��������к�����������ĳ������ķ�����������isNaN()��parseInt()��parseFloat()�����ȣ����������Ǻ�������ʵ���ϣ����Ƕ���Global����ķ�����
+Global对象（JavaScript 全局对象）是ECMAScript中最特别的对象，因为实际上它根本不存在，但大家要清楚，在ECMAScript中，不存在独立的函数，所有函数都必须是某个对象的方法。类似于isNaN()、parseInt()和parseFloat()方法等，看起来都是函数，而实际上，它们都是Global对象的方法。
 
-js�ο��ֲ᣺http://www.w3school.com.cn/jsref/index.asp
+js参考手册：http://www.w3school.com.cn/jsref/index.asp
 
-2.HTML DOM:�ĵ�����ģ��
+2.HTML DOM:文档对象模型
   document
-3.BOM:���������ģ�ͣ�Browser ����
-  Window��Navigator��Location��History��Screen
-4.HTML����:����ѧ����HTML��ǩ
+3.BOM:浏览器对象模型（Browser 对象）
+  Window、Navigator、Location、History、Screen
+4.HTML对象:各种学过的HTML标签
 
 
-��
-js�⣺jQuery
+五
+js库：jQuery
 
 Web API
-ʲô��API?
-Ӧ�ó���ӿڣ�API���ǻ��ڱ�����Թ����Ľṹ��ʹ������Ա�����׵ش������ӵĹ��ܡ����ǳ����˸��ӵĴ��룬���ṩһЩ�򵥵Ľӿڹ���ֱ��ʹ�á�
-1.�ͻ���JavaScript�е�API
-- �����API������Web������У��ܴ�������͵����ܱ߻�������ȡ���ݣ������������õĸ��ӵ����� ��
-- ������APIȱʡ����²���������������У�ͨ��������Web�е�ĳ���ط���ȡ�������Ϣ��
+什么是API?
+应用程序接口（API）是基于编程语言构建的结构，使开发人员更容易地创建复杂的功能。它们抽象了复杂的代码，并提供一些简单的接口规则直接使用。
+1.客户端JavaScript中的API
+- 浏览器API内置于Web浏览器中，能从浏览器和电脑周边环境中提取数据，并用来做有用的复杂的事情 。
+- 第三方API缺省情况下不会内置于浏览器中，通常必须在Web中的某个地方获取代码和信息。
 
-2.JavaScript��API������JavaScript����֮��Ĺ�ϵ
-- JavaScript �� һ��������������ĸ߼��ű����ԣ�����������ʵ��Webҳ��/Ӧ���еĹ���
-- �ͻ���API�������API��  �� ������������Ľṹ����λ��JavaScript���Զ�����ʹ�����Ը����׵�ʵ�ֹ��ܡ�
-- ������API �� ���ڵ�������ͨ�Ľṹ��������Twitter��Facebook����ʹ���������Լ���Webҳ����ʹ����Щƽ̨��ĳЩ���ܣ�����������Webҳ����ʾ���µ�Tweets��
-- JavaScript�� �� ͨ���ǰ��������ض����ܵ�һ������JavaScript�ļ�������Щ�ļ�����������Webҳ�Կ��ٻ���Ȩ��д�����Ĺ��ܡ��������jQuery��Mootools
-- JavaScript��� �� �ӿ⿪ʼ����һ����JavaScript�����ͼ��HTML��CSS��JavaScript��������װ�ļ��������һ��Ȼ��������ͷ��дһ��������WebӦ�á�
+2.JavaScript，API和其他JavaScript工具之间的关系
+- JavaScript — 一种内置于浏览器的高级脚本语言，您可以用来实现Web页面/应用中的功能
+- 客户端API（浏览器API）  — 内置于浏览器的结构程序，位于JavaScript语言顶部，使您可以更容易的实现功能。
+- 第三方API — 置于第三方普通的结构程序（例如Twitter，Facebook），使您可以在自己的Web页面中使用那些平台的某些功能（例如在您的Web页面显示最新的Tweets）
+- JavaScript库 — 通常是包含具有特定功能的一个或多个JavaScript文件，把这些文件关联到您的Web页以快速或授权编写常见的功能。例如包含jQuery和Mootools
+- JavaScript框架 — 从库开始的下一步，JavaScript框架视图把HTML、CSS、JavaScript和其他安装的技术打包在一起，然后用来从头编写一个完整的Web应用。
 
-3.���������API
-- �����ĵ���API������������С������Ե�������DOM���ĵ�����ģ�ͣ�API
-- �ӷ�������ȡ���ݵ�API��ʹ���Ϊ���ܵ�API����XMLHttpRequest��Fetch API�� Ajax
-- ���ڻ��ƺͲ���ͼ�ε�API
-- ��Ƶ����ƵAPI
-- �豸API
-- �ͻ��˴洢API
+3.常见浏览器API
+- 操作文档的API内置于浏览器中。最明显的例子是DOM（文档对象模型）API
+- 从服务器获取数据的API（使这成为可能的API包括XMLHttpRequest和Fetch API） Ajax
+- 用于绘制和操作图形的API
+- 音频和视频API
+- 设备API
+- 客户端存储API
 
-4.����������API
-- Twitter API, ��������������վ��չʾ����������ĵȡ�
-- Google Maps API��BaiduMap API���ߵµ�ͼ����Ѷ��ͼ
-- �ȵ�
+4.常见第三方API
+- Twitter API, 允许您在您的网站上展示您最近的推文等。
+- Google Maps API、BaiduMap API、高德地图、腾讯地图
+- 等等
 
-5.API��ι�����
-- ���ڶ���
- APIʹ��һ������ JavaScript objects �����Ĵ����н��н�������Щ��������APIʹ�õ����ݣ������ڶ��������У��������Լ�API�ṩ�Ĺ��ܣ������ڶ��󷽷��У���
-- �п�ʶ�����ڵ�
-- ʹ���¼�������״̬�ı仯
-- ���ʵ��ĵط��ж���İ�ȫ����
+5.API如何工作？
+- 基于对象
+ API使用一个或多个 JavaScript objects 在您的代码中进行交互，这些对象用作API使用的数据（包含在对象属性中）的容器以及API提供的功能（包含在对象方法中）。
+- 有可识别的入口点
+- 使用事件来处理状态的变化
+- 在适当的地方有额外的安全机制
 
-�ο���
+参考：
 https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Introduction
 https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_Web_APIs/Manipulating_documents
 https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model
@@ -105,7 +102,7 @@ https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events
 https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data
 https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage
 
-ת���ַ���https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String#Escape_notation
+
 
 
 

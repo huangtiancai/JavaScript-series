@@ -1,90 +1,92 @@
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>彻底理解JavaScript中回调函数</title>
-	</head>
-	<body>
-		<script>
-			// 1：函数也是对象
-			//函数是用Function()构造函数创建的Function对象
-			function say(value){
-				alert(value);
+
+<head>
+	<meta charset="utf-8" />
+	<title>彻底理解JavaScript中回调函数</title>
+</head>
+
+<body>
+	<script>
+		// 1：函数也是对象
+		//函数是用Function()构造函数创建的Function对象
+		function say(value) {
+			console.log(value);
+		}
+
+		console.log(say);		//只写变量名 say 返回的将会是 say方法本身，以字符串的形式表现出来。
+		console.log(say());	//在变量名后加()如say()返回的就会是say方法调用后的结果，这里是弹出value的值
+
+		console.log("say类型：" + typeof say);//function
+		console.log("say()类型：" + typeof say()); //undefined
+
+		// 2.js中函数可以作为参数传递
+		//实例1：
+		function say1(value) {
+			console.log(value);
+		}
+		// 将函数和参数 作为另外一个函数的参数传入
+		function execute1(someFunction, value) {
+			someFunction(value);
+		}
+		execute1(say1, 'hi js');//hi js
+
+		//实例2：
+		function execute2(someFunction, value) {
+			someFunction(value);
+		}
+		execute1(function (value) { alert(value); }, 'hi js');//hi js
+
+		//实例1将say方法作为参数传递给execute方法
+		//实例2直接将匿名函数作为参数传递给execute方法
+
+
+		//直接写say方法的方法名与下面的匿名函数可以认为是一个东西
+		//function say (value) { alert(value); } => say = function (value) { alert(value); }
+
+		//这里的say或者匿名函数就被称为回调函数
+
+		//回调函数
+		//响应回调事件
+
+
+		// 3.回调函数容易混淆点——传参
+		//两种回调函数传参的方法：
+
+		//(1)将回调函数的参数作为与回调函数同等级的参数进行传递
+		function sayHi(value) {			//回调函数需要一个参数value
+			alert(value);
+		}
+		//execut的第一个参数是一个函数someFunction，someFunction可以认为是函数外加双引号直接变成字符串
+		function execut(someFunction, value) {
+			someFunction(value); //someFunction函数本身后加()就是运行这个函数，如果需要参数就在这个时候传入
+		}
+		//execut方法接收了两个参数，第一个是sayHi，第二个是''hi js',第二个参数其实就是sayHi方法需要的参数
+		//==>这样写就叫做“将回调函数的参数作为与回调函数同等级的参数进行传递”
+		execut(sayHi, 'hi js'); // 这里的sayHi方法是回调函数
+
+		//(2)回调函数的参数在调用回调函数内部创建
+		function sayHello(value) { //回调函数需要一个参数value这个value是一个对象，拥有属性name
+			alert(value.name);
+		}
+		//execut1方法接只接收一个参数：sayHi函数；sayHi函数的参数在execut1函数内部定义过了
+		//==>这里直接传递也能达到回调函数传参的目的
+		function execut1(someFunction) {
+			var value = {
+				name: 'hi js'
 			}
-
-			alert(say);		//只写变量名 say 返回的将会是 say方法本身，以字符串的形式表现出来。
-			alert(say());	//在变量名后加()如say()返回的就会是say方法调用后的结果，这里是弹出value的值
-
-			alert("say类型："+typeof say);//function
-			alert("say()类型："+typeof say()); //undefined
-
-			// 2.js中函数可以作为参数传递
-			//实例1：
-			function say1(value){
-				alert(value);
-			}
-			function execute1(someFunction,value){
-				someFunction(value);
-			}
-			execute1(say1,'hi js');//hi js
-
-			//实例2：
-			function execute2(someFunction,value){
-				someFunction(value);
-			}
-			execute1(function(value){alert(value);},'hi js');//hi js
-
-			//实例1将say方法作为参数传递给execute方法
-			//实例2直接将匿名函数作为参数传递给execute方法
-
-			//直接写say方法的方法名与下面的匿名函数可以认为是一个东西
-			//function say (value) { alert(value); } => say = function (value) { alert(value); }
-			
-			//这里的say或者匿名函数就被称为回调函数
-
-			//回调函数
-			//响应回调事件
+			someFunction(value); //someFunction函数本身后加()就是运行这个函数，如果需要参数就在这个时候闯传入
+		}
+		execut1(sayHello); //execut1函数为主函数，参数为sayHello函数本身，这里的sayHello也叫作回调函数
 
 
-			// 3.回调函数容易混淆点——传参
-			//两种回调函数传参的方法：
-
-			//(1)将回调函数的参数作为与回调函数同等级的参数进行传递
-			function sayHi(value){			//回调函数需要一个参数value
-				alert(value);				
-			}
-
-			//execut的第一个参数是一个函数someFunction，someFunction可以认为是函数外加双引号直接变成字符串
-			function execut(someFunction,value){ 
-				someFunction(value); //someFunction函数本身后加()就是运行这个函数，如果需要参数就在这个时候闯传入
-			}
-			//execut方法接收了两个参数，第一个是sayHi，第二个是''hi js',第二个参数其实就是sayHi方法需要的参数
-			//==>这样写就叫做“将回调函数的参数作为与回调函数同等级的参数进行传递”
-			execut(sayHi,'hi js'); // 这里的sayHi方法是回调函数
-
-			//(2)回调函数的参数在调用回调函数内部创建
-			function sayHello(value){ //回调函数需要一个参数value这个value是一个对象，拥有属性name
-				alert(value.name);
-			}
-
-			//execut1方法接只接收一个参数：sayHi函数；sayHi函数的参数在execut1函数内部定义过了
-			//==>这里直接传递也能达到回调函数传参的目的
-			function execut1(someFunction){
-				var value = {
-					name:'hi js'
-				}
-				someFunction(value); //someFunction函数本身后加()就是运行这个函数，如果需要参数就在这个时候闯传入
-			}
-			execut1(sayHello); //execut1函数为主函数，参数为sayHello函数本身，这里的sayHello也叫作回调函数
-			
-
-			
 
 
-			
 
-		</script>
 
-	</body>
+
+	</script>
+
+</body>
+
 </html>

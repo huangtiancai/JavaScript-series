@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this</title>
+</head>
+
+<body>
+  <script>
+    // 1.this 
+    // 解析器在调用函数每次都会向函数内部传递进一个隐含的参数，这个隐含的参数就是this
+    // this指向的是一个对象 => 函数执行的 上下文对象
+
+    // 根据函数的调用方式的不同，this会指向不同的对象：【重要】
+
+    // 1)以函数的形式调用时，this永远都是window。比如fun();相当于window.fun();
+
+    // 2)以方法的形式调用时，this是调用方法的那个对象
+
+    // 3)以构造函数的形式调用时，this是新创建的那个对象
+
+    // 4)使用call和apply调用时，this是指定的那个对象
+
+    function fun() {
+      console.log(this);
+      console.log(this.name);
+    }
+    var obj1 = {
+      name: 'javascript',
+      sayName: fun
+    };
+    var obj2 = {
+      name: 'vue',
+      sayName: fun
+    }
+
+    // 以函数形式调用，this是window 
+    var name = '全局的name属性';
+    fun(); // => window.fun()
+    // Window
+    // 全局的name属性
+
+    // 以方法的形式调用，this是调用方法的对象
+    console.log(obj2); // 打印 obj2
+    obj2.sayName();    // this = obj2   this.name = obj2.name = 'vue'
+    // Object { name: "vue", sayName: fun() }
+    // vue
+
+
+
+    // 箭头函数中this的指向：
+    // ES6中的箭头函数并不会使用上面四条标准的绑定规则，而是会继承外层函数调用的this绑定（无论this绑定到什么）。
+    // ???
+
+    console.log('-----------------类数组 argument-------------------');
+    // 2.类数组 arguments
+    // 在调用函数时，浏览器每次都会传递进两个隐含的参数：
+    // 1)函数的上下文对象
+    // 2)封装实参的对象arguments
+    // arguments是一个类数组对象，它可以通过索引来操作数据，也可以获取长度
+    // arguments代表的是实参。
+    // 在调用函数时，我们所传递的实参都会在arguments中保存。有个讲究的地方是：arguments只在函数中使用。
+    // => 参考函数参数节
+
+    function func(a, b) {
+      console.log(arguments);
+      console.log(arguments.length);
+      console.log(typeof arguments);
+      console.log('------------------------------------');
+    }
+    func();
+    func(2, 4);
+    func(2, 4, 6);
+    func(2, 4, 6, 8);
+
+    // (1)返回函数实参的个数：arguments.length  
+    //   arguments[0] 表示第一个实参
+    //   arguments[1] 表示第二个实参...
+    // (2)返回正在执行的函数：arguments.callee
+    //   arguments里边有一个属性叫做callee，这个属性对应一个函数对象，就是当前正在指向的函数对象
+    //   在使用函数递归调用时，推荐使用arguments.callee代替函数名本身
+    // (3)arguments可以修改元素 
+    // 之所以说arguments是伪数组，是因为：arguments可以修改元素，但不能改变数组的长短
+    function foo() {
+      console.log(this);              // Window
+      console.log(arguments);         // Arguments { … }
+      // callee: function func(a, b)
+      // length: 0
+      // Symbol(Symbol.iterator): function values()
+      // <prototype>: Object { … }
+
+      console.log(arguments.length);  // 2
+      console.log(typeof arguments);  // object
+      console.log(arguments.callee == foo);  // true
+
+      arguments[0] = 10;    //将实参的第一个数改为99
+      // arguments.push(8);  //此方法不通过，因为无法增加元素 => TypeError: arguments.push is not a function
+      console.log(arguments[0], arguments[1]);
+    }
+    foo(3, 5);
+
+
+
+    //关键字"this"指向了当前代码运行时的对象
+    //"this"是非常有用的——它保证了当代码的上下文(context)改变时变量的值的正确性（比如：不同的person对象拥有不同的name这个属性，很明显greeting这个方法需要使用的是它们自己的name）。
+
+    //以两个简单的person对象来说明：
+    //即使greeting这个方法的代码是一样的,但是this 指向了代码所在的对象(其实代码运行时所在的对象)。
+    var person1 = {
+      name: 'Chris',
+      greeting: function () {
+        alert(this.name);
+      }
+    }
+
+    var person2 = {
+      name: 'Cherry',
+      greeting: function () {
+        alert(this.name);
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
