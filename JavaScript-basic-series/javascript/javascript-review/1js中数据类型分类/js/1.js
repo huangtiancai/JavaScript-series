@@ -35,6 +35,9 @@ console.log(isNaN(true));       // false
 console.log(isNaN(false));      // false
 
 console.log(Number(null));      // 0
+<<<<<<< HEAD
+console.log(Number(undefined)); // NaN
+=======
 console.log(Number(undefined)); // NaN
 
 console.log(parseInt('10.5', 10));
@@ -49,3 +52,4 @@ document.write(jieStr);
 // let str1 = '一个拼接的';
 // let jieStr1 = `这是' + ${str} + '字符串`;
 // document.write(jieStr1);
+>>>>>>> 71d2b15ce6d2d61553e703f340691c6ddfe7ca37
