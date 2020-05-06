@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>剩余函数</title>
+</head>
+<body>
+    <script>
+        // ...c必须放在最后，后面有别的参数
+        function show(a,b,...c){
+            console.log(a,b,c);
+        }
+        show(12,6,8,10,20); // 12 6  [8, 10, 20]  => c是一个数组 c接受剩余参数
+        show(12,6,8,10);    // 12 6  [8, 10]  
+        show(12,6);         // 12 6  []  => c是一个空数组
+        show(12);           // 12 undefined []
+
+        
+            
+    </script>
+</body>
+</html>

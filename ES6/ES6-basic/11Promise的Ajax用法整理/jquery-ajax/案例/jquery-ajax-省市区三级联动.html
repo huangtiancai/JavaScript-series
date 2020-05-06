@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>省市区三级联动</title>
+    <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+</head>
+
+<body>
+
+    <div class="jiangyan">
+        <h3>省市区三级联动</h3>
+        
+        <!--三个空的select下拉框控件-->
+        <div class="content">
+            <select id="sel_p"></select>
+            <select id="sel_c"></select>
+            <select id="sel_a"></select>
+        </div>
+    </div>
+
+    <script>
+        //获取省数据，市数据，和区数据 
+        var arr_c = [
+            {'id':0,'pid':0,'text':'请选择市'},
+            {'id':1,'pid':1,'text':'苏州市'},
+            {'id':2,'pid':1,'text':'南京市'},
+            {'id':3,'pid':2,'text':'合肥市'},
+            {'id':4,'pid':2,'text':'安庆市'},
+            {'id':5,'pid':3,'text':'广州市'},
+            {'id':6,'pid':3,'text':'深圳市'}
+        ];
+
+        var arr_a = [
+            {'id':0,'cid':0,'text':'请选择区'},
+            {'id':1,'cid':1,'text':'苏州市A区'},
+            {'id':2,'cid':1,'text':'苏州市B区'},
+            {'id':3,'cid':1,'text':'苏州市C区'},
+            {'id':4,'cid':2,'text':'南京市A区'},
+            {'id':5,'cid':2,'text':'南京市B区'},
+            {'id':6,'cid':2,'text':'南京市C区'},
+            {'id':7,'cid':3,'text':'合肥市A区'},
+            {'id':8,'cid':3,'text':'合肥市B区'},
+            {'id':9,'cid':4,'text':'安庆市A区'},
+            {'id':10,'cid':4,'text':'安庆市B区'},
+            {'id':11,'cid':5,'text':'广州市A区'},
+            {'id':12,'cid':5,'text':'广州市B区'},
+            {'id':13,'cid':6,'text':'深圳市A区'},
+            {'id':14,'cid':6,'text':'深圳市B区'},
+        ];
+
+        
+
+         //在页面加载完成后，我们用JS代码为第一个下拉框，添加数据，即把省数据加到第一个下拉框里，做下拉框的选项，主要是调用general_select_p方法
+         $(document).ready(function(){
+            $.ajax(
+                {
+                    type:'post',
+                    async:true,
+                    url:'http://127.0.0.1:8080//ServerInterface/serverInterface',
+                    data:{
+                        username:'tom',
+                        city:'beijing'
+                    },
+                    success:function(result,status,xhr){//请求成功后的回调函数
+                        //alert(result);
+                        //前台接收到后台传过来的json数组实际上是一个字符串,字符串的内容是json数组，这种情况下先要将字符串转换成json数组，再遍历。
+                        //var da = JSON.stringify(result);
+                        //alert(result);
+                        //alert(typeof result); //string
+                        handler(result);
+                       
+                    },
+                    error:function(xhr,status,error){
+                        alert('请求失败');
+                        alert(xhr);
+                        alert(status);
+                        alert(error);
+                    }
+                }
+            );
+
+            function handler(result){
+                console.log(result);
+                //result = [{"id":"1","text":"江苏省"},{"id":"2","text":"安徽省"},{"id":"3","text":"广东省"}]
+                //arr_p = {'id':0,'text':'请选择省'} + result
+                var result1 = result.substring(1,result.length);
+                console.log(result1);
+                //拼接
+                var JsonString = '[{"id":0,"text":"请选择省"},'+result1; //注意拼接的时候格式一致，都是"才能拼接
+                console.log(JsonString);
+
+                var data = JSON.parse(JsonString);
+
+                var arr_p = data; //arr_p数组的数据来源服务端查询
+
+
+                general_select_p();
+                general_select_c(0);
+                general_select_a(0);
+
+                //为第一个下拉框添加change事件，就是当第一个下拉框选择不同的省时，需要用该省下的市数据填充到第二个下拉框里。
+                $('#sel_p').change(function(){
+                    var p_id = $(this).val();
+                    general_select_c(p_id);   
+                    //同时为第三个下拉框填充区数据
+                    var c_id = $('#sel_c').val();
+                    general_select_a(c_id);
+                });
+                //同理要为第二个下拉框添加change事件，当第二个下拉框选择不同的市时，需要用该市下的区数据填充到第三个下拉框里。
+                $('#sel_c').change(function(){
+                    var c_id = $(this).val();
+                    general_select_a(c_id);
+                });
+
+
+
+                //循环arr_p数组（省数据），为第一个下拉框添加选项。
+                function general_select_p(){
+                    var select = $('#sel_p');
+                    var len = arr_p.length;
+                    for(i=0;i<len;i++){
+                        var options = '<option value = "'+arr_p[i]['id']+'">'+arr_p[i]['text']+'</option>';//拼接字符串
+                        select.append(options);
+                    }
+                }
+
+                function general_select_c(p_id){
+                    var select = $('#sel_c');
+                    //先清除选项
+                    select.empty();
+                    var len = arr_c.length;
+                    for(i=0;i<len;i++){
+                        if(arr_c[i]['pid']==p_id){
+                            //<option value="1">苏州市</option>
+                            var options = '<option value="'+arr_c[i]['id']+'">'+arr_c[i]['text']+'</option>';
+                            select.append(options);
+                        }  
+                    }
+                }
+
+                function general_select_a(c_id){
+                    var select = $('#sel_a');
+                    //先清除选项
+                    select.empty();
+                    var len = arr_a.length;
+                    for(i=0;i<len;i++){
+                        if(arr_a[i]['cid']==c_id){ 
+                            //<option value="1">苏州市A区</option>
+                            var options = '<option value="'+arr_a[i]['id']+'">'+arr_a[i]['text']+'</option>';
+                            select.append(options);
+                        }  
+                    }
+                }
+
+            }
+
+            
+         });
+
+
+
+    </script>
+</body>
+
+</html>

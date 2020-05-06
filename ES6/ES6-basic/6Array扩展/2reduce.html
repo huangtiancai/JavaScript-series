@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map</title>
+</head>
+<body>
+    <script>
+        let arr = [10,20,30,40,50];
+
+        // temp:临时结果
+        // item:
+        // indx:
+        let result = arr.reduce(function(temp,item,index){
+            alert(index+':'+temp+','+item);
+            return temp + item; // 需要返回临时的加值
+        });
+
+        // 求和
+        console.log(result);
+        // 求平均值
+        console.log(result/arr.length);
+        
+    </script>
+</body>
+</html>

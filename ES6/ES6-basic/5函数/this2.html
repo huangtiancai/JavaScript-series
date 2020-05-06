@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+    <script>
+        // console.log(this); // 全局环境 Window
+        let json = {
+            a:10,
+            // this => 当前环境
+            fn:() => {
+                console.log(this); // Window
+                alert(this.a); // undefined
+            }
+        };
+
+        json.fn();
+
+            
+    </script>
+</body>
+</html>

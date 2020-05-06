@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/jquery-1.8.3.js"></script>    
+</head>
+<body>
+    <script>
+        // 同时读取三个文件 Promise.all() 里面放数组，数组里面放promise对象，ajax本身返回的就是promie对象
+        // 如果参数中  promise 有一个失败（rejected），此实例回调失败（reject）
+        Promise.all([
+            $.ajax({url:'data/1.txt',dataType:'json'}),
+            $.ajax({url:'data/2.txt',dataType:'json'}),
+            $.ajax({url:'data/3.txt',dataType:'json'}),
+        ]).then(arr=>{
+            // 结构赋值处理数据
+            let [data1,data2,data3] = arr;
+            console.log(data2);
+            console.log(typeof data2);
+        },res=>{
+            alert('失败');
+        });
+    </script>
+</body>
+</html>
