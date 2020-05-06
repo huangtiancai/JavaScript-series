@@ -71,6 +71,8 @@ ES6对声明的进行了扩展，现在可以有三种声明方式了
 
 ### 
 
+
+
 整理常见方法(ES6 => ES5)
 ```js
 import express from 'express';
@@ -143,8 +145,7 @@ unshfit()
 // slice() 方法返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变
 slice()
 
-
-
+// 后续补充....
 sort()
 splice()
 toString()
