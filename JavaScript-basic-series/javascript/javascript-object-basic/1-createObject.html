@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>创建对象</title>
+</head>
+
+<body>
+  <p>1.声明一个对象的语法/对象字面量</p>
+  <P>2.使用构造函数</P>
+  <p>3.Object()构造函数</p>
+  <p>4.使用create()方法</p>
+
+</body>
+
+<script>
+  //一、声明一个对象/对象字面量：{ 键值对 })
+  var person = {}; // 创建空对象 Object {  }
+
+  // 将成员信息写到{}中，并赋值给一个变量，此时这个变量就是一个对象
+
+  //一个对象由许多的成员组成,语法规则如下所示:
+  // var objectName = {
+  //     member1Name : member1Value,
+  //     member2Name : member2Value,
+  //     member3Name : member3Value
+  // };
+
+  // 第一个对象
+  var pers = {
+    // person对象里有:字符串(string)，数字(number)，两个数组(array)，两个函数(function)
+    // 前4个成员：对象的属性 property
+    name: ['Bob', 'Tom'],
+    age: 20,
+    gender: 'male',
+    interests: ['music', 'skiing'],
+    // 后两个成员:函数 - 允许对象做一些操作，被称为对象的方法(method)
+    greeting: function () {
+      alert("Hi!" + this.name[0]);
+    },
+    bio: function () {
+      console.log(this);  //  Object 
+      alert(this.name[0] + '' + this.name[1] + ' is ' + this.age + ' years old. He likes '
+        + this.interests[0] + ' and ' + this.interests[1]);
+    }
+  };
+
+  //子命名空间
+  //可以用一个对象来做另一个对象成员的值。例如将name成员
+  //name : ['Bob', 'Smith'],
+  //改为
+  // name:{
+  //   first: 'Bob',
+  //   last: 'Smith'
+  // },
+
+  // 第二个对象
+  var pers2 = {
+    name: {
+      first: 'Bob',
+      last: 'Tom'
+    },
+    age: 20,
+    gender: 'male',
+    interests: ['music', 'skiing'],
+    greeting: function () {
+      alert("Hi!" + this.name['first']);
+    },
+    bio: function () {
+      alert(this.name['first'] + '' + this.name['last'] + ' is ' + this.age + ' years old. He likes '
+        + this.interests[0] + ' and ' + this.interests[1]);
+    }
+  };
+
+
+  // 1.向对象中添加属性
+  // 对象.属性名 = 属性值;
+  // 2.获取对象中的属性 - 控制台查看
+  //方法1：点表示法：对象.属性名
+  //方式2：括号表示法:对象["属性名"]
+  // pers.name
+  // pers.name[0]
+  // pers['name']
+
+  // pers2.age
+  // pers2.name.first
+  // pers2.name.last  
+
+  // pers2['age']
+  // pers2['name']['first']
+  // pers2['name']['last']
+
+
+  // 2.修改对象的属性值
+  // 语法：对象.属性名 = 新值
+  pers2.age = 45;
+  pers2['name']['last'] = 'hery';
+  //控制台查看成员是否已经被改变了
+
+  // 3.向对象中添加属性 - 创建新的成员
+  pers2['eyecolor'] = 'blue';
+  pers2.farewall = function () { alert("TEST") }
+  //括号表示法一个有用的地方是它不仅可以动态的去设置对象成员的值，还可以动态的去设置成员的名字。
+
+  // 4.删除对象的属性
+  delete pers2.age;
+
+  // 5.in 运算符
+  console.log("in 运算符");
+  console.log("age" in pers);  // true
+  console.log("age" in pers2); // false
+
+  // 6.遍历对象中的属性：for in
+  var obb = {
+    name: "tom",
+    age: 10,
+    gender: "男",
+    address: "shenzhen"
+  }
+  // 枚举对象中的属性
+  for (var item in obb) {
+    // 注意，因为这里的属性名 item 是变量
+    // 所以，如果想获取属性值，不能写成 obj.item，而是要写成 obj[item]
+    console.log(item + ' - ' + obb[item]);
+  }
+
+
+
+  // 对象的基本操作也适用于其他方法创建的函数
+
+  // 二、使用构造函数
+  // 创建一个构造函数
+  function User(name) {
+    //this指的是new一个Object之后的对象实例
+    console.log(this);
+    this.name = name;
+    this.sayHi = function () {
+      console.log('构造函数输出:' + this.name);
+    }
+  }
+
+  var user1 = new User('json');
+  console.log(user1);  // Object
+  user1.sayHi();
+
+  var user2 = new User('jsonserve');
+  console.log(user2);
+  user2.sayHi();
+
+
+  // 注意构造函数和普通函数的区别
+  // 1.构造函数就是一个普通的函数，创建方式和普通函数没有区别，不同的是构造函数习惯上首字母大写
+  // 2.构造函数和普通函数的区别就是调用方式的不同：
+  //      普通函数是直接调用
+  //      构造函数需要使用new关键字来调用
+  // 3.this指向不同：
+  //      以函数的形式调用时，this永远都是window。比如fun(); 相当于window.fun();
+  //      以构造函数的形式调用时，this是新创建的那个对象  
+  // 更多this参考 this一章
+
+  // new 一个构造函数的执行流程
+  // 创建一个函数
+  function createStudent(name) {
+    var student = new Object();
+    // 第一个name指的是student对象定义的变量
+    // 第二个name指的是createStudent函数的参数。二者不一样
+    student.name = name;
+  }
+  // 改进
+  function student(name) {
+    //this指的是构造函数中的对象实例
+    this.name = name;
+  }
+
+  // 类、实例
+  // 使用同一个构造函数创建的对象，我们称为一类对象，也将一个构造函数称为一个类。
+  // 通过一个构造函数创建的对象，称为该类的实例
+  function Person() { }
+  function Dog() { }
+  var per1 = new Person();
+  var dog1 = new Dog();
+  console.log(per1 instanceof Person); // true
+  console.log(dog1 instanceof Dog);    // true
+  console.log(dog1 instanceof Person); // false
+  // 所有的对象都是Object的后代，因此 任何对象 instanceof Object 的返回结果都是true
+  console.log(per1 instanceof Object); // true
+  console.log(dog1 instanceof Object); // true
+
+  //三.使用Object()构造函数来创建一个新对象
+  var obj = new Object();   //这样就在person1变量中存储了一个空对象
+
+  console.log(typeof obj);  // object
+
+  // 根据需要, 使用点或括号表示法向此对象添加属性和方法
+  // 在对象中保存的值称为属性
+  // 向对象添加属性的语法：
+  //    方法1：点表示法：对象.属性名
+  //    方式2：括号表示法:对象["属性名"]
+  obj.name = 'Cherry';
+  obj.gender = '男';
+  obj['age'] = 18;
+  obj.sayName = function () {
+    console.log('打印');
+  }
+
+  console.log(obj);
+  // Object { name: "Cherry", gender: "男", age: 18, sayName: sayName()
+
+  // 将 obj 以字符串的形式打印出来
+  console.log(JSON.stringify(obj));
+  // {"name":"Cherry","gender":"男","age":18}
+
+  console.log(JSON.parse(JSON.stringify(obj)));
+  // Object { name: "Cherry", gender: "男", age: 18 }
+
+  console.log(obj.sayName);   // 没加括号，获取的是对象
+  console.log('-----------');
+  console.log(obj.sayName()); // 加了括号，执行函数内容，并执行函数体的内容
+
+  var obj2 = new Object();
+  obj2.name = "js中的属性值，也可以是一个对象";
+  obj.test = obj2;
+  console.log(obj.test.name);
+
+
+
+  // 四、使用create()方法
+  // JavaScript有个内嵌的方法create(), 它允许您基于现有对象创建新的对象。
+  // var person2 = Object.create(person1);
+  // //测试
+  // person2.name;
+  // person2.greeting();
+  // person2是基于person1创建的， 它们具有相同的属性和方法
+
+
+
+
+</script>
+
+</html>

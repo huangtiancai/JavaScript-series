@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原型对象</title>
+</head>
+
+<body>
+  <script>
+    // 一、原型的引入
+    function Person(name, age, gender) {
+      this.name = name;
+      this.age = age;
+      this.gender = gender;
+      //向对象中添加一个方法
+      this.sayName = function () {
+        console.log("我是" + this.name);
+      }
+    }
+
+    //创建一个Person的实例
+    var per = new Person("tom", 18, "男");
+    var per2 = new Person("herry", 28, "男");
+    // 每个实例的sayName都是唯一
+    // 构造函数每执行一次，就会给每个实例创建一个新的 sayName 方法
+    per.sayName();
+    per2.sayName();
+
+    console.log(per.sayName == per2.sayName);  //打印结果为false
+
+    // 按照上面这种写法，假设创建10000个对象实例，就会创建10000个 sayName 方法。这种写法肯定是不合适的
+    // 为何不让所有的对象共享同一个方法呢？
+    // 两种方法：
+    // 1.将sayName方法在全局作用域定义
+    function Person1(name, age, gender) {
+      //向对象中添加一个方法
+      this.sayName = fun;
+    }
+    // 将函数定义在全局作用域，污染了全局作用域的命名空间
+    // 而且定义在全局作用域中也很不安全
+    function fun() {
+      console.log("我是" + this.name);
+    }
+
+    // 2.比较好的方式：在原型上添加sayName方法
+    // Person.prototype.sayName = function () {
+    //   alert(this.name);
+    // }
+
+    // 原型prototype的概念
+    // 1.认识1
+    console.log(Person);
+    // 对象Person内每创建一个函数，如 sayName
+    // 解析器都会向函数中添加一个属性 prototype
+    // 这个属性对应着一个对象，这个对象就是我们所谓的原型对象。
+    console.log(Person.prototype); // Object
+    // 实例.__proto__ 和 构造函数.prototype都指的是原型对象
+    console.log(Person.prototype == per.__proto__); // true
+
+    // 2.认识2
+    // 原型对象就相当于一个公共的区域，所有同一个类的实例都可以访问到这个原型对象
+    // 我们可以将对象中共有的内容（属性和方法），统一设置到原型对象中
+    // 这样就不用分别为每一个对象添加
+    // 也不会影响到全局作用域
+    // 就可以使每个对象都具有这些属性和方法了。
+
+    // 2.认识3
+    console.log('------------');
+    console.log("age" in per);  // true
+    console.log("age1" in per);  // false
+
+    // 添加公共的属性和方法
+    Person.prototype.age1 = 10;
+    console.log("age" in per); // true
+    console.log("age1" in per);// true 实例对象中没有age1属性，但原型中有，返回true
+    // 可以使用对象的hasOwnProperty()来检查对象自身中是否含有该属性
+    console.log(per.hasOwnProperty('age')); // true
+    console.log(per.hasOwnProperty('age1'));// false
+
+
+    // 原型链
+    // 原型对象也是对象 => 它也有原型
+    // 它会先在对象自身中寻找，如果有则直接使用；
+    // 如果没有则会去原型对象中寻找，如果找到则直接使用；
+    // 如果没有则去原型的原型中寻找，直到找到Object对象的原型。
+    // Object对象的原型没有原型，如果在Object原型中依然没有找到，则返回 null
+
+    // 对象的toString()方法
+    console.log(per);            // Object { name: "tom", age: 18, gender: "男", sayName: sayName() }
+    console.log(per.toString()); // [object Object]
+    // 重写toString()
+    // 方式一：仅重写其中一个实例的 toString方法。但是这种写法对其他实例无效
+    // 方式二：重写 Person原型的toString(),针对 Person 的所有实例生效
+    Person.prototype.toString = function () {
+      return ("Person[name=" + this.name + "age=" + this.age + "gender=" + this.gender + "]")
+    }
+    var pe1 = new Person("tom", 18, "男");
+    var pe2 = new Person("tom2", 18, "男");
+    console.log(pe1);
+    console.log(pe2.toString());
+
+    // JS的垃圾回收机制(GC)
+    // 如果堆内存中的对象，没有任何变量指向它时，这个堆内存里的对象就会成为垃圾
+    // JS拥有自动的垃圾回收机制，会自动将这些垃圾对象从内存中销毁
+    // 我们不需要也不能进行垃圾回收的操作。我们仅仅需要做的是：如果你不再使用该对象，那么，将改对象的引用设置为 null 即可
+    
+
+
+  </script>
+</body>
+
+</html>
