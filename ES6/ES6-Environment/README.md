@@ -136,7 +136,7 @@ console.log(d); // n
 
 
 ### 扩展运算符和res运算符（三个点）
-对象扩展运算符
+对象扩展运算符(...)
 ```js
 function fun1(...arg) {
   console.log(arg[0]);
@@ -168,8 +168,50 @@ console.log(arr2); // [ "www", "josnserve", "cn", "vuepress" ]
 console.log(arr1); // [ "www", "josnserve", "cn" ]
 ```
 
+res运算符
+
+```js
+// ...c必须放在最后，后面有别的参数
+function show(a, b, ...c) {
+  console.log(a, b, c);
+}
+show(12, 6, 8, 10, 20); // 12 6  [8, 10, 20]  => c是一个数组 c接受剩余参数
+show(12, 6, 8, 10);    // 12 6  [8, 10]  
+show(12, 6);         // 12 6  []  => c是一个空数组
+show(12);           // 12 undefined []
+```
+
+```js
+function show(first, ...arg) {
+  console.log(arg.length); // arg有4个数组元素
+}
+show(12, 6, 8, 10, 20); // 4
+```
+for...of循环打印arg的值
+```js
+function show(first, ...arg) {
+  for (let val of arg) {
+    console.log(val);
+  }
+}
+show(0, 1, 2, 3, 4, 5, 6, 7);
+```
+
+### 字符串模版
+ES6对字符串新增的操作 => 字符串模版
+1. 不用拼接字符串和变量
+2. 支持模版里有简单计算操作
+
+```js
+let str = '字符串模版';
+let jsStr = str + '是ES6新增的对字符串的操作';
+console.log(jsStr);
 
 
+let str = '字符串模版';
+let jsStr = `${str}是ES6新增的对字符串的操作`;
+console.log(jsStr);
+```
 
 
 

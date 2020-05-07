@@ -1,7 +1,15 @@
-let str = "拼接";
-let jieStr = `这是一个${str}字符串`;
-console.log(jieStr);
+var a = "ES6";
+console.log(a);
 
-var a1 = "ES6";
-console.log(a1);
+// ES5
+// ES6
+let str = '字符串模版';
+let jsStr = str + '是ES6新增的对字符串的操作';
+console.log(jsStr);
+
+
+// ES6
+// let str = '字符串模版';
+// let jsStr = `${str}是ES6新增的对字符串的操作`;
+// console.log(jsStr);
 
