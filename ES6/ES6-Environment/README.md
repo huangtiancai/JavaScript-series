@@ -136,6 +136,7 @@ console.log(d); // n
 
 
 ### 扩展运算符和res运算符（三个点）
+对象扩展运算符
 ```js
 function fun1(...arg) {
   console.log(arg[0]);
@@ -145,6 +146,26 @@ function fun1(...arg) {
 }
 
 fun1(1, 2, 3); // 1,2,3,undefined
+```
+扩展运算符的用处
+问题：改变arr2值，arr1值也变化（对内存的堆栈的引用，不是真正的赋值）？
+```js
+let arr1 = ['www', 'josnserve', 'cn'];
+let arr2 = arr1;
+
+console.log(arr2); // [ "www", "josnserve", "cn" ]
+arr2.push("vuepress");
+console.log(arr1); // ["www", "josnserve", "cn", "vuepress"]
+```
+简单的扩展运算符可以解决这个问题
+```js
+let arr1 = ['www', 'josnserve', 'cn'];
+let arr2 = [...arr1];
+
+console.log(arr2); // [ "www", "josnserve", "cn" ]
+arr2.push("vuepress");
+console.log(arr2); // [ "www", "josnserve", "cn", "vuepress" ]
+console.log(arr1); // [ "www", "josnserve", "cn" ]
 ```
 
 
