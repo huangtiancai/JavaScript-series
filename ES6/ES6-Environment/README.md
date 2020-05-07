@@ -135,9 +135,64 @@ console.log(d); // n
 ```
 
 
+### 扩展运算符和res运算符（三个点）
+```js
+function fun1(...arg) {
+  console.log(arg[0]);
+  console.log(arg[1]);
+  console.log(arg[2]);
+  console.log(arg[3]);
+}
+
+fun1(1, 2, 3); // 1,2,3,undefined
+```
 
 
 
+
+
+
+
+
+
+
+
+```js
+let arr = [3, 2, 1, 4, 5];
+arr.sort(function compare(a, b) {
+  //  1   4   1<4 返回 -1 => 1 排到 4前
+  if (a < b) {
+    return - 1;
+  }
+  //  3   2   3>2 返回 1 => 2 排到 3之前
+  if (a > b) {
+    return 1;
+  }
+  return 0;
+})
+console.log(arr); // Array(5) [ 1, 2, 3, 4, 5 ]
+```
+
+数组升序排列1
+```js
+let arr = [3, 2, 1, 4, 5];
+arr.sort(function compare(a, b) {
+  return a - b;
+})
+console.log(arr); // Array(5) [ 1, 2, 3, 4, 5 ]
+```
+数组升序排列2
+```js
+let arr = [3, 2, 1, 4, 5];
+arr.sort((a, b) => { return a - b });
+console.log(arr); // Array(5) [ 1, 2, 3, 4, 5 ]
+```
+数组升序排列3
+```js
+let arr = [3, 2, 1, 4, 5];
+arr.sort((a, b) => a - b);
+console.log(arr); // Array(5) [ 1, 2, 3, 4, 5 ]
+```
 
 
 

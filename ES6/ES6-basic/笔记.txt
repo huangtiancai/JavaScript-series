@@ -29,7 +29,7 @@ let{a,b}=json;
 arr = [10,4,5];
 let [a,b,c] = arr'
 
-结构赋值适合用于从一个大的结构取数据
+解构赋值适合用于从一个大的结构取数据
 $.ajax(''xxx) =>{
   code:xx,
   data:xx,
