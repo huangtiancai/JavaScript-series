@@ -67,3 +67,80 @@ ES6对声明的进行了扩展，现在可以有三种声明方式了
 3. const：它在英文中也是常量的意思，在ES6也是用来声明常量的，常量你可以简单理解为不变的量
 
 ### 变量的解构赋值
+ES6允许按照一定模式，从数组和对象中提取值，对变量进行赋 => 解构
+
+1. 数组的解构赋值
+简单的数组解构
+```js
+let [a1, b1, c1] = [1, 2, 3];
+```
+左右形式须相同
+```js
+let [a, b, [c, d], e] = [1, 2, [3, 4], 5];
+```
+
+解构的默认值
+```js
+let [foo = true] = [];
+console.log(foo); // true
+
+let [fo1, fo2 = "serve"] = ['json'];
+console.log(fo1 + fo2); // jsonserve
+
+let [fo3 = "json", fo4] = ['serve'];
+console.log(fo3 + fo4); // serveundefined
+```
+
+注意undefined 和 null 的区别
+```js
+// undefined相当于什么都没有，b是默认值
+let [a, b = "serve"] = ["json", undefined];
+console.log(a + b); // jsonserve
+// null 相当于有值，但值为null,所以b并没有取默认值，而是解构成了null
+let [a, b = "serve"] = ["json", null];
+console.log(a + b); // jsonnull
+```
+
+2. 对象的解构赋值
+解构不仅可以用于数组，还可以用于对象
+```js
+let { foo, bar } = { foo: "jsone", bar: "serve" };
+console.log(foo + bar); // jsoneserve
+```
+>注意：
+对象的解构与数组有一个重要的不同。
+数组的元素是按次序排列的，变量的取值由它的位置决定；
+对象的属性没有次序，变量必须与属性同名，才能取到正确的值
+
+圆括号的使用
+在解构前定义变量，会直接报错
+```js
+let foo;
+{ foo } ={ foo: 'json' };
+```
+解决报错,在解构的语句外边加上()
+```js
+let foo;
+({ foo } = { foo: 'json' });
+console.log(foo); // josn
+```
+
+3. 字符串解构
+```js
+const [a, b, c, d] = "json";
+console.log(a); // j 
+console.log(b); // s
+console.log(c); // o
+console.log(d); // n
+```
+
+
+
+
+
+
+
+
+
+
+
