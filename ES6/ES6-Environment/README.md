@@ -202,16 +202,103 @@ ES6对字符串新增的操作 => 字符串模版
 1. 不用拼接字符串和变量
 2. 支持模版里有简单计算操作
 
+#### 字符串模版
 ```js
-let str = '字符串模版';
-let jsStr = str + '是ES6新增的对字符串的操作';
+// ES5
+let str = 'ES6';
+let jsStr = '这里使用Babel把' + str + '编译成ES5';
 console.log(jsStr);
 
-
-let str = '字符串模版';
-let jsStr = `${str}是ES6新增的对字符串的操作`;
+// ES6
+let str = 'ES6';
+let jsStr = `这里使用Babel把${str}编译成ES5`;
 console.log(jsStr);
+
+// 支持html标签
+let str = 'ES6';
+let jsStr = `<b>这里使用Babel把${str}编译成ES5</b>`;
+document.write(jsStr); // 把标签输出到屏幕上
+
+// 运算支持
+let a = 1;
+let b = 2;
+let result = `${a + b}`;
+console.log(result);
 ```
+
+#### 字符串查找
+```js
+// ES5
+let str = 'ES6';
+let jsStr = '这里使用Babel把ES6编译成ES5';
+document.write(jsStr.indexOf(str)); // 10
+
+// ES6
+let str = 'ES6';
+let jsStr = '这里使用Babel把ES6编译成ES5';
+console.log(jsStr.includes(str)); // true
+
+// 判断开头是否存在
+console.log(jsStr.startsWith(str)); // false
+// 判断结尾是否存在
+console.log(jsStr.endsWith(str));   // false
+// 复制字符串
+console.log(str.repeat(2));   // ES6ES6
+```
+
+
+### ES6数字操作
+
+### ES6中新增的数组知识
+JSON数组格式转换
+JOSN的数组格式：JOSN => 数组
+```js
+// 标准的JSON数组格式
+let json = {
+  '0': 'ES6',
+  '1':'技术',
+  '2': '前端',
+  length: 3 // 普通的JSON对比是在最后多了一个length属性
+}
+
+// 在ES6中绝大部分的Array操作都存在于Array对象里
+let arr = Array.from(json);
+console.log(arr);  // Array(3)["ES6", "技术", "前端"]
+
+// Array.of()方法
+let arr = Array.of(3,4,5,6);
+console.log(arr);  // Array(4) [ 3, 4, 5, 6 ]
+
+let arr = Array.of('ES6','技术','前端');
+console.log(arr);  // Array(3) [ "ES6", "技术", "前端" ]
+
+
+// find() 实例方法 
+// 在find方法中我们需要传入一个匿名函数，函数需要传入三个参数：
+// value：表示当前查找的值。
+// index：表示当前查找的数组索引。
+// arr：表示当前数组。
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log(arr.find(function (value, index, arr) {
+  return value > 5;
+})); // 6
+```
+
+
+### ES6中新增的数组知识2
+```js
+// fill()实例方法 
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+arr.fill('ES6',2,5); // [)
+console.log(arr); // Array(9)[1, 2, "ES6", "ES6", "ES6", 6, 7, 8, 9]
+```
+
+数组的遍历
+```js
+
+
+```
+
 
 
 

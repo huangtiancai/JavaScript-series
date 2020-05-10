@@ -47,15 +47,18 @@ ageArray.find(checkAge);
 ageArray.find(function checkAge(age) {
   return age >= 20;
 });
-ageArray.find(age => {
+// 匿名函数
+ageArray.find(function (age) {
   return age >= 20;
 });
-// ES6
-// 错误
+ageArray.find(age => { return age >= 20; });
+// 错误 无return
 ageArray.find(age => { age >= 20 });
+// 正确
 ageArray.find(age => age >= 20);
+
 //测试
-console.log(ageArray.find(age => age >= 20));
+console.log(ageArray.find(age => age >= 20));   // 20
 //-----------------------------------------------
 // find()
 const array1 = [5, 12, 8, 130, 44];
