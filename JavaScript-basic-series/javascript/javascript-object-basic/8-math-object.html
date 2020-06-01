@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>内置对象Math</title>
+</head>
+
+<body>
+	<script>
+		// Math - 用于 Number 
+		// Math 不是一个构造器，Math所有的属性与方法都是静态的
+		// 如 引用圆周率的写法是 Math.PI
+
+		// 属性
+		// Math.PI
+		console.log(Math.PI)
+
+		// Math.E
+		console.log(Math.E);
+
+		// 方法
+		// Math.abs() 				//	返回绝对值
+		// Math.floor() 			//	向下取整（向小取）
+		// Math.ceil() 				//	向上取整（向大取）
+		// Math.round() 			//	四舍五入取整（正数四舍五入，负数五舍六入）
+		// Math.random() 			//	生成0 - 1之间的随机数 	不包含0和1
+		// Math.max(x, y, z) 	//	返回多个数中的最大值
+		// Math.min(x, y, z) 	//	返回多个数中的最小值
+		// Math.pow(x, y) 		//	返回 x 的 y 次幂
+		// Math.sqrt() 				//  对一个数进行开方运算
+
+		var num = -0.6;
+		console.log(Math.abs(num));			// 0.6
+		console.log(Math.floor(num));		// -1
+		console.log(Math.ceil(num));		// 0
+		console.log(Math.round(num));   // -1
+
+
+
+		// 得到一个大于等于0，小于1之间的随机数
+		console.log(Math.random());
+
+		// console.log(Math.round(Math.random(	) * x));
+		console.log(Math.round(Math.random() * 10));
+
+		// 得到一个两数之间的随机数 [min,max)
+		// console.log(Math.round(min + Math.random() * (max - min)));
+		console.log(Math.round(10 + Math.random() * (100 - 10)));
+
+		// 得到一个两数之间的随机整数 [min,max)
+		function getRandomInt(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min) + min)
+		}
+		console.log(`随机整数：${getRandomInt(11, 15)}`);
+
+		// 得到一个两数之间的随机整数，包括两个数在内 [min,max]
+		function getRandomIntInclusive(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min + 1) + min)
+		}
+		console.log(`随机整数：${getRandomIntInclusive(11, 15)}`);
+
+		// url 编码和解码
+		var url = "https://jsonserve.cn";
+		var str = encodeURIComponent(url); // 编码
+		console.log(str);		// https%3A%2F%2Fjsonserve.cn
+		var str1 = decodeURIComponent(str);
+		console.log(str1);	// https://jsonserve.cn
+
+
+
+
+	</script>
+</body>
+
+</html>

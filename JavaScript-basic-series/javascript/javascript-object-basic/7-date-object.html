@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>内置对象Date</title>
+</head>
+
+<body>
+	<script>
+		// 语法
+		// new Date();
+		// new Date(value);
+		// new Date(dateString);
+		// new Date(year, monthIndex[, day[, hours[, minutes[, seconds[, milliseconds]]]]]);
+
+		// 参数
+		// 1.无参数
+		var date1 = new Date();
+		console.log(date1);
+
+		// 2.Uninx 时间戳
+
+
+		// 3.dateString 时间戳字符串 - 表示时间的字符串
+		var date2 = new Date('1995-12-17 03:24:00');
+		console.log(date2);
+
+		var date3 = new Date('1995/12/17 03:24:00');
+		console.log(date3);
+
+		// 4.分别提供日期与时间的每一个成员
+		// 年 月 日 时 分 秒 毫秒
+		var date4 = new Date(2019, 4, 1);
+		console.log(date4);
+
+
+		// 属性
+		// 1.允许为 Date 对象添加属性
+		Date.prototype.test = 10;
+		console.log(Date.prototype.test);
+
+		// 2.Date.length
+		console.log(Date.length); // 7 这是该构造函数可接受的参数个数
+
+
+		// 方法
+		// Date.now()			返回自 1970-1-1 00:00:00  UTC（世界标准时间）至今所经过的毫秒数	
+		var timeInMs = Date.now();
+		console.log(timeInMs);
+		console.log(typeof timeInMs); // number
+
+		// Date.now()	Polyfill 兼容
+		if (!Date.now) {
+			Date.now() = function now() {
+				return new Date().getTime();
+			}
+		}
+
+		const start = Date.now();
+		console.log('starting timer...');
+
+		setTimeout(function () {
+			const mills = Date.now() - start;
+			console.log(`seconds elapsed:${Math.floor(mills / 1000)}s`) // 2
+		}, 2000)
+
+
+		// Date.parse()		解析一个表示日期的字符串，并返回从 1970-1-1 00:00:00 所经过的毫秒数
+		// 不建议使用
+
+		// Date.UTC()			返回1970-1-1 00:00:00 UTC到指定的日期之间的毫秒数
+		// Date.UTC(year,month,date,hrs,min,sec,ms) 
+		console.log(Date.UTC(70, 0, 1, 0, 0, 0));  // 0
+		console.log(Date.UTC(97, 11, 1, 0, 0, 0));
+
+
+		// JavaScript Date 实例
+		console.log(Date.prototype); // 实例方法
+
+
+
+
+
+
+
+
+	</script>
+</body>
+
+</html>

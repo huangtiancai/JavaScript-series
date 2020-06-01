@@ -43,11 +43,100 @@ console.log(obj.name, obj2.name);
 基本数据类型：基本数据类型的值，直接保存在栈内存中。值与值之间是独立存在，修改一个变量不会影响其他的变量。
 引用数据类型：对象是保存到堆内存中的。每创建一个新的对象，就会在堆内存中开辟出一个新的空间，而变量保存了对象的内存地址（对象的引用）。如果两个变量保存了同一个对象的引用，当一个通过一个变量修改属性时，另一个也会受到影响。
 
+-------------------------------------------------------------------------
+
+### JS中常见的数据类型
+number、string、boolean、null、undefined、Symbol object
+- 基本数据类型（无属性和方法）
+  + 数字 number
+    + 常规数字和NaN
+  + 字符串 string
+    + 所有单引号、双引号、反引号（ES6 => 模板字符串）包起来的都是字符串：'012' '{age:10}'
+  + 布尔 boolean
+    + true false
+  + 空对象指针 null
+  + 未定义 undefined
+  + Symbol
+
+- 引用数据类型（由属性和方法）
+  + 对象数据类型 object
+    + {} 普通对象
+    + [] 数组对象
+    + /*/ 正则对象
+    + Math数学函数对象
+    + 日期对象
+    ... 
+  + 函数数据类型 function
+
+### JS中的typeof值
+number、string、boolean、undefined、Symbol、function
 
 ### 对象的分类
-1. 内置对象：
+1. 内置对象(首字母大写)
 由ES标准中定义的对象，在任何的ES的实现中都可以使用
-比如：Math、String、Number、Boolean、Function、Object....
+
+内置对象
+其中Boolean String Number三个也是包装类型对象
+Boolean  布尔
+Number   数值
+String   字符串
+Symbol
+--------------  注意Boolean、Number、String 与 boolean、number、string的区别
+Array    数组
+Date     日期、时间
+Math     数学
+RegExp   正则
+Error    异常
+Function 函数构造器
+Global   全局对象 内建
+Object   基础对象
+
+JS内置对象和JS数据类型关系:
+- JS数据类型是对外的，面对编译器；
+- JS内置对象是对内的，日常编程与我们打交道最多的，其实是JS内置对象
+
+基本包装对象：
+引用类型有方法和属性，但是基本类型是没有
+```js
+var str = 'hello'; // string 基本类型
+var s2 = str.charAt(0);
+console.log(s2); // h
+```
+上面是一个字符串，基本类型，能使用charAt()? ,主要因为在基本类型中，有三个比较特殊的存在就是：String Number Boolean，这三个基本类型都有自己对应的包装对象（包装对象，其实就是对象，有相应的属性和方法）
+```js
+var str = 'hello'; //string 基本类型
+var s2 = str.charAt(0); //在执行到这一句的时候 后台会自动完成以下动作 ：
+//相当于：
+----------------------------------------------------------------------------
+ var str = new String('hello'); // 1.找到对应的包装对象类型，然后通过包装对象创建出一个和基本类型值相同的对象
+ var s2 = str.chaAt(0); // 2.然后这个对象就可以调用包装对象下的方法，并且返回结给s2.
+ str = null;            // 3.之后这个临时创建的对象就被销毁了， str =null; 
+----------------------------------------------------------------------------
+
+alert(s2);//h 
+alert(str);//hello   
+```
+由此我们可以知道，引用类型和基本包装对象的区别在于：`生存期`
+引用类型所创建的对象，在执行的期间一直在内存中，而基本包装对象只是存在了一瞬间(str = null)
+所以我们无法直接给`基本类型添`加方法
+```js
+str.testpro = 10
+// var str = new String('hello');
+// str.testpro = 10;     // 通过这个对象调用包装对象下的方法 但结果并没有被任何东西保存
+// str = null;          // 这个对象又被销毁
+```
+
+那么我们怎么才能给基本类型添加方法或者属性呢?
+```js
+var str2 = 'vue'
+//给字符串添加方法  要写到对应的包装对象的原型下才行
+String.prototype.testMethod = function () {
+  return this.charAt(this.length - 1);
+}
+console.log(str2.testMethod());  // e
+```
+
+
 
 2. 宿主对象：
 由JS的运行环境提供的对象，目前来讲主要指由浏览器提供的对象。
@@ -67,3 +156,32 @@ BOM - 浏览器对象模型（Browser 对象）
 删除对象的属性
 in 运算符
 遍历对象中的属性：for in
+
+
+
+
+### number数字类型
+> 包含常规数字、NaN
+
+### NaN
+> not a number :不是一个数，但它率属于数字类型
+
+NaN和任何值（包括自己）都不相等；NaN！=NaN，所以我们不能使用相等的方式判断是否为有效数字
+
+### isNaN
+> 检测一个值是否为非有效数字，如果不是有效数字返回TRUE,反之有效数字返回false
+
+在使用isNaN检测的时候，首先会验证检测的值是否为数字类型，如果不是先基于Number()这个方法，把值转换为数字类型，然后再检测 => isNaN底层机制
+
+### 把其他类型值转换为数字类型
+Number([val]);
+parseInt/parseFloat([val],[进制]);
+
+
+# string字符串数据类型
+> 所有用单引号、双引号、反引号（撇 ES6模板字符串）包起来的都是字符串
+
+### 把其它类型值转换为字符串
+- [val].toString()
+- 字符串拼接
+

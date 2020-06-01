@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <script>
+    var str = 'hello';
+    var s2 = str.charAt(0);
+    console.log(s2); // h
+
+    str.testpro = 10
+    // var str = new String('hello');
+    // str.testpro = 10;     // 通过这个对象调用包装对象下的方法 但结果并没有被任何东西保存
+    // str = null;          // 这个对象又被销毁
+    console.log(str.testpro);
+
+    var str2 = 'vue'
+    //给字符串添加方法  要写到对应的包装对象的原型下才行
+    String.prototype.testMethod = function () {
+      return this.charAt(this.length - 1);
+    }
+
+    console.log(str2.testMethod());  // e 
+    console.log(typeof str2.testMethod());  // string 
+
+  </script>
+</body>
+
+</html>
