@@ -18,7 +18,7 @@ JavaScript 是一种脚本，一门编程语言，它可以在网页上实现复
 <p>玩家1：小明</p>
 ```
 加一点css
-```
+```css
 p {
         font-family: sans-serif, '黑体';
         letter-spacing: 1px;
@@ -35,7 +35,7 @@ p {
       }
 ```
 再加点JavaScript实现动态行为
-```
+```js
 <p>玩家1：小明</p>
 <script>
     const para = document.querySelector('p');
@@ -175,7 +175,7 @@ function updateName(){
 <script src="script.js" async></script>
 ```
 - 3.在 script.js 文件中，添加下面的脚本
-```
+```js
 function createParagraph(){
       let para = document.createElement('p');
       para.textContent = '你点击来了这个按钮！';

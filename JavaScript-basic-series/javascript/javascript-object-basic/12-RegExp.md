@@ -81,15 +81,3 @@ g     global      全局匹配
 
 /A/.test('laa')  => false
 /A/i.test('laa') => true
-
-
-
-
-
-
-
-
-
-
-
-

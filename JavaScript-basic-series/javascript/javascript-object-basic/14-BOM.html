@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bom</title>
+</head>
+
+<body>
+  <a href="" javascript:;>点击我打开一个新的页面</a>
+  <br />
+  <a href="" javascript:;>点击我关闭一个页面</a>
+
+  <div id="div">点我跳转</div>
+
+  <script>
+    var a1 = document.getElementsByTagName('a')[0];
+    var a2 = document.getElementsByTagName('a')[1];
+
+    a1.onclick = function () {
+      var styles = "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=600, height=600,top=100,left=500";
+      window.open('https://jsonserve.cn', "_blank", styles);
+    }
+
+    // 关闭窗口
+    a2.onclick = function () {
+      window.close();
+    }
+
+    document.getElementById('div').onclick = function () {
+      location.href = 'https://jsonserve.cn';
+    }
+
+    setTimeout(function () {
+      // location.assign('https://jsonserve.cn');
+      // location.replace('https://jsonserve.cn');
+      // location.reload(); 可实现定时刷新页面
+    }, 2000)
+
+    // location对象其他属性
+    console.log(location.hash);
+    console.log(location.host);
+    console.log(location.hostname);
+    console.log(location.port);
+    console.log(location.pathname);
+    console.log(location.protocol);
+    console.log(location.search);
+
+    // window.navigator 的一些属性可以获取客户端的一些信息
+    console.log(navigator.userAgent);
+    console.log(navigator.platform);
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
