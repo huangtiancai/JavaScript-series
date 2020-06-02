@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON-Object</title>
+</head>
+
+<body>
+
+  <script>
+	// JSON.parse()	
+	// JSON.parse() 方法用来解析JSON字符串，构造由字符串描述的JavaScript值或对象
+	
+    // 语法:JSON.parse(text,reviver);
+	
+	// 参数：
+	// text - 要被解析成 JavaScript 值的字符串
+	// reviver - 转换器
+	
+	// 返回值：Object 类型
+	
+	console.log(typeof JSON.parse('{}'),JSON.parse('{}')); 		// object	{}
+	console.log(typeof JSON.parse('true'),JSON.parse('true'));	// boolean  true
+	console.log(typeof JSON.parse('"foo"'),JSON.parse('"foo"'));// strig    foo
+	console.log(typeof JSON.parse('[1,5,"false"]'),JSON.parse('[1,5,"false"]')); // object Array [1,5,"false"]
+	console.log(typeof JSON.parse('null'),JSON.parse('null'));	// object 	null
+	
+	console.log('------------------------');
+	
+	const json = '{"result":true,"count":10}';
+	const obj = JSON.parse(json);
+	console.log(obj);
+	console.log(obj.result);
+	console.log(obj.count);
+	
+	console.log('------------JSON常见错误------------');
+	
+	// JSON.parse() 不允许在末尾添加多余的逗号	SyntaxError
+	// console.log(JSON.parse('[1,2,3,]'));
+	// console.log(JSON.parse('{"foo":1,}'));
+	
+	// JSON 的属性名必须使用双引号
+	// console.log(JSON.parse('{'foo':1}'));
+	
+	// 前导 0 和小数点
+	// 数字不能用 0 开头，比如01，并且你的小数点后面必须跟着至少一个数字。
+	// console.log(JSON.parse('{"foo":01}'));
+	// console.log(JSON.parse('{"foo":1.}'));
+	// 正确的写法应该是只写一个1，不书写前面的0。在小数点的后面至少要跟上一个数字:
+	console.log(JSON.parse('{"foo":1}'));
+	console.log(JSON.parse('{"foo":1.0}'));
+	
+	console.log('------------JSON.stringify()------------');
+	
+	
+	
+	// JSON.stringify()
+	// JSON.stringify() 方法将一个 JavaScript 值（对象或者数组）转换为一个 JSON 字符串
+	// 语法：JSON.stringify(value,replacer,space)
+	// 参数：
+	// value - 将要序列化成 一个 JSON 字符串的值
+	// replacer
+	// space - 
+	
+	// 返回值：一个表示给定值的JSON字符串
+	console.log(typeof JSON.stringify({}),JSON.stringify({})); 		 // string {}
+	console.log(typeof JSON.stringify(true),JSON.stringify(true));	 // string 
+	console.log(typeof JSON.stringify("foo"),JSON.stringify("foo"));
+	console.log(typeof JSON.stringify([1,"false",false]),JSON.stringify([1,"false",false]));
+	console.log(typeof JSON.stringify({x:5}),JSON.stringify({x:5}));
+ 	console.log(typeof JSON.stringify({x:5,y:6}),JSON.stringify({x:5,y:6}));
+	
+	
+	
+	
+	// 参考：
+	// https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
+	// https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Errors/JSON_bad_parse?utm_source=mozilla&utm_medium=firefox-console-errors&utm_campaign=default
+  </script>
+
+</body>
+
+</html>
