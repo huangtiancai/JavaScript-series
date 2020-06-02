@@ -65,14 +65,31 @@
 	// space - 
 	
 	// 返回值：一个表示给定值的JSON字符串
-	console.log(typeof JSON.stringify({}),JSON.stringify({})); 		 // string {}
-	console.log(typeof JSON.stringify(true),JSON.stringify(true));	 // string 
+	
+	
+	console.log(typeof JSON.stringify({}),JSON.stringify({})); 
+	// string '{}'	
+	console.log(typeof JSON.stringify(true),JSON.stringify(true));
+	// string 'true'
 	console.log(typeof JSON.stringify("foo"),JSON.stringify("foo"));
+	// string '"foo"'	
 	console.log(typeof JSON.stringify([1,"false",false]),JSON.stringify([1,"false",false]));
+	// string '[1,"false",false]'
 	console.log(typeof JSON.stringify({x:5}),JSON.stringify({x:5}));
- 	console.log(typeof JSON.stringify({x:5,y:6}),JSON.stringify({x:5,y:6}));
-	
-	
+	// string '{"x":5}'
+	console.log(typeof JSON.stringify({x:5,y:6}),JSON.stringify({x:5,y:6}));
+	// string '{"x":5,"y":6}'
+	console.log(JSON.stringify([new Number(1), new String("false"), new Boolean(false)])); 
+	// '[1,"false",false]'
+	JSON.stringify({x: undefined, y: Object, z: Symbol("")}); 
+	// '{}'
+	JSON.stringify([undefined, Object, Symbol("")]);          
+	// '[null,null,null]' 
+	JSON.stringify({[Symbol("foo")]: "foo"});                 
+	// '{}'
+	JSON.stringify({[Symbol.for("foo")]: "foo"}, [Symbol.for("foo")]);
+	// '{}'
+		
 	
 	
 	// 参考：
