@@ -30,8 +30,8 @@
 	
 	console.log('------------------------');
 	
-	const json = '{"result":true,"count":10}';
-	const obj = JSON.parse(json);
+	const jsonStr = '{"result":true,"count":10}';
+	const obj = JSON.parse(jsonStr);
 	console.log(obj);
 	console.log(obj.result);
 	console.log(obj.count);
@@ -101,10 +101,24 @@
 					   JSON.stringify({[Symbol.for("foo")]: "foo"}, [Symbol.for("foo")])
 	); 
 	// string '{}'
+		
+		
+	console.log('------------------------');
 	
+	// 自定义json 对象
+	const jsonObj = {
+		"id": 2,
+		"name": "hony",
+		"age":20
+	}
+	console.log(typeof jsonObj,jsonObj); // object {...}
 	
-	// JSON.stringify 序列化 第三方API
+	const str = JSON.stringify(jsonObj);
+	console.log(typeof str,str); // string '{"id":2,"name":"hony","age":20}'
+	
+	// 序列化 第三方API
 	const start = Date.now();
+	// 这里是一个异步操作 axios = ajax -> 获取服务器数据 
 	axios.get('http://jsonplaceholder.typicode.com/users/1')
 	  .then(res => {
 		// handle success
