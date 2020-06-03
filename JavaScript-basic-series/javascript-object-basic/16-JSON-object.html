@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JSON-Object</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 </head>
 
 <body>
@@ -79,17 +80,43 @@
 	// string '{"x":5}'
 	console.log(typeof JSON.stringify({x:5,y:6}),JSON.stringify({x:5,y:6}));
 	// string '{"x":5,"y":6}'
-	console.log(JSON.stringify([new Number(1), new String("false"), new Boolean(false)])); 
-	// '[1,"false",false]'
+	console.log(typeof JSON.stringify([new Number(1), new String("false"), new Boolean(false)]),
+		JSON.stringify([new Number(1), new String("false"), new Boolean(false)])
+	); 
+	// string '[1,"false",false]'
 	JSON.stringify({x: undefined, y: Object, z: Symbol("")}); 
-	// '{}'
-	JSON.stringify([undefined, Object, Symbol("")]);          
-	// '[null,null,null]' 
-	JSON.stringify({[Symbol("foo")]: "foo"});                 
-	// '{}'
-	JSON.stringify({[Symbol.for("foo")]: "foo"}, [Symbol.for("foo")]);
-	// '{}'
+	console.log(typeof JSON.stringify({x:undefined,y:Object,z:Symbol}),
+		JSON.stringify({x:undefined,y:Object,z:Symbol})
+	);
+	// string '{}'
+	console.log(typeof JSON.stringify([undefined,Object,Symbol]),
+					   JSON.stringify([undefined,Object,Symbol])
+	);          
+	// string '[null,null,null]' 
+	console.log(typeof JSON.stringify({[Symbol("foo")]: "foo"}),
+					   JSON.stringify({[Symbol("foo")]: "foo"})
+	); 	
+	// string '{}'
+	console.log(typeof JSON.stringify({[Symbol.for("foo")]: "foo"}, [Symbol.for("foo")]),
+					   JSON.stringify({[Symbol.for("foo")]: "foo"}, [Symbol.for("foo")])
+	); 
+	// string '{}'
+	
+	
+	// JSON.stringify 序列化 第三方API
+	const start = Date.now();
+	axios.get('http://jsonplaceholder.typicode.com/users/1')
+	  .then(res => {
+		// handle success
+		let address = res.data.address  // object
+		console.log(JSON.stringify(res.data.address))
 		
+		const end = Date.now();
+		console.log(`共消耗:${end - start}ms`);
+	  }).catch(err => {
+		console.lof(err);
+	  })
+	
 	
 	
 	// 参考：
