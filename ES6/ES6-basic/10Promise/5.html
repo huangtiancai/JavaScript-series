@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="js/jquery-1.8.3.js"></script>
+    <script src="js/axios.min.js"></script>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
             axios.get('data/3.txt'),
         ]).then(res => {
             console.log('-------------------------------');
-            
+
         }, () => {
             alert('失败');
         });
