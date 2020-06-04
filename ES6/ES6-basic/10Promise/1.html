@@ -10,21 +10,21 @@
 <body>
     <script>
 		// 跨域
-        //let promise1 = new Promise(function (resolve, reject) {
+        let promise = new Promise(function (resolve, reject) {
             // 异步
-        //    $.ajax({
-        //        url: 'data/1.txt',
-        //        dataType: 'json',
-        //        success: function (arr) {
-        //            resolve(arr);
-        //        },
-        //        error: function (res) {
-        //            reject(res);
-        //        }
-        //    })
-        //});
+            $.ajax({
+                url: 'data/1.txt',
+                dataType: 'json',
+                success: function (arr) {
+                    resolve(arr);
+                },
+                error: function (res) {
+                    reject(res);
+                }
+            })
+        });
 		
-		let promise = new Promise(function (resolve, reject) {
+		let promise2 = new Promise(function (resolve, reject) {
             // 异步
             axios.get('http://jsonplaceholder.typicode.com/users/1')
 			.then(res => {
@@ -35,7 +35,7 @@
         });
 
         // 调用promise的then()
-        promise.then(function (res) {
+        promise1.then(function (res) {
             console.log('成功了');
             console.log(res);
         }, function () {
