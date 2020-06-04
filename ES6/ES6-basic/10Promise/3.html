@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <script src="js/jquery-1.8.3.js"></script>    
+    <script src="js/jquery-1.8.3.js"></script>
+    <script src="js/axios.min.js"></script>
 </head>
+
 <body>
     <script>
         // ajax本身返回的就是promie对象，可以直接使用
         $.ajax({
-            url:'data/1.txt',
-            dataType:'json'
-        }).then(arr=>{
-            alert('成功了');
-            console.log(arr);
-        },res=>{
-            alert('失败了');
+            url: 'data/1.txt',
+            dataType: 'json'
+        }).then(arr => {
+            console.log(arr);   // Array(5) [ 1, 2, 3, 4, 6 ]
+        }, () => {
+            console.log('失败了');
         });
+
+
+        axios.get('data/1.txt')
+            .then(res => {
+                console.log(res.data);  // Array(5) [ 1, 2, 3, 4, 6 ]
+            }).catch(err => {
+                console.log(err);
+            })
     </script>
 </body>
+
 </html>

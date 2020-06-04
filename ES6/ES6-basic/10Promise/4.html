@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <script src="js/jquery-1.8.3.js"></script>    
+    <script src="js/jquery-1.8.3.js"></script>
+    <script src="js/axios.min.js"></script>
 </head>
+
 <body>
     <script>
-        // 同时读取三个文件 Promise.all() 里面放数组，数组里面放promise对象，ajax本身返回的就是promie对象
+        // 同时读取三个文件 Promise.all() 里面放数组，数组里面放promise对象(ajax本身返回的就是promie对象)
         // 如果参数中  promise 有一个失败（rejected），此实例回调失败（reject）
         Promise.all([
-            $.ajax({url:'data/1.txt',dataType:'json'}),
-            $.ajax({url:'data/2.txt',dataType:'json'}),
-            $.ajax({url:'data/3.txt',dataType:'json'}),
-        ]).then(arr=>{
+            $.ajax({ url: 'data/1.txt', dataType: 'json' }),
+            $.ajax({ url: 'data/2.txt', dataType: 'json' }),
+            $.ajax({ url: 'data/3.txt', dataType: 'json' }),
+        ]).then(arr => {
             // 得到三个数组
             console.log(arr);
-        },res=>{
+            console.log(arr[0]);
+            console.log(arr[1]);
+            console.log(arr[2]);
+        }, () => {
+            alert('失败');
+        });
+
+        Promise.all([
+            axios.get('data/1.txt'),
+            axios.get('data/2.txt'),
+            axios.get('data/3.txt'),
+        ]).then(res => {
+            console.log('-------------------------------');
+            console.log(res);
+            console.log(res[0].data);
+            console.log(res[1].data);
+            console.log(res[2].data);
+        }, () => {
             alert('失败');
         });
     </script>
 </body>
+
 </html>

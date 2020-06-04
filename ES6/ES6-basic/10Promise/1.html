@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <script src="js/jquery-1.8.3.js"></script>
-	<script src="js/axios.min.js"></script>
+    <script src="js/axios.min.js"></script>
 </head>
 
 <body>
     <script>
-		// 跨域
         let promise = new Promise(function (resolve, reject) {
             // 异步
             $.ajax({
@@ -23,22 +22,30 @@
                 }
             })
         });
-		
-		let promise2 = new Promise(function (resolve, reject) {
+
+        let promise2 = new Promise((resolve, reject) => {
             // 异步
-            axios.get('http://jsonplaceholder.typicode.com/users/1')
-			.then(res => {
-				resolve(res.data);
-			}).catch(err => {
-				console.log(err);
-			})
+            axios.get('data/1.txt')
+                .then(res => {
+                    resolve(res.data);  // res.data 也可以在then方法中取
+                }).catch(err => {
+                    console.log(err);
+                })
         });
 
         // 调用promise的then()
-        promise1.then(function (res) {
-            console.log('成功了');
+        promise.then(function (res) {
+            console.log('ajax成功了');
             console.log(res);
         }, function () {
+            console.log('失败了');
+        });
+
+        // 调用promise2的then()
+        promise2.then((res) => {
+            console.log('axios成功了');
+            console.log(res);
+        }, () => {
             console.log('失败了');
         });
 
