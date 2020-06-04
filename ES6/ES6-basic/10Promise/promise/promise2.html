@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+	<script src="js/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+		function timeout(millisecond){
+			return new Promise((resolve,rejecte)=>{
+				// setTimeout(function/code,delay,arg1, arg2,...,argN)
+				// 第三个以后的参数是作为第一个func()的参数传进去
+				// 附加参数:arg1, arg2,...,argN，一旦定时器到期，它们会作为参数传递给function 
+				setTimeout(function(value){
+					console.log(value);
+				},millisecond,'done1')
+			})
+		}
+		
+		
+		// then 
+		timeout(2000).then(()=>{
+			console.log('success');
+		},() =>{
+			console.log('error');
+		})
+		
+		
+		
+		function timeout2(millisecond){
+			return new Promise((resolve,rejecte)=>{
+				// 附加参数会传递给resolve('done')
+				setTimeout(resolve,millisecond,'done2')
+			})
+		}
+
+		timeout2(2000).then((value)=>{
+			console.log(value);
+		},() =>{
+			console.log('error');
+		})
+		
+		console.log('末尾');
+		
+		
+    </script>
+</body>
+
+</html>
