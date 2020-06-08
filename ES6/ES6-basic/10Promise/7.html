@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <script src="js/jquery-1.8.3.js"></script>    
+    <script src="js/jquery-1.8.3.js"></script>
 </head>
+
 <body>
     <script>
-        async function show(){
+        // 声明函数中由异步操作 async
+        async function show() {
             let a = 2;
             let b = 3;
+            // 指明哪些是异步操作，哪些是同步操作
+            // 主动去给异步操作加上await,用来表明这个操作不能直接就往下运行，需要等待（等待操作结束再往下继续走）
 
-            try{
-                let data = await $.ajax({url:'data/1.txt',dataType:'json'}); // 写起来和同步一样的方便，内部仍然是异步的    
-                alert(a+b+data[0]);
-            }catch(e){
-                alert("出错了！");
-            }
+            const start = Date.now();
+
+            let data = await $.ajax({ url: 'data/1.txt', dataType: 'json' }); // 写起来和同步一样的方便，内部仍然是异步的    
+
+            const end = Date.now();
+
+            console.log(a + b + data[0]);
+            console.log(`共消耗：${end - start} ms`);
         }
         // 调用
         show(); // 6
     </script>
 </body>
+
 </html>

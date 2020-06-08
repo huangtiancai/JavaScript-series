@@ -18,8 +18,8 @@
         ]).then(arr => {
             // 结构赋值处理数据
             let [data1, data2, data3] = arr;
-            console.log(data2);
-            console.log(typeof data2);
+            console.log(data1);
+            console.log(typeof data1);
         }, () => {
             alert('失败');
         });
@@ -29,8 +29,9 @@
             axios.get('data/2.txt'),
             axios.get('data/3.txt'),
         ]).then(res => {
-            console.log('-------------------------------');
-            console.log(res);
+            let [data1, data2, data3] = res;
+            console.log(data1.data);
+            console.log(typeof data1.data);
 
         }, () => {
             alert('失败');
