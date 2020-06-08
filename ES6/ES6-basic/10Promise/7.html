@@ -8,15 +8,14 @@
 
 <body>
     <script>
-        // 声明函数中由异步操作 async
+        // 声明函数中有异步操作 async
         async function show() {
             let a = 2;
             let b = 3;
-            // 指明哪些是异步操作，哪些是同步操作
-            // 主动去给异步操作加上await,用来表明这个操作不能直接就往下运行，需要等待（等待操作结束再往下继续走）
 
             const start = Date.now();
 
+            // await 用于等待一个异步方法执行完成
             let data = await $.ajax({ url: 'data/1.txt', dataType: 'json' }); // 写起来和同步一样的方便，内部仍然是异步的    
 
             const end = Date.now();

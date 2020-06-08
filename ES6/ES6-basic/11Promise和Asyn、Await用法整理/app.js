@@ -2,18 +2,18 @@
 
 // 1.简介
 
-let promise = new Promise((resolve,reject) => {	
+let promise = new Promise((resolve, reject) => {
 	console.log('同步代码-start');
 	resolve('success');
 	reject('error');
-	
+
 });
 
 console.log(promise); // Promise { 'success' }
 
 promise.then(success => {
 	console.log(success);
-},error => {
+}, error => {
 	console.log(error);
 });
 

@@ -3,9 +3,9 @@
 // 8.异常处理
 
 // try{
-  let p = new Promise((resolve,reject) => {
-    throw new Error("this is a error");
-  });
+let p = new Promise((resolve, reject) => {
+  throw new Error("this is a error");
+});
 // }catch(e){
 //   console.log("catch",e);
 // }

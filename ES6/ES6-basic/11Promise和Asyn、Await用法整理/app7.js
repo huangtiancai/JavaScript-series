@@ -6,8 +6,8 @@ let url1 = 'http://jsonplaceholder.typicode.com/users?id=2';
 let url2 = 'http://jsonplaceholder.typicode.com/users?id=3';
 
 $.ajax({
-	type:'GET',
-	url:url,
+	type: 'GET',
+	url: url,
 	contentType: "application/json; charset=utf-8",
 	data: 'JSON',
 	success: function (res) {

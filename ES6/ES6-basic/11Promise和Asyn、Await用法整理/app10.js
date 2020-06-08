@@ -4,12 +4,12 @@
 
 let p = Promise.reject(2)
 console.log(p); // Promise { <rejected> 2 }   Promise { <state>: "rejected" } uncaught exception: 2
- 
+
 p.then(res => {
   console.log(res);
 })
-.catch(res => {
-  console.log('catch',res); // catch 2
-});
+  .catch(res => {
+    console.log('catch', res); // catch 2
+  });
 
 

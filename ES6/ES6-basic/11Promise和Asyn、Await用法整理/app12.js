@@ -8,8 +8,8 @@ let p2 = Promise.resolve("hello");
 let p3 = Promise.reject("error");
 
 
-Promise.all([p,p1,p3]).then(res => {
-  console.log(res); 
+Promise.all([p, p1, p3]).then(res => {
+  console.log(res);
 }).catch(res => {
   console.log(res); // error
 });

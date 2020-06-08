@@ -4,7 +4,7 @@
 // Promise实例具有then方法 Promise.prototype.catch
 // 用于指定Promise状态转变为rejected时的回调函数可以认为是then(null,func2)的简写形式
 
-let p = new Promise((resolve,rejected) => {
+let p = new Promise((resolve, rejected) => {
   // resolve("success");
   rejected("error");
 });

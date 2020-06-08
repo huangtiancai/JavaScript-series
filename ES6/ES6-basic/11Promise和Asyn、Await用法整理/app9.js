@@ -4,22 +4,22 @@
 
 let pm = Promise.resolve(2)
 console.log(pm); // Promise { 2 }   Promsie{<state>: "fulfilled",<value>: 2}
- 
+
 // 传一个普通对象
 let p = Promise.resolve({
-  name:"promise",
-  age:"10"
-}); 
+  name: "promise",
+  age: "10"
+});
 
 p.then(res => {
   console.log(res); // Object { name: "promise", age: "10" }
 });
 
 // 若传一个Promise对象，直接返回
-let p1 = new Promise((resolve,rejected) => {
+let p1 = new Promise((resolve, rejected) => {
   setTimeout(() => {
     resolve("success"); // success
-  },1000)
+  }, 1000)
 });
 
 let p2 = Promise.resolve(p1);
