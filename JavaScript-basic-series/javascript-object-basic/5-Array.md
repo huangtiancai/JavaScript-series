@@ -25,8 +25,17 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
 
 // 数组属性
 Array.length
-//用于确定传递的值是否是一个 Array。
+
+// 方法从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例
+Array.from()
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+
+// 用于确定传递的值是否是一个 Array
 Array.isArray(obj)
+// 根据一组参数来创建新的数组实例，支持任意的参数数量和类型
+Array.of()
+
+
 // concat() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组
 var new_array = old_array.concat(value1[, value2[, ...[, valueN]]])
 
