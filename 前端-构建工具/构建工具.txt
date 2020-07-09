@@ -1,4 +1,0 @@
-grunt
-glup
-webpack 掌握webpack,上面两款工具了解
-Babel
